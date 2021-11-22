@@ -1,5 +1,3 @@
-#%%
-
 #import libraries and modules
 import mne
 import numpy as np
@@ -11,8 +9,8 @@ import pandas as  pd
 import mne_bids
 import string
 sns.set(style="white", font_scale=1)
-#%%
 
+#read the files with mne Bids
 def read_BIDS_data(PATH_RUN, BIDS_PATH):
     """Given a run path and bids data path, read the respective data
     Parameters
@@ -51,7 +49,4 @@ PATH_RUN = r"/Users/alidzaye/Charité - Universitätsmedizin Berlin/Interventi
 
 raw, dat, sfreq, line_freq = read_BIDS_data(PATH_RUN, PATH_BIDS)
 
-# %%
-raw.ch_names
 
-# %%
