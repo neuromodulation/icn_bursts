@@ -32,6 +32,7 @@ print(len(files))
 print(len(files_off))
 print(len(files_on))
 
+#read the files with mne Bids
 def read_BIDS_data(PATH_RUN, BIDS_PATH):
     """Given a run path and bids data path, read the respective data
     Parameters
@@ -45,12 +46,10 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
     fs : int
     line_noise : int
     """
-    For i in files:
-    PATH_BIDS = r"/Users/alidzaye/Charité - Universitätsmedizin Berlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata"
-    PATH_RUN = files[i]
+    For i in range(len(files)): 
     entities = mne_bids.get_entities_from_fname(PATH_RUN)
 
-        bids_path = mne_bids.BIDSPath(
+    bids_path = mne_bids.BIDSPath(
             subject=entities["subject"],
             session=entities["session"],
             task=entities["task"],
@@ -60,25 +59,35 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
             root=BIDS_PATH,
                             )
 
-        raw_arr = mne_bids.read_raw_bids(bids_path)
-    
+    raw_arr = mne_bids.read_raw_bids(bids_path)
     return (
         raw_arr,
         raw_arr.get_data(),
         int(np.ceil(raw_arr.info["sfreq"])),
         int(raw_arr.info["line_freq"]),),
-raw, dat, sfreq, line_freq = read_BIDS_data(PATH_RUN, Path_Bids)
 
-# Next steps:
+PATH_BIDS = r'/Users/alidzaye/rawdata'
+PATH_RUN = r'files[i]'
+
+raw, dat, sfreq, line_freq = read_BIDS_data(PATH_RUN, PATH_BIDS)
 
 # Preprocessing
-## pick ECoG
 def pick_ecog(raw):
     '''
     pick ECoG channels
     '''
-    For i in raw
-    raw.pick_types(ecog=True).ch_names
+    raw_ecog = []
+    For i in range (len(raw)):
+    raw_ecog.append(raw.pick_types(ecog=True).ch_names)
+
+    return raw_ecog
+raw_ecog = pick_ecog(raw)
+
+
+
+
+#Next Steps: 
+
 
 
 ## bipolar re-reference
