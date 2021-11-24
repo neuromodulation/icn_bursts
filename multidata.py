@@ -2,6 +2,7 @@
 # 1.READ IN THE DATA #
 
 #import libraries and modules
+from operator import index
 import mne
 import numpy as np
 import scipy
@@ -46,7 +47,6 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
     fs : int
     line_noise : int
     """
-    For i in range(len(files)): 
     entities = mne_bids.get_entities_from_fname(PATH_RUN)
 
     bids_path = mne_bids.BIDSPath(
@@ -67,7 +67,7 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
         int(raw_arr.info["line_freq"]),),
 
 PATH_BIDS = r'/Users/alidzaye/rawdata'
-PATH_RUN = r'files[i]'
+PATH_RUN = r'/Users/alidzaye/rawdata/sub-003/ses-EphysMedOff01/ieeg/sub-003_ses-EphysMedOff01_task-Rest_acq-StimOff_run-01_ieeg.vhdr'
 
 raw, dat, sfreq, line_freq = read_BIDS_data(PATH_RUN, PATH_BIDS)
 
@@ -77,11 +77,12 @@ def pick_ecog(raw):
     pick ECoG channels
     '''
     raw_ecog = []
-    For i in range (len(raw)):
     raw_ecog.append(raw.pick_types(ecog=True).ch_names)
 
     return raw_ecog
+
 raw_ecog = pick_ecog(raw)
+
 
 
 
