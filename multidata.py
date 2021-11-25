@@ -143,10 +143,10 @@ def Time_Frequency_Estimation(stand_signal):
 
 run_TF = Time_Frequency_Estimation(stand_signal)
 
-
-
-## Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
 def beta_bands(run_TF):
+    '''
+    Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
+    '''
     low_beta_1 = run_TF[0, 12:20,:]
     high_beta_1 = run_TF[0, 19:35,:]
     full_beta_1 = run_TF[0, 12:35,:]
@@ -171,7 +171,7 @@ def beta_bands(run_TF):
     = beta_bands(run_TF)
 
 
-
+## Averaging power in all beta bands 
 low_beta_1_averp = np.mean(low_beta_1, axis=0)
 high_beta_1_averp = np.mean(high_beta_1, axis=0)
 full_beta_1_averp = np.mean(full_beta_1, axis=0)
