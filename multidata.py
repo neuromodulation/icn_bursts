@@ -83,62 +83,95 @@ def pick_ecog(raw):
 
 raw_ecog = pick_ecog(raw)
 
-
-
-
-
-#Next Steps: 
-
-
-
-## bipolar re-reference
-new_ch_names = ['ECOG_L_1_SMC_BI',
+def bipolar_reference (pick_ecog):
+    new_ch_names = ['ECOG_L_1_SMC_BI',
                'ECOG_L_2_SMC_BI',
                'ECOG_L_3_SMC_BI',
                'ECOG_L_4_SMC_BI',
               'ECOG_L_5_SMC_BI']
-anode = raw_ecog.ch_names[0:5]
-cathode = raw_ecog.ch_names[1:6]
-raw_ecog_bi = mne.set_bipolar_reference(raw_ecog.load_data(), anode=anode,
+    anode = raw_ecog.ch_names[0:5]
+    cathode = raw_ecog.ch_names[1:6]
+    raw_ecog_bi = mne.set_bipolar_reference(raw_ecog.load_data(), anode=anode,
                                         cathode=cathode, ch_name=new_ch_names )
+    return (raw_ecog_bi)
 
-anode_on = raw_ecog_on.ch_names[0:5]
-cathode_on = raw_ecog_on.ch_names[1:6]
-raw_ecog_bi_on = mne.set_bipolar_reference(raw_ecog_on.load_data(), anode=anode_on,
-                                        cathode=cathode_on, ch_name=new_ch_names )
+raw_ecog_bi = bipolar_reference(pick_ecog)
 
-## Filtering (HP 3, NF 50,251,50, LP 250)
-raw_ecog_hi = raw_ecog_bi.copy().filter(3, None,)
-raw_ecog_hi_lo = raw_ecog_hi.copy().filter(None, 250)
-raw_ecog_hi_lo_nf = raw_ecog_hi_lo.copy().notch_filter(np.arange(50,251,50), filter_length="auto", phase='zero')
+def filtering (raw_ecog_bi):
+    '''
+    Filtering (Highpass 3 Hz, Notchfilter 50,251,50Hz, Lowpass 250Hz)
+    '''
+    raw_ecog_hi = raw_ecog_bi.copy().filter(3, None,)
+    raw_ecog_hi_lo = raw_ecog_hi.copy().filter(None, 250)
+    raw_ecog_filt = raw_ecog_hi_lo.copy().notch_filter(np.arange(50,251,50), filter_length="auto", phase='zero')
+    return(raw_ecog_filt)
 
-raw_ecog_hi_on = raw_ecog_bi_on.copy().filter(3, None,)
-raw_ecog_hi_lo_on = raw_ecog_hi_on.copy().filter(None, 250)
-raw_ecog_hi_lo_nf_on = raw_ecog_hi_lo_on.copy().notch_filter(np.arange(50,251,50), filter_length="auto", phase='zero')
+raw_ecog_filt = filtering(raw_ecog_bi)
 
 ##Artefact Detection
 # plot filtered ecog channels for annotiations
-#%matplotlib qt
-#raw_ecog_hi_lo_nf.plot(scalings='auto', highpass=3, lowpass=95, decim='auto')
+# %matplotlib qt
+# raw_ecog_filt.plot(scalings='auto', highpass=3, lowpass=95, decim='auto')
+# raw_ecog_filt.annotations.save('run.txt', overwrite=True)
 
-####Cropping the last bit of data to ignore artefacts at the end
-raw_ecog_cropped = raw_ecog_hi_lo_nf.copy().crop(tmax=618)
+def downsample(raw_ecog_filt):
+    '''
+    Downsample Data to 250Hz for faster processing
+    '''
+    raw_ecog_dow = raw_ecog_filt.copy().resample(250)
+    return (raw_ecog_dow)
 
-##Downsample Data to 250Hz for faster processing
-raw_ecog_dow = raw_ecog_cropped.copy().resample(250)
+raw_ecog_dow = downsample(raw_ecog_filt)
 
-## get the data with the function
-signal = raw_ecog_dow.copy().get_data()
+def get_data (raw_ecog_dow):
+    signal = raw_ecog_dow.copy().get_data()
+    return (signal)
 
-## z-score the data
-stand_raw_ecog = stats.zscore(signal, axis=1)
+signal = get_data(raw_ecog_dow)
 
-## Time Frequency estimation
-freqs = np.arange(1,100)
-power = mne.decoding.TimeFrequency(freqs, sfreq=250, method='morlet', n_cycles=10, output='power', )
-run_TF = power.transform(stand_raw_ecog)
+def z_score_signal(signal):
+    stand_signal = stats.zscore(signal, axis=1)
+    return (stand_signal)
+
+stand_signal = z_score_signal(signal)
+
+def Time_Frequency_Estimation(stand_signal):
+    freqs = np.arange(1,100)
+    power = mne.decoding.TimeFrequency(freqs, sfreq=250, method='morlet', n_cycles=10, output='power', )
+    run_TF = power.transform(signal)
+    return (run_TF)
+
+run_TF = Time_Frequency_Estimation(stand_signal)
+
+
 
 ## Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
+def beta_bands(run_TF):
+    low_beta_1 = run_TF[0, 12:20,:]
+    high_beta_1 = run_TF[0, 19:35,:]
+    full_beta_1 = run_TF[0, 12:35,:]
+
+    low_beta_2 = run_TF[1, 12:20,:]
+    high_beta_2 = run_TF[1, 19:35,:]
+    full_beta_2 = run_TF[1, 12:35,:]
+
+    low_beta_3 = run_TF[2, 12:20,:]
+    high_beta_3 = run_TF[2, 19:35,:]
+    full_beta_3 = run_TF[2, 12:35,:]
+
+    low_beta_4 = run_TF[3, 12:20,:]
+    high_beta_4 = run_TF[3, 19:35,:]
+    full_beta_4 = run_TF[3, 12:35,:]
+
+    low_beta_5 = run_TF[4, 12:20,:]
+    high_beta_5 = run_TF[4, 19:35,:]
+    full_beta_5 = run_TF[4, 12:35,:]
+    return = [low_beta_1,]
+
+    = beta_bands(run_TF)
+
+
+
 low_beta_1_averp = np.mean(low_beta_1, axis=0)
 high_beta_1_averp = np.mean(high_beta_1, axis=0)
 full_beta_1_averp = np.mean(full_beta_1, axis=0)
