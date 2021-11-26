@@ -62,6 +62,12 @@ def main():
 
     pw_c = pd.concat([pw_r, pw_r_on])
 
+    # burst length
+    burst_duration = [burst_calc.get_burst_length(l_beta_avg_norm, l_beta_thr, sfreq=250) for l in l_beta_avg_norm] 
+
+
+
+
     
 if __name__ == "main":
     main()
