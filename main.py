@@ -1,12 +1,16 @@
 from src import IO, burst_calc, plot_utils, preprocessing, burst_calc
 import numpy as np
 import pandas as pd
+import csv
 
 
 def main():
     
     PATH_BIDS = r'/Users/alidzaye/rawdata'
     PATH_RUN = r'/Users/alidzaye/rawdata/sub-003/ses-EphysMedOff01/ieeg/sub-003_ses-EphysMedOff01_task-Rest_acq-StimOff_run-01_ieeg.vhdr'
+
+    raw_on = IO.get_runs(PATH_BIDS, med_on = True)
+    raw_off = IO.get_runs(PATH_BIDS, med_on = False)
     
     raw, dat, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
 
@@ -32,15 +36,16 @@ def main():
 
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
-    l_beta = burst_calc.beta_bands(run_TF)  # contains list of low, high, full beta lists
+    # list of low, high, full beta bands for all channels
+    l_beta = burst_calc.beta_bands(run_TF) 
 
-    ## Averaging power in all beta bands 
+    # Averaging power in all beta bands 
     l_beta_avg = [burst_calc.avg_power(l) for l in l_beta]
 
-    ## Z-Scored averaged beta traces
+    # Z-Scored averaged beta traces
     l_beta_avg_norm = [burst_calc.zscore(l) for l in l_beta_avg]
 
-    ## 75th percentile of the power
+    # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
 
     # 2.CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
@@ -62,11 +67,23 @@ def main():
 
     pw_c = pd.concat([pw_r, pw_r_on])
 
-    # burst length
+    # burst duration 
     burst_duration = [burst_calc.get_burst_length(l_beta_avg_norm, l_beta_thr, sfreq=250) for l in l_beta_avg_norm] 
 
+    # mean burst duration in channels 
+    mean_burst_duration = [np.nanmean(burst_duration, axis=0) for ch_idx in range(NUM_CH)]
 
+    # mean burst duration for run/subject
+    mean_run = np.mean(mean_burst_duration)
 
+    # Save Burst Duration in csv
+    pdur = pd.DataFrame(mean_burst_duration)
+    pdur_r = pdur.rename(columns={0:'mean_burst_duration (s) for channel'})
+    pdur_r.to_csv('mean_channel_burst_duration_run_.csv')
+
+    pm = pd.DataFrame(mean_run)
+    pm_r = pdur.rename(columns={0:'mean_burst_duration (s) for run'})
+    pm_r.to_csv('mean_run_burst_duration_run_.csv')
 
     
 if __name__ == "main":
