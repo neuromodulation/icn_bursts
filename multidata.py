@@ -143,32 +143,35 @@ def Time_Frequency_Estimation(stand_signal):
 
 run_TF = Time_Frequency_Estimation(stand_signal)
 
-def beta_bands(run_TF):
-    '''
-    Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
-    '''
-    low_beta_1 = run_TF[0, 12:20,:]
-    high_beta_1 = run_TF[0, 19:35,:]
-    full_beta_1 = run_TF[0, 12:35,:]
+class Beta_Bands:
+    def calculate_beta_bands(run_TF):
+        '''
+        Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
+        '''
+        low_beta_1 = run_TF[0, 12:20,:]
+        high_beta_1 = run_TF[0, 19:35,:]
+        full_beta_1 = run_TF[0, 12:35,:]
 
-    low_beta_2 = run_TF[1, 12:20,:]
-    high_beta_2 = run_TF[1, 19:35,:]
-    full_beta_2 = run_TF[1, 12:35,:]
+        low_beta_2 = run_TF[1, 12:20,:]
+        high_beta_2 = run_TF[1, 19:35,:]
+        full_beta_2 = run_TF[1, 12:35,:]
 
-    low_beta_3 = run_TF[2, 12:20,:]
-    high_beta_3 = run_TF[2, 19:35,:]
-    full_beta_3 = run_TF[2, 12:35,:]
+        low_beta_3 = run_TF[2, 12:20,:]
+        high_beta_3 = run_TF[2, 19:35,:]
+        full_beta_3 = run_TF[2, 12:35,:]
 
-    low_beta_4 = run_TF[3, 12:20,:]
-    high_beta_4 = run_TF[3, 19:35,:]
-    full_beta_4 = run_TF[3, 12:35,:]
+        low_beta_4 = run_TF[3, 12:20,:]
+        high_beta_4 = run_TF[3, 19:35,:]
+        full_beta_4 = run_TF[3, 12:35,:]
 
-    low_beta_5 = run_TF[4, 12:20,:]
-    high_beta_5 = run_TF[4, 19:35,:]
-    full_beta_5 = run_TF[4, 12:35,:]
-    return = [low_beta_1,]
+        low_beta_5 = run_TF[4, 12:20,:]
+        high_beta_5 = run_TF[4, 19:35,:]
+        full_beta_5 = run_TF[4, 12:35,:]
 
-    = beta_bands(run_TF)
+def get_beta_bands():
+    return Beta_Bands ()
+
+beta = get_beta_bands()
 
 
 ## Averaging power in all beta bands 
