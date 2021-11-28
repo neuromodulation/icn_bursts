@@ -66,7 +66,7 @@ def plot_betapower_vs_burstlenght(freqs,
     sns.despine()
 
 
-def plot_burstduration_vs_probability(freqs, npow_on, npow_off,
+def plot_burst_dynamics(freqs, npow_on, npow_off,
     pd_prob_dur: pd.DataFrame,
     pd_dur: pd.DataFrame):
 
