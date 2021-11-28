@@ -1,11 +1,13 @@
-from src import IO, burst_calc, plot_utils, preprocessing, burst_calc
+from src import IO, burst_calc, plot_utils, preprocessing, burst_calc, saving_feat
 import numpy as np
 import pandas as pd
 import csv
+from scipy.stats import wilcoxon
 
 
 def main():
-    
+    # 1. READ IN DATA #
+
     PATH_BIDS = r'/Users/alidzaye/rawdata'
     PATH_RUN = r'/Users/alidzaye/rawdata/sub-003/ses-EphysMedOff01/ieeg/sub-003_ses-EphysMedOff01_task-Rest_acq-StimOff_run-01_ieeg.vhdr'
 
@@ -48,43 +50,51 @@ def main():
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
 
-    # 2.CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
+
+    # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
+    # Power spectral density
     power_spectra = [np.nanmean(np.squeeze(run_TF[ch_idx, :, :]), axis=0) for ch_idx in range(NUM_CH)]
 
-    ## Normalized power spectral density (statistical comparison)
+    # Normalized power spectral density (statistical comparison)
     power_spectra_norm = [p_ch/np.sum(p_ch[4:45] + np.sum(p_ch[54:95])) for p_ch in power_spectra]
 
-    ## M1 normalized beta power OFF vs ON (Pandas)
-    pw = pd.DataFrame(power_spectra_norm[4])
-
-    pw_on = pd.DataFrame(power_spectra_norm[4]) # Why shoudl that be on?
-
-    pw_a = pw.assign(Location='ECOG-L4-L5_SMC_AT', Medication = 'OFF')
-    pw_on_a = pw_on.assign(Location='ECOG-L4-L5_SMC_AT', Medication = 'ON')
-
-    pw_r = pw_a.rename(columns={0:'Relative spectral power (au)'}) 
-    pw_r_on = pw_on_a.rename(columns={0:'Relative spectral power (au)'}) 
-
-    pw_c = pd.concat([pw_r, pw_r_on])
-
-    # burst duration 
+    # Burst duration 
     burst_duration = [burst_calc.get_burst_length(l_beta_avg_norm, l_beta_thr, sfreq=250) for l in l_beta_avg_norm] 
 
-    # mean burst duration in channels 
+    # Histogram of burst duration up to 10 sec
+    histogram_duration = [np.histogram(burst_duration, density=False, bins=100, range=(0, 10)) for ch_idx in range(NUM_CH)] 
+
+    # Normed Histogram
+    norm_histogram_duration = [100 * histogram_duration / burst_duration.shape[0] for ch_idx in range(NUM_CH)]
+
+    # Mean burst duration in channels 
     mean_burst_duration = [np.nanmean(burst_duration, axis=0) for ch_idx in range(NUM_CH)]
 
-    # mean burst duration for run/subject
-    mean_run = np.mean(mean_burst_duration)
+    # M1 Mean burst duration
+    M1_mean_burst_duration = mean_burst_duration[4]
 
-    # Save Burst Duration in csv
-    pdur = pd.DataFrame(mean_burst_duration)
-    pdur_r = pdur.rename(columns={0:'mean_burst_duration (s) for channel'})
-    pdur_r.to_csv('mean_channel_burst_duration_run_.csv')
 
-    pm = pd.DataFrame(mean_run)
-    pm_r = pdur.rename(columns={0:'mean_burst_duration (s) for run'})
-    pm_r.to_csv('mean_run_burst_duration_run_.csv')
+    # 3. SAVING FEATURES IN PANDAS AND CSV FILES #
+    # Save (M1) Mean Burst Duration in csv
+    mean_duration = saving_feat.save_mean_duration(mean_burst_duration)
+    M1_mean_duration = saving_feat.save_mean_duration(M1_mean_burst_duration)
+    mean_duration.to_csv('mean_burst_duration_run_.csv')
+   
+    # Beta Burst Duration (Pandas)
+    burst_duration = saving_feat.save_burst_duration(burst_duration)
 
+    # M1 normalized beta power OFF vs ON (Pandas)
+    M1_npow = saving_feat.save_npow(power_spectra_norm[4])
+
+    # M1 Beta Burst Dynamics (Pandas)
+    M1_burst_dynamics = saving_feat.save_burst_dynamics(norm_histogram_duration[4])
+    
+    # M1 Beta Burst Length (Pandas)
+    M1_burst_duration = saving_feat.save_burst_duration(burst_duration[4])
+
+
+    # 4. STATISTICAL COMPARISON WITH WILCOXON TEST #
+    w, p = wilcoxon(M1_mean_burst_duration) #ON
     
 if __name__ == "main":
     main()
