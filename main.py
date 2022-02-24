@@ -7,14 +7,14 @@ from scipy.stats import wilcoxon
 
 def main():
     # 1. READ IN DATA #
-
     PATH_BIDS = r'/Users/alidzaye/rawdata'
     PATH_RUN = r'/Users/alidzaye/rawdata/sub-003/ses-EphysMedOff01/ieeg/sub-003_ses-EphysMedOff01_task-Rest_acq-StimOff_run-01_ieeg.vhdr'
 
     raw_on = IO.get_runs(PATH_BIDS, med_on = True)
     raw_off = IO.get_runs(PATH_BIDS, med_on = False)
-    
-    raw, dat, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
+    # data, sfreq, line_freq 
+
+    raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
 
     new_ch_names = ['ECOG_L_1_SMC_BI',
                'ECOG_L_2_SMC_BI',
@@ -22,7 +22,7 @@ def main():
                'ECOG_L_4_SMC_BI',
               'ECOG_L_5_SMC_BI']
     
-    NUM_CH = dat.shape[0] # might be 1
+    NUM_CH = data.shape[0] # might be 1
 
     raw_ecog = preprocessing.pick_ecog(raw)
 
@@ -98,6 +98,7 @@ def main():
 
     # 4. STATISTICAL COMPARISON WITH WILCOXON TEST #
     #w, p = wilcoxon(M1_mean_burst_duration) #ON
-    
-if __name__ == "main":
+
+print("hlaoo")
+if __name__ == "__main__":
     main()
