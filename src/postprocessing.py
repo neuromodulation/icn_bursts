@@ -10,6 +10,9 @@ def dataframe_mean_duration(mean_burst_duration):
     pdur_r = pdur.rename(columns={0:'mean_burst_duration (s)'})
     return pdur_r
 
+#def save_mean_duration(mean_burst_duration):
+ #   mean_burst_duration.to_csv('mean_burst_duration.csv')
+
 def dataframe_burst_duration(burst_duration):
     df_dur = pd.DataFrame(burst_duration)
     df_dur_t=df_dur.T
