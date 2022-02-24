@@ -26,7 +26,7 @@ def main():
 
     raw_ecog = preprocessing.pick_ecog(raw)
 
-    raw_ecog_bi = preprocessing.bipolar_reference(raw_ecog)
+    raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     raw_ecog_filt = preprocessing.filtering(raw_ecog_bi)
 

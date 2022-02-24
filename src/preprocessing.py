@@ -12,11 +12,11 @@ def pick_ecog(raw):
 
     return raw_ecog
 
-def bipolar_reference (raw_ecog, new_ch_names):
+def bipolar_reference (raw, raw_ecog, new_ch_names):
     
-    anode = raw_ecog.ch_names[0:5]
-    cathode = raw_ecog.ch_names[1:6]
-    raw_ecog_bi = mne.set_bipolar_reference(raw_ecog.load_data(), anode=anode,
+    anode = raw_ecog[0][0:5]
+    cathode = raw_ecog[0][1:6]
+    raw_ecog_bi = mne.set_bipolar_reference(raw.load_data(), anode=anode,
                                         cathode=cathode, ch_name=new_ch_names )
     return (raw_ecog_bi)
 

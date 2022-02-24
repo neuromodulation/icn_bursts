@@ -33,7 +33,7 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
         raw_arr,
         raw_arr.get_data(),
         int(np.ceil(raw_arr.info["sfreq"])),
-        int(raw_arr.info["line_freq"]),),
+        int(raw_arr.info["line_freq"]),)
 
 def get_runs(BIDS_path: str, med_on: bool = True):
     
