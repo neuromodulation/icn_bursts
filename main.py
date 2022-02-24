@@ -16,11 +16,11 @@ def main():
 
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
 
-    new_ch_names = ['ECOG_L_1_SMC_BI',
-               'ECOG_L_2_SMC_BI',
-               'ECOG_L_3_SMC_BI',
-               'ECOG_L_4_SMC_BI',
-              'ECOG_L_5_SMC_BI']
+    new_ch_names = ['ECOG_L1_L2_SMC',
+               'ECOG_L2_L3_SMC',
+               'ECOG_L3_L4_SMC',
+               'ECOG_L4_L5_SMC',
+              'ECOG_L5_L6_SMC']
     
     NUM_CH = data.shape[0] # might be 1
 
@@ -45,7 +45,7 @@ def main():
     l_beta_avg = [burst_calc.avg_power(l) for l in l_beta]
 
     # Z-Scored averaged beta traces
-    l_beta_avg_norm = [burst_calc.zscore(l) for l in l_beta_avg]
+    l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
@@ -99,6 +99,5 @@ def main():
     # 4. STATISTICAL COMPARISON WITH WILCOXON TEST #
     #w, p = wilcoxon(M1_mean_burst_duration) #ON
 
-print("hlaoo")
 if __name__ == "__main__":
     main()
