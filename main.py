@@ -1,4 +1,4 @@
-from src import IO, burst_calc, plot_utils, preprocessing, postprocessing, saving_feat
+from src import IO, preprocessing, burst_calc, plot_utils, postprocessing
 import numpy as np
 import pandas as pd
 import csv
@@ -78,7 +78,7 @@ def main():
     # Save (M1) Mean Burst Duration in csv
     mean_duration = postprocessing.dataframe_mean_duration(mean_burst_duration)
     M1_mean_duration = postprocessing.dataframe_mean_duration(M1_mean_burst_duration)
-    mean_duration.to_csv('mean_burst_duration_run_.csv')
+    mean_duration.to_csv('mean_burst_duration.csv')
    
     # Beta Burst Duration (Pandas)
     burst_duration = postprocessing.dataframe_burst_duration(burst_duration)
@@ -90,14 +90,14 @@ def main():
 
     # M1 Beta Burst Dynamics (Pandas)
     M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_histogram_duration[4])
-    M1_burs_dynamics.to_csv('')
+    M1_burst_dynamics.to_csv('dynamics.csv')
     
     # M1 Beta Burst Length (Pandas)
     M1_burst_duration = postprocessing.dataframe_burst_duration(burst_duration[4])
 
 
     # 4. STATISTICAL COMPARISON WITH WILCOXON TEST #
-    w, p = wilcoxon(M1_mean_burst_duration) #ON
+    #w, p = wilcoxon(M1_mean_burst_duration) #ON
     
 if __name__ == "main":
     main()
