@@ -22,11 +22,13 @@ def main():
                'ECOG_L4_L5_SMC',
               'ECOG_L5_L6_SMC']
     
-    NUM_CH = data.shape[0] # might be 1
+    #NUM_CH = data.shape[0] # might be 1
 
     raw_ecog = preprocessing.pick_ecog(raw)
 
     raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
+
+    NUM_CH = len(raw_ecog_bi.get_channel_types())
 
     raw_ecog_filt = preprocessing.filtering(raw_ecog_bi)
 
@@ -53,22 +55,22 @@ def main():
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
-    power_spectra = [np.nanmean(np.squeeze(run_TF[ch_idx, :, :]), axis=0) for ch_idx in range(NUM_CH)]
+    power_spectra = [np.nanmean(np.squeeze(run_TF[ch_idx, :, :]), axis=1) for ch_idx in range(len(raw_ecog_bi.get_channel_types()))]
 
     # Normalized power spectral density (statistical comparison)
     power_spectra_norm = [p_ch/np.sum(p_ch[4:45] + np.sum(p_ch[54:95])) for p_ch in power_spectra]
 
     # Burst duration 
-    burst_duration = [burst_calc.get_burst_length(l_beta_avg_norm, l_beta_thr, sfreq=250) for l in l_beta_avg_norm] 
+    burst_duration = [burst_calc.get_burst_length(l, l_beta_thr[2][idx], sfreq=250) for idx, l in enumerate(l_beta_avg_norm[2])] 
 
     # Histogram of burst duration up to 10 sec
-    histogram_duration = [np.histogram(burst_duration, density=False, bins=100, range=(0, 10)) for ch_idx in range(NUM_CH)] 
+    histogram_duration = [np.histogram(burst_duration[ch_idx], density=False, bins=20, range=(0, 2))[0] for ch_idx in range(NUM_CH)] 
 
     # Normed Histogram
-    norm_histogram_duration = [100 * histogram_duration / burst_duration.shape[0] for ch_idx in range(NUM_CH)]
+    norm_histogram_duration = [100 * histogram_duration[ch_idx] / burst_duration[ch_idx].shape[0] for ch_idx in range(NUM_CH)]
 
     # Mean burst duration in channels 
-    mean_burst_duration = [np.nanmean(burst_duration, axis=0) for ch_idx in range(NUM_CH)]
+    mean_burst_duration = [np.nanmean(burst_duration[ch_idx], axis=0) for ch_idx in range(NUM_CH)]
 
     # M1 Mean burst duration
     M1_mean_burst_duration = mean_burst_duration[4]
