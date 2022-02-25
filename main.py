@@ -72,30 +72,32 @@ def main():
     # Mean burst duration in channels 
     mean_burst_duration = [np.nanmean(burst_duration[ch_idx], axis=0) for ch_idx in range(NUM_CH)]
 
+    # Burst Amplitude
+    #burst_amplitude = 
+
     # M1 Mean burst duration
     M1_mean_burst_duration = mean_burst_duration[4]
 
 
     # 3. STRUCTURE FEATURES IN PANDAS AND SAVE CSV FILES #
-    # Save (M1) Mean Burst Duration in csv
+    # Mean Burst Duration 
     mean_duration = postprocessing.dataframe_mean_duration(mean_burst_duration)
-    M1_mean_duration = postprocessing.dataframe_mean_duration(M1_mean_burst_duration)
     mean_duration.to_csv('mean_burst_duration.csv')
    
-    # Beta Burst Duration (Pandas)
-    burst_duration = postprocessing.dataframe_burst_duration(burst_duration)
-    burst_duration.to_csv('mean_duration.csv')
+    # Beta Burst Duration
+    #burst_duration = postprocessing.dataframe_burst_duration(burst_duration)
+    #burst_duration.to_csv('mean_duration.csv')
 
-    # M1 normalized beta power OFF vs ON (Pandas)
-    M1_npow = postprocessing.dataframe_npow(power_spectra_norm[4])
-    M1_npow.to_csv('npow.csv')
+    # normalized beta power
+    npow = postprocessing.dataframe_npow(power_spectra_norm)
+    npow.to_csv('npow.csv')
 
-    # M1 Beta Burst Dynamics (Pandas)
+    # M1 Beta Burst Dynamics 
     M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_histogram_duration[4])
     M1_burst_dynamics.to_csv('dynamics.csv')
     
-    # M1 Beta Burst Length (Pandas)
-    M1_burst_duration = postprocessing.dataframe_burst_duration(burst_duration[4])
+    # M1 Beta Burst Length 
+    #M1_burst_duration = postprocessing.dataframe_burst_duration(burst_duration[4])
 
 
     # 4. STATISTICAL COMPARISON WITH WILCOXON TEST #
