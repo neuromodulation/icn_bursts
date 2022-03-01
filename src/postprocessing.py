@@ -6,9 +6,21 @@ def dataframe_mean_duration(mean_burst_duration):
     '''
     Structure feature in pandas
     '''
-    pdur = pd.DataFrame(mean_burst_duration)
+    pdur = pd.DataFrame(data=mean_burst_duration)
     pdur_r = pdur.rename(columns={0:'mean_burst_duration (s)'})
+    pdur_r.index = ['ECOG_L1_L2_SMC',
+               'ECOG_L2_L3_SMC',
+               'ECOG_L3_L4_SMC',
+               'ECOG_L4_L5_SMC',
+               'ECOG_L5_L6_SMC']
     return pdur_r
+
+def dataframe_burst_char(mean_burst_duration_M1,burst_amplitude_M1,burst_rate_M1,histogram_M1):
+    '''
+    Structure feature in pandas
+    '''
+    pdburst = pd.DataFrame({'Subject':7, 'Medication':'ON','Mean Burst Duration (s)':mean_burst_duration_M1,'Mean Burst Amplitude (au)':burst_amplitude_M1,'Burst Rate': burst_rate_M1} ,index=['Run 4'])
+    return pdburst
 
 #def save_mean_duration(mean_burst_duration):
  #   mean_burst_duration.to_csv('mean_burst_duration.csv')
@@ -25,9 +37,14 @@ def dataframe_burst_duration(burst_duration):
 
 def dataframe_npow(power_spectra_norm):
     pw = pd.DataFrame(power_spectra_norm)
-    pw_a = pw.assign(Location='ECOG-L4-L5_SMC_AT', Medication = 'OFF')
-    pw_r = pw_a.rename(columns={0:'Relative spectral power (au)'}) 
-    return pw_r
+    pw.index = ['ECOG_L1_L2_SMC',
+               'ECOG_L2_L3_SMC',
+               'ECOG_L3_L4_SMC',
+               'ECOG_L4_L5_SMC',
+              'ECOG_L5_L6_SMC']
+    pw_a = pw.assign(Subject=7, Medication = 'ON',Run=1)
+    #pw_r = pw_a.rename(columns={0:'Relative spectral power (au)'}) 
+    return pw_a
 
 def dataframe_burst_dynamics(norm_histogram_duration):
     '''
@@ -41,8 +58,9 @@ def dataframe_burst_dynamics(norm_histogram_duration):
     df_probdur_M1 = pd.DataFrame(data=[bins_dur,burst_prob_dur_M1])
     df_probdur_t_M1 =df_probdur_M1.T
     df_probdur_t_r_M1 = df_probdur_t_M1.rename(columns={0: "Burst Duration (s)",1:'Burst Probability (%)'})
-    df_probdur_t_r_m_M1 = df_probdur_t_r_M1.assign(Medication = 'OFF')
-    return df_probdur_t_r_m_M1
+    df_probdur_t_r_m_M1 = df_probdur_t_r_M1.assign(Medication = 'ON',Subject=7,Run=4)
+    df_his = df_probdur_t_r_m_M1[['Subject', 'Medication', 'Run', 'Burst Duration (s)','Burst Probability (%)' ]]
+    return df_his
 
 def dataframe_burst_duration(burst_duration):
     df_dur_4 = pd.DataFrame(burst_duration)
