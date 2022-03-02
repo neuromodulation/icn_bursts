@@ -71,7 +71,7 @@ def get_mean_burst_amplitude(beta_amplitude,beta_thr):
     for idx, val in enumerate(beta_amplitude):
         if val >= beta_thr:
             if isburst == True:
-                burst_amplitude.append(val)
+                burst_amplitude.append(val/len(val))
             else:    
                 isburst = False
     burst_amplitude = np.nanmean(burst_amplitude)
