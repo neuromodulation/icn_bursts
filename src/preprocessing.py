@@ -2,7 +2,6 @@ import numpy as np
 import mne
 from scipy import stats
 
-
 def pick_ecog(raw):
     '''
     pick ECoG channels
@@ -11,6 +10,12 @@ def pick_ecog(raw):
     raw_ecog.append(raw.pick_types(ecog=True).ch_names)
     raw_ecog_red = raw_ecog[0][0:6]
     return raw_ecog_red
+
+new_ch_names = ['ECOG_L1_L2_SMC'
+               'ECOG_L2_L3_SMC',
+               'ECOG_L3_L4_SMC',
+               'ECOG_L4_L5_SMC',
+              'ECOG_L5_L6_SMC']
 
 def bipolar_reference (raw, raw_ecog, new_ch_names):
     

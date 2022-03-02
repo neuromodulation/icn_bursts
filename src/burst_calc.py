@@ -60,30 +60,29 @@ def get_burst_length(beta_averp_norm,beta_thr, sfreq=250):
     
     return burst_length
 
-def burst_amplitude(beta_averp_norm,beta_thr, sfreq=250):
+def get_mean_burst_amplitude(beta_amplitude,beta_thr):
     '''
-    mean amplitude of bursts across recording
+    mean amplitude of beta bursts
     '''
-    deriv = np.diff (beta_averp_norm >= beta_thr) 
     isburst = False
     burst_amplitude = []
     burst_start = 0
-
-    for index, i in enumerate(deriv):
-        if i == True:
-            if isburst == True:
-                burst_amplitude.append(index - burst_start)
-
-                isburst = False
-            else:
-                burst_start = index
-                isburst = True
-    burst_length = np.array(burst_length)/sfreq
     
+    for idx, val in enumerate(beta_amplitude):
+        if val >= beta_thr:
+            if isburst == True:
+                burst_amplitude.append(val)
+            else:    
+                isburst = False
+    burst_amplitude = np.nanmean(burst_amplitude)
+
     return burst_amplitude
+
+
 
 def burst_rate(beta_averp_norm,beta_thr, sfreq=250):
     '''
     calc burst rate of channel in recording
     '''
     
+
