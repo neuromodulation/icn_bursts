@@ -7,8 +7,8 @@ from scipy.stats import wilcoxon
 
 def main():
     # 1. READ IN DATA #
-    PATH_BIDS = r'/Users/alidzaye/rawdata'
-    PATH_RUN = r'/Users/alidzaye/rawdata/sub-003/ses-EphysMedOff01/ieeg/sub-003_ses-EphysMedOff01_task-Rest_acq-StimOff_run-01_ieeg.vhdr'
+    PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata_new'
+    PATH_RUN = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata_new/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.eeg'
 
     #raw_on = IO.get_runs(PATH_BIDS, med_on = True)
     #raw_off = IO.get_runs(PATH_BIDS, med_on = False)
@@ -24,7 +24,7 @@ def main():
     
     #NUM_CH = data.shape[0] # might be 1
 
-    m1 = 3
+    m1 = 4
 
     raw_ecog = preprocessing.pick_ecog(raw)
 
@@ -77,6 +77,7 @@ def main():
     norm_histogram_duration = [100 * histogram_duration[ch_idx] / burst_duration[ch_idx].shape[0] for ch_idx in range(NUM_CH)]
     norm_histogram_duration_m1 = [100 * hist_dur_m1 / len(burst_duration_m1_cl)]
     norm_hist_m1 = norm_histogram_duration_m1[0]
+    norm_hist_m1_cl = np.delete(norm_hist_m1,0)
 
     # Mean burst duration in channels 
     mean_burst_duration = [np.nanmean(burst_duration[ch_idx], axis=0) for ch_idx in range(NUM_CH)]
@@ -94,7 +95,7 @@ def main():
     #burst_amplitude_M1 = np.nanmean(bursts)
 
     # Burst Rate M1
-    burst_rate_M1 = np.sum(histogram_duration[m1]) / raw.times[-1]
+    burst_rate_M1 = np.sum(hist_dur_m1 / raw.times[-1])
 
     # PSD M1
     psd_M1 = power_spectra_norm[m1]
@@ -102,21 +103,21 @@ def main():
 
     # 3. STRUCTURE FEATURES IN PANDAS AND SAVE EXCEL FILES #
 
-    #burst_char_pd = postprocessing.dataframe_burst_char(mean_burst_duration_M1,burst_amplitude_M1,burst_rate_M1, histogram_M1)
-    #burst_char_pd.to_excel('burst_char_S7_On4.xlsx')
+    burst_char_pd = postprocessing.dataframe_burst_char(mean_dur_m1, bursts_amplitude, burst_rate_M1)
+    burst_char_pd.to_excel('burst_char_S3_Off1.xlsx')
 
     # M1 Mean Burst Duration 
-    #M1_mean_burst_duration = postprocessing.dataframe_mean_duration_m1(mean_burst_duration_M1)
+    #M1_mean_burst_duration = postprocessing.dataframe_mean_duration_m1(mean_dur_m1 )
     #np.savetxt('M1_mean_burst_duration_S7_On1.csv', mean_burst_duration)
     #M1_mean_burst_duration.to_excel('M1_mean_burst_duration_S4_On5.xlsx')
 
-    # normalized beta power
-    npow = postprocessing.dataframe_npow(power_spectra_norm)
-    npow.to_excel('nPSD_S7_On1.xlsx')
-
     # M1 Beta Burst Dynamics 
-    #M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_histogram_duration[4])
-    #M1_burst_dynamics.to_excel('Histogram_S7_On4.xlsx')
+    M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_hist_m1_cl)
+    M1_burst_dynamics.to_excel('Histogram_S3_Off1.xlsx')
+
+    # normalized beta power
+    npow = postprocessing.dataframe_npow(psd_M1)
+    npow.to_excel('M1_nPSD_S3_Off1.xlsx')
    
     # Beta Burst Duration
     #burst_duration = postprocessing.dataframe_burst_duration(burst_duration)
