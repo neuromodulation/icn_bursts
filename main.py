@@ -7,8 +7,8 @@ from scipy.stats import wilcoxon
 
 def main():
     # 1. READ IN DATA #
-    PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata_new'
-    PATH_RUN = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata_new/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.eeg'
+    PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
+    PATH_RUN = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOn01/ieeg/sub-010_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr'
 
     #raw_on = IO.get_runs(PATH_BIDS, med_on = True)
     #raw_off = IO.get_runs(PATH_BIDS, med_on = False)
@@ -16,11 +16,11 @@ def main():
 
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
 
-    new_ch_names = ['ECOG_L1_L2_SMC',
-               'ECOG_L2_L3_SMC',
-               'ECOG_L3_L4_SMC',
-               'ECOG_L4_L5_SMC',
-              'ECOG_L5_L6_SMC']
+    new_ch_names = [ 'ECOG_R_1_2_SMC_AT',
+               'ECOG_R_2_3_SMC_AT',
+               'ECOG_R_3_4_SMC_AT',
+               'ECOG_R_4_5_SMC_AT',
+              'ECOG_R_5_6_SMC_AT']
     
     #NUM_CH = data.shape[0] # might be 1
 
@@ -83,16 +83,8 @@ def main():
     mean_burst_duration = [np.nanmean(burst_duration[ch_idx], axis=0) for ch_idx in range(NUM_CH)]
     mean_dur_m1 = np.nanmean(burst_duration_m1_cl, axis=0)
 
-    # Histogram Duration M1
-    #histogram_M1 = norm_histogram_duration[m1]
-
     # Burst Amplitude M1
     bursts_amplitude = burst_calc.get_mean_burst_amplitude(l_beta_avg_norm[2][m1], l_beta_thr[2][m1])
-
-
-
-    #bursts = [ i for i in l_beta_avg_norm[2][m1] > l_beta_thr[2][m1]] 
-    #burst_amplitude_M1 = np.nanmean(bursts)
 
     # Burst Rate M1
     burst_rate_M1 = np.sum(hist_dur_m1 / raw.times[-1])
@@ -104,20 +96,21 @@ def main():
     # 3. STRUCTURE FEATURES IN PANDAS AND SAVE EXCEL FILES #
 
     burst_char_pd = postprocessing.dataframe_burst_char(mean_dur_m1, bursts_amplitude, burst_rate_M1)
-    burst_char_pd.to_excel('burst_char_S3_Off1.xlsx')
+    burst_char_pd.to_excel('burst_char_S10_On1.xlsx')
+
+    # M1 Beta Burst Dynamics 
+    M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_hist_m1_cl)
+    M1_burst_dynamics.to_excel('Histogram_S10_On1.xlsx')
+
+    # normalized beta power
+    npow = postprocessing.dataframe_npow(psd_M1)
+    npow.to_excel('M1_nPSD_S10_On1.xlsx')
+
 
     # M1 Mean Burst Duration 
     #M1_mean_burst_duration = postprocessing.dataframe_mean_duration_m1(mean_dur_m1 )
     #np.savetxt('M1_mean_burst_duration_S7_On1.csv', mean_burst_duration)
     #M1_mean_burst_duration.to_excel('M1_mean_burst_duration_S4_On5.xlsx')
-
-    # M1 Beta Burst Dynamics 
-    M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_hist_m1_cl)
-    M1_burst_dynamics.to_excel('Histogram_S3_Off1.xlsx')
-
-    # normalized beta power
-    npow = postprocessing.dataframe_npow(psd_M1)
-    npow.to_excel('M1_nPSD_S3_Off1.xlsx')
    
     # Beta Burst Duration
     #burst_duration = postprocessing.dataframe_burst_duration(burst_duration)

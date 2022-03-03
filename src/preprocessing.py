@@ -11,11 +11,11 @@ def pick_ecog(raw):
     raw_ecog_red = raw_ecog[0][0:6]
     return raw_ecog_red
 
-new_ch_names = ['ECOG_L1_L2_SMC'
-               'ECOG_L2_L3_SMC',
-               'ECOG_L3_L4_SMC',
-               'ECOG_L4_L5_SMC',
-              'ECOG_L5_L6_SMC']
+new_ch_names = ['ECOG_R_1_2_SMC_AT',
+               'ECOG_R_2_3_SMC_AT',
+               'ECOG_R_3_4_SMC_AT',
+               'ECOG_R_4_5_SMC_AT',
+              'ECOG_R_5_6_SMC_AT']
 
 def bipolar_reference (raw, raw_ecog, new_ch_names):
     
@@ -31,9 +31,10 @@ def bipolar_reference_s1 (raw, raw_ecog, new_ch_names):
     cathode = raw_ecog[1:5]
     raw_ecog_bi = mne.set_bipolar_reference(raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names )
     raw_ecog_bi = raw_ecog_bi.load_data().add_channels(
-    [raw_ecog.copy().pick_channels(["ECOG_L_1_2_SMC_AT"])],
+
+    [raw.pick_channels(["ECOG_L_1_2_SMC_AT"])],
     force_update_info=True
-    ) 
+)
     channel_order = ['ECOG_L_1_2_SMC_AT','ECOG_L_2_3_SMC_AT',
     'ECOG_L_3_4_SMC_AT',
     'ECOG_L_4_5_SMC_AT',

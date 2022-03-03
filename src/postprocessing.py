@@ -6,7 +6,7 @@ def dataframe_burst_char(mean_burst_duration_M1,burst_amplitude_M1,burst_rate_M1
     '''
     Structure feature in pandas
     '''
-    pdburst = pd.DataFrame({'Subject':3, 'Medication':'OFF','Mean Burst Duration (s)':mean_burst_duration_M1,'Mean Burst Amplitude (au)':burst_amplitude_M1,'Burst Rate': burst_rate_M1} ,index=['Run 1'])
+    pdburst = pd.DataFrame({'Subject':10, 'Medication':'ON','Mean Burst Duration (s)':mean_burst_duration_M1,'Mean Burst Amplitude (au)':burst_amplitude_M1,'Burst Rate': burst_rate_M1} ,index=['Run 1'])
     return pdburst
 
 def dataframe_burst_dynamics(norm_histogram_duration):
@@ -21,7 +21,7 @@ def dataframe_burst_dynamics(norm_histogram_duration):
     df_probdur_M1 = pd.DataFrame(data=[bins_dur,burst_prob_dur_M1])
     df_probdur_t_M1 =df_probdur_M1.T
     df_probdur_t_r_M1 = df_probdur_t_M1.rename(columns={0: "Burst Duration (s)",1:'Burst Probability (%)'})
-    df_probdur_t_r_m_M1 = df_probdur_t_r_M1.assign( Subject=3, Medication = 'OFF', Run= 1 )
+    df_probdur_t_r_m_M1 = df_probdur_t_r_M1.assign( Subject= 10 , Medication = 'ON', Run= 1 )
     df_his = df_probdur_t_r_m_M1[['Subject', 'Medication', 'Run', 'Burst Duration (s)','Burst Probability (%)' ]]
     return df_his
 
@@ -32,7 +32,7 @@ def dataframe_npow(power_spectra_norm):
       #         'ECOG_L3_L4_SMC',
        #        'ECOG_L4_L5_SMC',
         #      'ECOG_L5_L6_SMC']
-    pw_a = pw.assign( Subject= 3, Medication = 'OFF', Run=1 )
+    pw_a = pw.assign( Subject= 10, Medication = 'ON', Run= 1 )
     pw_r = pw_a.rename(columns={0:'Relative spectral power (au)'}) 
     return pw_r
 
