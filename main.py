@@ -8,7 +8,7 @@ from scipy.stats import wilcoxon
 def main():
     # 1. READ IN DATA #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOn01/ieeg/sub-010_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr'
+    PATH_RUN = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr'
 
     #raw_on = IO.get_runs(PATH_BIDS, med_on = True)
     #raw_off = IO.get_runs(PATH_BIDS, med_on = False)
@@ -24,7 +24,7 @@ def main():
     
     #NUM_CH = data.shape[0] # might be 1
 
-    m1 = 4
+    m1 = 3
 
     raw_ecog = preprocessing.pick_ecog(raw)
 
@@ -68,7 +68,7 @@ def main():
     burst_duration = [burst_calc.get_burst_length(l, l_beta_thr[2][idx], sfreq=250) for idx, l in enumerate(l_beta_avg_norm[2])] 
     burst_duration_m1_cl = [ i for i in burst_duration[m1] if i >= 0.1]
 
-    # Histogram of burst duration up to 10 sec
+    # Histogram of burst duration up to
     histogram_duration = [np.histogram(burst_duration[ch_idx], density=False, bins=20, range=(0, 2))[0] for ch_idx in range(NUM_CH)] 
     histogram_duration_m1_cl = [np.histogram(burst_duration_m1_cl, density=False, bins=20, range=(0, 2))] 
     hist_dur_m1 = histogram_duration_m1_cl[0][0]
@@ -96,15 +96,15 @@ def main():
     # 3. STRUCTURE FEATURES IN PANDAS AND SAVE EXCEL FILES #
 
     burst_char_pd = postprocessing.dataframe_burst_char(mean_dur_m1, bursts_amplitude, burst_rate_M1)
-    burst_char_pd.to_excel('burst_char_S10_On1.xlsx')
+    burst_char_pd.to_excel('burst_char_S3_On1.xlsx')
 
     # M1 Beta Burst Dynamics 
     M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(norm_hist_m1_cl)
-    M1_burst_dynamics.to_excel('Histogram_S10_On1.xlsx')
+    M1_burst_dynamics.to_excel('Histogram_S3_On1.xlsx')
 
     # normalized beta power
     npow = postprocessing.dataframe_npow(psd_M1)
-    npow.to_excel('M1_nPSD_S10_On1.xlsx')
+    npow.to_excel('M1_nPSD_S3_On1.xlsx')
 
 
     # M1 Mean Burst Duration 

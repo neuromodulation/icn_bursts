@@ -11,12 +11,6 @@ def pick_ecog(raw):
     raw_ecog_red = raw_ecog[0][0:6]
     return raw_ecog_red
 
-new_ch_names = ['ECOG_R_1_2_SMC_AT',
-               'ECOG_R_2_3_SMC_AT',
-               'ECOG_R_3_4_SMC_AT',
-               'ECOG_R_4_5_SMC_AT',
-              'ECOG_R_5_6_SMC_AT']
-
 def bipolar_reference (raw, raw_ecog, new_ch_names):
     
     anode = raw_ecog[0:5]
@@ -40,6 +34,14 @@ def bipolar_reference_s1 (raw, raw_ecog, new_ch_names):
     'ECOG_L_4_5_SMC_AT',
     'ECOG_L_5_6_SMC_AT']
     raw_ecog_bi = raw_ecog_bi.reorder_channels(channel_order)                                
+    return (raw_ecog_bi)
+
+def bipolar_reference_s10_on (raw, raw_ecog, new_ch_names):
+    
+    anode = raw_ecog[0:4]
+    cathode = raw_ecog[1:5]
+    raw_ecog_bi = mne.set_bipolar_reference(raw.load_data(), anode=anode,
+                                        cathode=cathode, ch_name=new_ch_names )
     return (raw_ecog_bi)
 
 def filtering (raw_ecog_bi):

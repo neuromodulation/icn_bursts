@@ -1,8 +1,6 @@
 import mne_bids
 import numpy as np
-from bids import BIDSLayout
 
-#read the files with mne Bids
 def read_BIDS_data(PATH_RUN, BIDS_PATH):
     """Given a run path and bids data path, read the respective data
     Parameters
@@ -35,11 +33,4 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
         int(np.ceil(raw_arr.info["sfreq"])),
         int(raw_arr.info["line_freq"]),)
 
-def get_runs(BIDS_path: str, med_on: bool = True):
-    
-    layout = BIDSLayout(BIDS_path)
-    return layout.get(extension='vhdr',
-                      task='Rest', acquisition='StimOff', 
-                      session=['EphysMedOn0'+ str(i) if med_on else 'EphysMedOff0'+ str(i) for i in [1,2,3]], 
-                      return_type='filename')
 

@@ -70,10 +70,3 @@ def get_mean_burst_amplitude(beta_amplitude,beta_thr):
     return burst_amplitude
 
 
-
-def burst_rate(beta_averp_norm,beta_thr, sfreq=250):
-    '''
-    calc burst rate of channel in recording
-    '''
-    
-
