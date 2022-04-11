@@ -87,7 +87,7 @@ files10_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',sub
 # ON = 2
 
 #7
-# M1 = 3
+# M1 = 3 (4-5)
 # OFF = 1
 # ON = 4
 
@@ -115,7 +115,7 @@ import pandas as pd
 def main():
     # 1. READ IN DATA #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files10_on[0]
+    PATH_RUN = files3[0]
 
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
 
@@ -208,6 +208,9 @@ def main():
     # normalized beta power
     npow = postprocessing.dataframe_npow(psd_M1)
     
+    M1_burst_dynamics
+    mean_dur_m1
+
 
     with pd.ExcelWriter('sub10_On_r1.xlsx') as writer:  
         burst_char_pd.to_excel(writer, sheet_name="Features")

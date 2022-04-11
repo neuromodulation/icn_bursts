@@ -12,7 +12,7 @@ def dataframe_burst_char(mean_burst_duration_M1,burst_amplitude_M1,burst_rate_M1
 def dataframe_burst_dynamics(norm_histogram_duration):
     df_probdur_M1 = pd.DataFrame(norm_histogram_duration)
     df_probdur_t_M1 = df_probdur_M1.T
-    df_his = df_probdur_t_M1.assign( Subject= 10 , Medication = 'ON', Run= 1 )
+    df_his = df_probdur_t_M1.assign( Subject= 3 , Medication = 'OFF', Run= 1 )
     return df_his
 
 def dataframe_npow(power_spectra_norm):
