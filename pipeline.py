@@ -122,7 +122,7 @@ def main():
 
     raw_ecog = preprocessing.pick_ecog(raw)
 
-    new_ch_names = [
+    new_ch_names = ['ECOG_L_1_2_SMC_AT',
                'ECOG_L_2_3_SMC_AT',
                'ECOG_L_3_4_SMC_AT',
                'ECOG_L_4_5_SMC_AT',
@@ -130,7 +130,7 @@ def main():
 
     m1 = 3
 
-    raw_ecog_bi = preprocessing.bipolar_reference_s10_on(raw, raw_ecog, new_ch_names)
+    raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
 
