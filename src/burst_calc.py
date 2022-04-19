@@ -40,7 +40,7 @@ def percentile(l_beta, percentile):
 
 def get_burst_length(beta_averp_norm,beta_thr, sfreq=250):
     """
-    Characterization of beta bursts: Analysing the duration of beta burst 
+    Analysing the duration of beta burst 
     """
     deriv = np.diff (beta_averp_norm >= beta_thr) 
     isburst = False
@@ -59,6 +59,13 @@ def get_burst_length(beta_averp_norm,beta_thr, sfreq=250):
     burst_length = np.array(burst_length)/sfreq
     
     return burst_length
+
+def exclude_short_bursts(burst_length):
+    '''
+    exclude bursts shorter than 100ms
+    '''
+    return [i for i in burst_length if i >= 0.1] 
+
 
 def get_mean_burst_amplitude(beta_amplitude,beta_thr):
     '''
