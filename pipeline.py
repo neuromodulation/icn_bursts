@@ -101,12 +101,14 @@ files10_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',sub
 # OFF = 1
 # ON = 1
 
+# bipolar reference abn: 1 & 10 ON 
+
 # SCRIPT START #
 
 def main():
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files3[0]
+    PATH_RUN = files3_off[0]
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
     raw_ecog = preprocessing.pick_ecog(raw)
     new_ch_names = ['ECOG_L_1_2_SMC_AT',
@@ -114,7 +116,7 @@ def main():
                'ECOG_L_3_4_SMC_AT',
                'ECOG_L_4_5_SMC_AT',
                'ECOG_L_5_6_SMC_AT']
-    m1 = 3
+    m1 = 2
     raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
@@ -190,7 +192,7 @@ def main():
     npow = postprocessing.dataframe_npow(psd_M1)
     
 
-    with pd.ExcelWriter('sub10_On_r1.xlsx') as writer:  
+    with pd.ExcelWriter('sub9_Off_r1.xlsx') as writer:  
         burst_char_pd.to_excel(writer, sheet_name="Features")
         M1_burst_dynamics.to_excel(writer, sheet_name="Dynamics")
         npow.to_excel(writer, sheet_name="PSD")
