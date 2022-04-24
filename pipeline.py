@@ -57,49 +57,59 @@ files10_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',sub
 
 # M1 and Runs in all subjects
 #1
-# M1 = 2
 # OFF = 2
 # ON = 2
+# M1 = 2
+# sfreq = 5000
+
 
 #3
-# M1 = 3
 # OFF = 3
 # ON = 2
+# M1 = 3
+# sfreq = 4097
 
 #4
-# M1 = 4
 # OFF = 2
 # ON = 5
+# M1 = 4
+# sfreq = 4099
 
 #5
-# M1 = 4
 # OFF = 3
 # ON = 2
+# M1 = 4
+# sfreq = 4000
 
 #6
-# M1 = 2
 # OFF = 2
 # ON = 2
+# M1 = 2
+# sfreq = 4000
 
 #7
-# M1 = 3 (4-5)
 # OFF = 1
 # ON = 4
+# M1 = 3 
+# sfreq = 4000
 
 #8
-# M1 = 4
 # OFF = 1
 # ON = 2
+# M1 = 4
+# sfreq = 4000
 
 #9
-# M1 = 2
 # OFF = 4
 # ON = 1
+# M1 = 2
+# sfreq = 4000
 
 #10
-# M1 = 4
 # OFF = 1
 # ON = 1
+# M1 = 4
+# sfreq = 4000
 
 # bipolar reference abn: 1 & 10 ON 
 
@@ -116,20 +126,21 @@ def main():
                'ECOG_L_3_4_SMC_AT',
                'ECOG_L_4_5_SMC_AT',
                'ECOG_L_5_6_SMC_AT']
-    m1 = 2
+    # sub1: remove 'ECOG_L_1_2_SMC_AT' ch_name
+    m1 = 3
     raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
 
     raw_ecog_filt = preprocessing.filtering(raw_ecog_bi)
 
-    raw_ecog_dow = preprocessing.downsample(raw_ecog_filt)
+    #raw_ecog_dow = preprocessing.downsample(raw_ecog_filt)
 
-    signal = preprocessing.get_data(raw_ecog_dow)
+    signal = preprocessing.get_data(raw_ecog_filt)
 
     stand_signal = preprocessing.z_score_signal(signal)
 
-    run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
+    run_TF = burst_calc.Time_Frequency_Estimation(stand_signal,sfreq)
 
     # list of low, high, full beta bands for all channels
     l_beta = burst_calc.beta_bands(run_TF) 
@@ -155,7 +166,7 @@ def main():
     psd_M1 = power_spectra_norm[m1]
 
     # Burst duration 
-    burst_duration = [burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=250) for idx, l in enumerate(l_beta_avg_norm[full])] 
+    burst_duration = [burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreqd=200) for idx, l in enumerate(l_beta_avg_norm[full])] 
     burst_duration_cl = [burst_calc.exclude_short_bursts (burst_duration[ch_idx]) for ch_idx in range(NUM_CH)]
     burst_duration_cl_m1 = burst_duration_cl[m1]
     # Mean burst duration 
@@ -192,7 +203,7 @@ def main():
     npow = postprocessing.dataframe_npow(psd_M1)
     
 
-    with pd.ExcelWriter('sub9_Off_r1.xlsx') as writer:  
+    with pd.ExcelWriter('sub1_On_r1.xlsx') as writer:  
         burst_char_pd.to_excel(writer, sheet_name="Features")
         M1_burst_dynamics.to_excel(writer, sheet_name="Dynamics")
         npow.to_excel(writer, sheet_name="PSD")
