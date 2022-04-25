@@ -22,7 +22,7 @@ files6_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subj
 def main():
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files6_off[0]
+    PATH_RUN = files6_off[1]
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
     raw_ecog = preprocessing.pick_ecog(raw)
     new_ch_names = ['ECOG_L_1_2_SMC_AT',
@@ -107,7 +107,7 @@ def main():
     npow = postprocessing.dataframe_npow(psd_M1)
     
 
-    with pd.ExcelWriter('sub6_Off_r1.xlsx') as writer:  
+    with pd.ExcelWriter('sub6_Off_r2.xlsx') as writer:  
         burst_char_pd.to_excel(writer, sheet_name="Features")
         M1_burst_dynamics.to_excel(writer, sheet_name="Dynamics")
         npow.to_excel(writer, sheet_name="PSD")
