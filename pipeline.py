@@ -118,7 +118,7 @@ files10_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',sub
 def main():
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files3_off[0]
+    PATH_RUN = files1_off[0]
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
     raw_ecog = preprocessing.pick_ecog(raw)
     new_ch_names = ['ECOG_L_1_2_SMC_AT',
@@ -128,7 +128,7 @@ def main():
                'ECOG_L_5_6_SMC_AT']
     # sub1: remove 'ECOG_L_1_2_SMC_AT' ch_name
     m1 = 3
-    raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
+    raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
 
