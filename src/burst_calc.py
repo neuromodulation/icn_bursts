@@ -2,7 +2,6 @@ from os import stat
 import numpy as np
 from scipy import stats
 import mne
-import pipeline
 
 LOW_BETA = (12, 20)
 HIGH_BETA = (19, 35)
