@@ -118,7 +118,7 @@ files10_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',sub
 def main():
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files1_off[0]
+    PATH_RUN = files3_off[0]
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
     raw_ecog = preprocessing.pick_ecog(raw)
     new_ch_names = ['ECOG_L_1_2_SMC_AT',
@@ -128,19 +128,19 @@ def main():
                'ECOG_L_5_6_SMC_AT']
     # sub1: remove 'ECOG_L_1_2_SMC_AT' ch_name
     m1 = 3
-    raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
+    raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
 
     raw_ecog_filt = preprocessing.filtering(raw_ecog_bi)
 
-    #raw_ecog_dow = preprocessing.downsample(raw_ecog_filt)
+    raw_ecog_dow = preprocessing.downsample(raw_ecog_filt)
 
-    signal = preprocessing.get_data(raw_ecog_filt)
+    signal = preprocessing.get_data(raw_ecog_dow)
 
     stand_signal = preprocessing.z_score_signal(signal)
 
-    run_TF = burst_calc.Time_Frequency_Estimation(stand_signal,sfreq)
+    run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
     # list of low, high, full beta bands for all channels
     l_beta = burst_calc.beta_bands(run_TF) 
@@ -166,7 +166,7 @@ def main():
     psd_M1 = power_spectra_norm[m1]
 
     # Burst duration 
-    burst_duration = [burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreqd=200) for idx, l in enumerate(l_beta_avg_norm[full])] 
+    burst_duration = [burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=200) for idx, l in enumerate(l_beta_avg_norm[full])] 
     burst_duration_cl = [burst_calc.exclude_short_bursts (burst_duration[ch_idx]) for ch_idx in range(NUM_CH)]
     burst_duration_cl_m1 = burst_duration_cl[m1]
     # Mean burst duration 
@@ -203,7 +203,7 @@ def main():
     npow = postprocessing.dataframe_npow(psd_M1)
     
 
-    with pd.ExcelWriter('sub1_On_r1.xlsx') as writer:  
+    with pd.ExcelWriter('sub3_Off_r1.xlsx') as writer:  
         burst_char_pd.to_excel(writer, sheet_name="Features")
         M1_burst_dynamics.to_excel(writer, sheet_name="Dynamics")
         npow.to_excel(writer, sheet_name="PSD")

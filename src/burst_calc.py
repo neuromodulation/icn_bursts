@@ -9,9 +9,9 @@ HIGH_BETA = (19, 35)
 FULL_BETA = (12, 35)
 
 
-def Time_Frequency_Estimation(signal, sfreq):
+def Time_Frequency_Estimation(signal):
     freqs = np.arange(1,101)
-    power = mne.decoding.TimeFrequency(freqs, sfreq= sfreq , method='morlet', n_cycles=10, output='power', )
+    power = mne.decoding.TimeFrequency(freqs, sfreq= 250 , method='morlet', n_cycles=10, output='power', )
     run_TF = power.transform(signal)
     return (run_TF)
 
@@ -39,7 +39,7 @@ def percentile(l_beta, percentile):
     return [np.percentile(l_ch, q=percentile) for l_ch in l_beta]
 
 
-def get_burst_length(beta_averp_norm,beta_thr, sfreqd=200):
+def get_burst_length(beta_averp_norm,beta_thr, sfreq=200):
     """
     Analysing the duration of beta burst 
     """
@@ -57,7 +57,7 @@ def get_burst_length(beta_averp_norm,beta_thr, sfreqd=200):
             else:
                 burst_start = index
                 isburst = True
-    burst_length = np.array(burst_length)/sfreqd
+    burst_length = np.array(burst_length)/sfreq
     
     return burst_length
 
