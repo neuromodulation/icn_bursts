@@ -10,115 +10,19 @@ from src import IO, preprocessing, burst_calc, plot_utils, postprocessing
 # Initialize the layout 
 data_path = os.path.join('/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata')
 layout = BIDSLayout(data_path)
-subjects = layout.get_subjects()
-sessions = layout.get_session()
-tasks = layout.get_tasks()
-stimulation = layout.get_acquisition()
-# get Rest Data ON & OFF all subjects
-files = layout.get(extension='vhdr', task='Rest',acquisition='StimOff', return_type='filename')
-files_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff', session=['EcogLfpMedOn01', 'EcogLfpMedOn01', 'EcogLfpMedOn01'],return_type='filename')
-# get Rest Data ON & OFF all subjects
-files1 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='001', return_type='filename')
-files1_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='001', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files1_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='001', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-files3 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='003', return_type='filename')
-files3_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='003', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files3_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='003', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-files4 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='004', return_type='filename')
-files4_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='004', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files4_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='004', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-files5 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='005', return_type='filename')
-files5_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='005', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files5_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='005', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-files6 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='006', return_type='filename')
-files6_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='006', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files6_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='006', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-files7 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='007', return_type='filename')
-files7_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='007', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files7_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='007', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
 
 files8 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='008', return_type='filename')
 files8_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='008', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
 files8_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='008', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
 
-files9 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='009', return_type='filename')
-files9_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='009', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files9_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='009', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-files10 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='010', return_type='filename')
-files10_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='010', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files10_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='010', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-# M1 and Runs in all subjects
-#1
-# OFF = 2
-# ON = 2
-# M1 = 2
-# sfreq = 5000
-
-
-#3
-# OFF = 3
-# ON = 2
-# M1 = 3
-# sfreq = 4097
-
-#4
-# OFF = 2
-# ON = 5
-# M1 = 4
-# sfreq = 4099
-
-#5
-# OFF = 3
-# ON = 2
-# M1 = 4
-# sfreq = 4000
-
-#6
-# OFF = 2
-# ON = 2
-# M1 = 2
-# sfreq = 4000
-
-#7
-# OFF = 1
-# ON = 4
-# M1 = 3 
-# sfreq = 4000
-
-#8
-# OFF = 1
-# ON = 2
-# M1 = 4
-# sfreq = 4000
-
-#9
-# OFF = 4
-# ON = 1
-# M1 = 2
-# sfreq = 4000
-
-#10
-# OFF = 1
-# ON = 1
-# M1 = 4
-# sfreq = 4000
-
-# bipolar reference abn: 1 & 10 ON 
+# 1 run
 
 # SCRIPT START #
 
 def main():
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files3_off[0]
+    PATH_RUN = files8_off[0]
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
     raw_ecog = preprocessing.pick_ecog(raw)
     new_ch_names = ['ECOG_L_1_2_SMC_AT',
@@ -127,7 +31,7 @@ def main():
                'ECOG_L_4_5_SMC_AT',
                'ECOG_L_5_6_SMC_AT']
     # sub1: remove 'ECOG_L_1_2_SMC_AT' ch_name
-    m1 = 3
+    m1 = 4
     raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
@@ -203,7 +107,7 @@ def main():
     npow = postprocessing.dataframe_npow(psd_M1)
     
 
-    with pd.ExcelWriter('sub3_Off_r1.xlsx') as writer:  
+    with pd.ExcelWriter('sub8_Off_r1.xlsx') as writer:  
         burst_char_pd.to_excel(writer, sheet_name="Features")
         M1_burst_dynamics.to_excel(writer, sheet_name="Dynamics")
         npow.to_excel(writer, sheet_name="PSD")
