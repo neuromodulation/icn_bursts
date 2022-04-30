@@ -42,7 +42,9 @@ def get_burst_length(beta_averp_norm,beta_thr, sfreq=200):
     """
     Analysing the duration of beta burst 
     """
-    deriv = np.diff (beta_averp_norm >= beta_thr) 
+    bursts = np.zeros((beta_averp_norm.shape[0] + 1))
+    bursts[1:] = beta_averp_norm >= beta_thr
+    deriv = np.diff(bursts) 
     isburst = False
     burst_length = []
     burst_start = 0
@@ -56,6 +58,8 @@ def get_burst_length(beta_averp_norm,beta_thr, sfreq=200):
             else:
                 burst_start = index
                 isburst = True
+    if isburst:
+        burst_length.append(index + 1 - burst_start)
     burst_length = np.array(burst_length)/sfreq
     
     return burst_length
