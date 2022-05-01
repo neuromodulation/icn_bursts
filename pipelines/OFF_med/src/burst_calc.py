@@ -10,7 +10,7 @@ FULL_BETA = (12, 35)
 
 def Time_Frequency_Estimation(signal):
     freqs = np.arange(1,101)
-    power = mne.decoding.TimeFrequency(freqs, sfreq= 250 , method='morlet', n_cycles=10, output='power', )
+    power = mne.decoding.TimeFrequency(freqs, sfreq= 1600, decim=8, method='morlet', n_cycles=10, output='power', )
     run_TF = power.transform(signal)
     return (run_TF)
 

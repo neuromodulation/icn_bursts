@@ -22,7 +22,7 @@ files3_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subj
 def main():
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    PATH_RUN = files3_off[2]
+    PATH_RUN = files3_off[0]
     raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
     raw_ecog = preprocessing.pick_ecog(raw)
     new_ch_names = ['ECOG_L_1_2_SMC_AT',
