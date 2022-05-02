@@ -10,7 +10,7 @@ FULL_BETA = (12, 35)
 
 def Time_Frequency_Estimation(signal):
     freqs = np.arange(1,101)
-    power = mne.decoding.TimeFrequency(freqs, sfreq= 1600, decim=8, method='morlet', n_cycles=10, output='power', )
+    power = mne.decoding.TimeFrequency(freqs, sfreq= 1600 , method='morlet', n_cycles=10,decim=8, output='power' )
     run_TF = power.transform(signal)
     return (run_TF)
 
@@ -79,5 +79,44 @@ def get_mean_burst_amplitude(beta_amplitude,beta_thr):
     burst_amplitude = np.nanmean(burst)
     
     return burst_amplitude
+
+#def get_burst_amplitude(beta_amplitude, beta_thr):
+    deriv = np.diff (beta_amplitude >= beta_thr) 
+    isburst = False
+    burst_amplitude = []
+    burst_start = 0
+
+    for index, i in enumerate(deriv):
+        if i == True:
+            if isburst == True:
+                burst_amplitude.append(index - burst_start)
+
+                isburst = False
+            else:
+                burst_start = index
+                isburst = True
+        burst_amplitude = np.mean()
+    
+    return burst_amplitude
+
+#def burst_amplitude(beta_amplitude, beta_thr):
+    isburst = False
+    burst_amplitude = []
+    burst_start = 0
+
+    for idx, i in enumerate(beta_amplitude):
+        if i >= beta_thr:
+            if isburst == True:
+                burst_amplitude.append(np.mean(beta_amplitude))
+
+                isburst = False
+            else:
+                burst_start = idx
+                isburst = True
+    return burst_amplitude
+
+
+
+
 
 
