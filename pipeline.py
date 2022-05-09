@@ -15,17 +15,80 @@ def main():
     layout = BIDSLayout(data_path)
     files = layout.get(extension='vhdr', task='Rest',acquisition='StimOff', return_type='filename')
     m1_ids = [2, 3, 4, 4, 2, 3, 4, 2, 4]
+    new_ch_names_list = [
+        [   'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+        [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+        [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+         [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+         [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+         [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+         [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+         [
+            'ECOG_L_1_2_SMC_AT',
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+         [
+            'ECOG_L_2_3_SMC_AT',
+            'ECOG_L_3_4_SMC_AT',
+            'ECOG_L_4_5_SMC_AT',
+            'ECOG_L_5_6_SMC_AT'
+        ],
+    ]
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    for i in range(len(files)):
-        PATH_RUN = files[i]
+    #for i in range(len(files)):
+    #    PATH_RUN = files[i]
+    for PATH_RUN, m1, new_ch_names in zip(files, m1_ids, new_ch_names_list):
         raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
         raw_ecog = preprocessing.pick_ecog(raw)
-        new_ch_names = ['ECOG_L_1_2_SMC_AT',
-               'ECOG_L_2_3_SMC_AT',
-               'ECOG_L_3_4_SMC_AT',
-               'ECOG_L_4_5_SMC_AT',
-               'ECOG_L_5_6_SMC_AT']
+        #new_ch_names = ['ECOG_L_1_2_SMC_AT',
+        #       'ECOG_L_2_3_SMC_AT',
+        #       'ECOG_L_3_4_SMC_AT',
+        #       'ECOG_L_4_5_SMC_AT',
+        #       'ECOG_L_5_6_SMC_AT']
                
         raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
