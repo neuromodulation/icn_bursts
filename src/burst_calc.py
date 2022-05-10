@@ -99,7 +99,7 @@ def get_burst_amplitude(beta_averp_norm, beta_thr):
                 isburst = True
     if isburst:
         burst_length.append(index + 1 - burst_start)
-    burst_length = np.array(burst_length)/sfreq
+    burst_length = np.array(burst_length)
     
     return burst_length
 
