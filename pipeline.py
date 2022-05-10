@@ -1,4 +1,5 @@
 import mne
+import mne_bids
 from mne_bids import BIDSPath
 import numpy as np
 import pandas as pd
@@ -14,83 +15,95 @@ def main():
     data_path = os.path.join('/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata')
     layout = BIDSLayout(data_path)
     files = layout.get(extension='vhdr', task='Rest',acquisition='StimOff', return_type='filename')
-    m1_ids = [2, 3, 4, 4, 2, 3, 4, 2, 4]
-    new_ch_names_list = [
-        [   'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-        [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-        [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-         [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-         [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-         [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-         [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-         [
-            'ECOG_L_1_2_SMC_AT',
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-         [
-            'ECOG_L_2_3_SMC_AT',
-            'ECOG_L_3_4_SMC_AT',
-            'ECOG_L_4_5_SMC_AT',
-            'ECOG_L_5_6_SMC_AT'
-        ],
-    ]
+    m1_ids = {
+    "001" : 2,
+    "003" : 3,
+    "004" : 4,
+    '005' : 4,
+    '006' : 2,
+    '007' : 3,
+    '008' : 4,
+    '009' : 2,
+    '010' : 4
+   }
+    new_ch_names_map = {
+    "001" : [
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "003": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "004": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "005": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "006": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "007": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "008": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "009": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+    "010": [
+        'ECOG_L_1_2_SMC_AT',
+        'ECOG_L_2_3_SMC_AT',
+        'ECOG_L_3_4_SMC_AT',
+        'ECOG_L_4_5_SMC_AT',
+        'ECOG_L_5_6_SMC_AT'
+    ],
+  } 
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
-    #for i in range(len(files)):
-    #    PATH_RUN = files[i]
-    for PATH_RUN, m1, new_ch_names in zip(files, m1_ids, new_ch_names_list):
+    for PATH_RUN in files:
+        entities = mne_bids.get_entities_from_fname(PATH_RUN)
+        sub = entities["subject"]
+        m1 = m1_ids[sub]
+        new_ch_names = new_ch_names_map[sub]
         raw, data, sfreq, line_freq = IO.read_BIDS_data(PATH_RUN, PATH_BIDS)
         raw_ecog = preprocessing.pick_ecog(raw)
-        #new_ch_names = ['ECOG_L_1_2_SMC_AT',
-        #       'ECOG_L_2_3_SMC_AT',
-        #       'ECOG_L_3_4_SMC_AT',
-        #       'ECOG_L_4_5_SMC_AT',
-        #       'ECOG_L_5_6_SMC_AT']
-               
-        raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
+
+        if sub == '001':
+            raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
+        else:
+            raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
 
         NUM_CH = len(raw_ecog_bi.get_channel_types())
 

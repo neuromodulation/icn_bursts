@@ -55,7 +55,7 @@ def filtering (raw_ecog_bi):
 
 def downsample(raw_ecog_filt):
     '''
-    Downsample Data to 250Hz for faster processing
+    Downsample Data to 1600Hz for faster processing
     '''
     raw_ecog_dow = raw_ecog_filt.copy().resample(1600)
     return (raw_ecog_dow)
