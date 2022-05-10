@@ -90,7 +90,7 @@ def main():
         'ECOG_L_5_6_SMC_AT'
     ],
   } 
-    # 1. READ BIDS RECORDING #
+    # 1. PREPROCESSING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
     for PATH_RUN in files:
         entities = mne_bids.get_entities_from_fname(PATH_RUN)
@@ -103,7 +103,7 @@ def main():
         if sub == '001':
             raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
         else:
-            raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
+            raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
         NUM_CH = len(raw_ecog_bi.get_channel_types())
 
@@ -167,7 +167,7 @@ def main():
         burst_rate = [np.sum(histogram_duration[ch_idx] / raw.times[-1])for ch_idx in range(len(raw_ecog_bi.get_channel_types()))]
         burst_rate_m1 = burst_rate[m1] 
 
-        # 3. STRUCTURE AND SAVE FEATURES #
+        # 3. STRUCTURE FEATURES #
         # Burst Features
         burst_char_pd = postprocessing.dataframe_burst_char(mean_dur_m1, burst_amplitude_m1, burst_rate_m1)
         
