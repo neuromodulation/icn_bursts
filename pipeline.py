@@ -176,9 +176,7 @@ def main():
 
         # normalized beta power
         npow = postprocessing.dataframe_npow(psd_M1)
-        
-
-
+    
 
 if __name__ == "__main__":
     main()
