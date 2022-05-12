@@ -6,7 +6,7 @@ from typing import Union
 
 import numpy as np
 
-from . import burst_calc, IO, postprocessing, preprocessing
+from src import burst_calc, IO, postprocessing, preprocessing
 
 
 def bursts_single_subject(

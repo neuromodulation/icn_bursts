@@ -13,24 +13,25 @@ def main():
     """Run this script."""
     # Load project constants
     project_constants = runpy.run_path("project_constants.py")
-    data_path = project_constants["DATA_PATH"]
+    data_path = project_constants["data_path"]
     path_bids = project_constants["PATH_BIDS"]
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
 
     # Initialize the layout
     layout = BIDSLayout(data_path)
-    files = layout.get(
+    files3 = layout.get(
         extension="vhdr",
         task="Rest",
         acquisition="StimOff",
+        subject='003',
         return_type="filename",
     )
     burst_char_pd_all = []
     M1_burst_dynamics_all = []
     npow_list_all = []
-    # 1. PREPROCESSING #
-    for path_run in files:
+    #  Process Files #
+    for path_run in files3:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         (
@@ -49,12 +50,17 @@ def main():
         npow["Subject"] = sub
         burst_char_pd_all.append(burst_char_pd)
         M1_burst_dynamics_all.append(M1_burst_dynamics)
-        npow_list_all.append(M1_burst_dynamics)
+        npow_list_all.append(npow)
 
-    burst_char_pd_df = pd.DataFrame(burst_char_pd_all)
-    M1_burst_dynamics_df = pd.DataFrame(M1_burst_dynamics_all)
-    npow_df = pd.DataFrame(npow_list_all)
+#    burst_char_pd_df = pd.DataFrame(burst_char_pd_all)
+#    M1_burst_dynamics_df = pd.DataFrame(M1_burst_dynamics_all)
+#    npow_df = pd.DataFrame(npow_list_all)
+
+
+
+    return burst_char_pd_all, M1_burst_dynamics_all, npow_list_all
 
 
 if __name__ == "__main__":
-    main()
+    burst_char_pd_all, M1_burst_dynamics_all, npow_all = main()
+    print("done")
