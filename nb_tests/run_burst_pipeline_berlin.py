@@ -17,34 +17,21 @@ def main():
     path_bids = project_constants["PATH_BIDS"]
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
-    files_off = project_constants["files_off"]
-    files_on = project_constants["files_on"]
-    files1_off = project_constants["files1_off"]
-    files1_on = project_constants["files1_on"]
-    files3_off = project_constants["files3_off"]
-    files3_on = project_constants["files3_on"]
-    files4_off = project_constants["files4_off"]
-    files4_on = project_constants["files4_on"]
-    files5_off = project_constants["files5_off"]
-    files5_on = project_constants["files5_on"]
-    files6_off = project_constants["files6_off"]
-    files6_on = project_constants["files6_on"]
-    files7_off = project_constants["files7_off"]
-    files7_on = project_constants["files7_on"]
-    files8_off = project_constants["files8_off"]
-    files8_on = project_constants["files8_on"]
-    files9_off = project_constants["files9_off"]
-    files9_on = project_constants["files9_on"]
-    files10_off = project_constants["files10_off"]
-    files10_on = project_constants["files10_on"]
 
-    # Define variables
+    # Initialize the layout
+    layout = BIDSLayout(data_path)
+    files3 = layout.get(
+        extension="vhdr",
+        task="Rest",
+        acquisition="StimOff",
+        subject='003',
+        return_type="filename",
+    )
     burst_char_pd_all = []
     M1_burst_dynamics_all = []
     npow_list_all = []
-
     #  Process Files #
-    for path_run in files6_off:
+    for path_run in files3:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         (
@@ -75,5 +62,5 @@ def main():
 
 
 if __name__ == "__main__":
-    burst_char_pd_all, M1_burst_dynamics_all, npow_list_all = main()
+    burst_char_pd_all, M1_burst_dynamics_all, npow_all = main()
     print("done")
