@@ -80,18 +80,18 @@ def get_mean_burst_amplitude(beta_amplitude,beta_thr):
     
     return burst_amplitude
 
-def get_burst_amplitude(beta_averp_norm, beta_thr):
-    bursts = np.zeros((beta_averp_norm.shape[0] + 1), dtype=bool)
-    bursts[1:] = beta_averp_norm >= beta_thr
-    deriv = np.diff(bursts) 
+#def get_burst_amplitude(beta_averp_norm, beta_thr):
+    burst = np.zeros((beta_averp_norm.shape[0] + 1), dtype=bool)
+    burst[1:] = beta_averp_norm >= beta_thr
+    bursts = burst[1:] 
     isburst = False
-    burst_length = []
+    burst_amplitude = []
     burst_start = 0
 
-    for index, i in enumerate(deriv):
+    for index, i in enumerate():
         if i == True:
             if isburst == True:
-                burst_length.append(index - burst_start)
+                burst_amplitude.append(np.nanmean[i])
 
                 isburst = False
             else:
@@ -99,11 +99,11 @@ def get_burst_amplitude(beta_averp_norm, beta_thr):
                 isburst = True
     if isburst:
         burst_length.append(index + 1 - burst_start)
-    burst_length = np.array(burst_length)
+    burst_amplitude = np.array(burst_length)
     
-    return burst_length
+    return burst_amplitude
 
-#def burst_amplitude(beta_amplitude, beta_thr):
+def burst_amplitude(beta_amplitude, beta_thr):
     isburst = False
     burst_amplitude = []
     burst_start = 0
@@ -117,6 +117,15 @@ def get_burst_amplitude(beta_averp_norm, beta_thr):
             else:
                 burst_start = idx
                 isburst = True
+    return burst_amplitude
+
+def get_mean_burst_amplitude_2(beta_amplitude,beta_thr):
+    '''
+    mean amplitude of beta bursts
+    '''
+    burst = [i for i in beta_amplitude if i >= beta_thr ]
+    burst_amplitude = np.nanmean(burst)
+    
     return burst_amplitude
 
 
