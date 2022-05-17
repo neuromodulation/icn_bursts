@@ -6,20 +6,21 @@ import os
 from os.path import join
 from bids import BIDSLayout
 from src import IO, preprocessing, burst_calc, plot_utils, postprocessing
+from numpy import array, average
 
-# Initialize the layout 
-data_path = os.path.join('/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata')
-layout = BIDSLayout(data_path)
-
-files3 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='003', return_type='filename')
-files3_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='003', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
-files3_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='003', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
-
-# 3 Runs
 
 # SCRIPT START #
 
 def main():
+
+    # Initialize the layout 
+    data_path = os.path.join('/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata')
+    layout = BIDSLayout(data_path)
+
+    files3 = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='003', return_type='filename')
+    files3_off = layout.get(extension='vhdr', task='Rest',acquisition='StimOff',subject='003', session=['EcogLfpMedOff01','EcogLfpMedOff02', 'EcogLfpMedOff03'], return_type='filename')
+    files3_on = layout.get(extension='vhdr', task='Rest', acquisition='StimOff',subject='003', session=['EcogLfpMedOn01', 'EcogLfpMedOn02', 'EcogLfpMedOn03'],return_type='filename')
+
     # 1. READ BIDS RECORDING #
     PATH_BIDS = r'/Users/alidzaye/Library/CloudStorage/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP/rawdata'
     PATH_RUN = files3_off[0]
@@ -98,6 +99,62 @@ def main():
     # 3. STRUCTURE AND SAVE FEATURES #
     # Burst Features
     burst_char_pd = postprocessing.dataframe_burst_char(mean_dur_m1, burst_amplitude_m1, burst_rate_m1)
+
+    power =l_beta_avg_norm[full][m1]
+    threshold = l_beta_thr[full][m1]
+
+#def get_mean_burst_amplitude(power,threshold):
+    '''
+    mean amplitude of beta bursts
+    '''
+#    burst = [i for i in power if i >= threshold ]
+#    burst_amplitude_fix = np.nanmean(burst)
+    
+#    return burst_amplitude_fix
+ 
+
+
+
+
+
+
+
+
+
+#   bursts = np.zeros((power.shape[0] + 1), dtype=bool)
+#    bursts[1:] = power >= threshold
+    single_burst_mean_amplitude = []
+    for idx, val in enumerate(power):
+        if val >= threshold:
+                single_burst_mean_amplitude.append(np.nanmean(val))
+    burst_amplitude = np.nanmean(single_burst_mean_amplitude)
+
+    amplitude =  []
+    no_bursts = True
+    cont = False 
+    for val in power:
+        if val >= threshold:
+            no_bursts = False
+            if cont == False:
+                burst = [val]
+                cont = True
+            else:
+                burst.append(val)
+        else:
+            if not no_bursts:
+                cont = False
+                amplitude.append(burst)
+    
+    mean_amplitude_single_burst = [np.mean(burst) for burst in amplitude]
+    mean_amplitude = np.mean(mean_amplitude_single_burst)
+    
+    
+    
+#    array_lol = array(amplitude)
+#    row_average = average(array_lol, axis=1)
+
+
+
     
     # M1 Beta Burst Dynamics 
     M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(normhist_dur_m1)
