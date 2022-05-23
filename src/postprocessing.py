@@ -6,7 +6,7 @@ def dataframe_burst_char(mean_burst_duration_M1,burst_amplitude_M1,burst_rate_M1
     '''
     Structure feature in pandas
     '''
-    pdburst = pd.DataFrame({'Mean Burst Duration (s)':mean_burst_duration_M1,'Mean Burst Amplitude (au)':burst_amplitude_M1,'Burst Rate': burst_rate_M1},index=[0])
+    pdburst = pd.DataFrame({'Duration':mean_burst_duration_M1,'Amplitude':burst_amplitude_M1,'Rate': burst_rate_M1},index=[0])
     return pdburst
 
 def dataframe_burst_dynamics(norm_histogram_duration):

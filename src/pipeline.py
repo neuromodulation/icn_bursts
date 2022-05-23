@@ -109,7 +109,7 @@ def bursts_single_subject(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_mean_burst_amplitude(l, l_beta_thr[full][idx])
+        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
         for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_amplitude_m1 = burst_amplitude[m1]

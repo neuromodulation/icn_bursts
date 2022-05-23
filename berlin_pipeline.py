@@ -5,14 +5,14 @@ import pandas as pd
 from bids import BIDSLayout
 import mne_bids
 
-from src import pipelines
+from src import pipeline
 
 
 # SCRIPT START #
 def main():
     """Run this script."""
     # Load project constants
-    project_constants = runpy.run_path("project_constants.py")
+    project_constants = runpy.run_path("berlin_constants.py")
     data_path = project_constants["data_path"]
     path_bids = project_constants["PATH_BIDS"]
     m1_ids = project_constants["M1_IDS"]
@@ -44,14 +44,14 @@ def main():
     npow_list_all = []
 
     #  Process Files #
-    for path_run in files6_off:
+    for path_run in files3_off:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         (
             burst_char_pd,
             M1_burst_dynamics,
             npow,
-        ) = pipelines.bursts_single_subject(
+        ) = pipeline.bursts_single_subject(
             path_run=path_run,
             path_bids=path_bids,
             sub=sub,
