@@ -6,7 +6,7 @@ import string
 
 ALPHA_BOX = 0.4
 
-def histplot_burst_length(burst_length, bins=13, range=(0, 1.3)):
+def histplot_burst_length(burst_length, bins=9, range=(0, 0.9)):
     """ plot in histogram burst lengths"""
     sns.set(style="white", font_scale=1)
     plt.hist(burst_length, bins=bins, range=range)

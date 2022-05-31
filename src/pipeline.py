@@ -9,7 +9,7 @@ import numpy as np
 from src import burst_calc, IO, postprocessing, preprocessing
 
 
-def bursts_single_subject(
+def bursts_single_run(
     path_run: Union[str, pathlib.Path],
     path_bids: Union[str, pathlib.Path],
     sub: str,
@@ -21,13 +21,9 @@ def bursts_single_subject(
     raw_ecog = preprocessing.pick_ecog(raw)
 
     if sub == "001":
-        raw_ecog_bi = preprocessing.bipolar_reference_s1(
-            raw, raw_ecog, new_ch_names
-        )
+        raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
     else:
-        raw_ecog_bi = preprocessing.bipolar_reference(
-            raw, raw_ecog, new_ch_names
-        )
+        raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
     NUM_CH = len(raw_ecog_bi.get_channel_types())
 
@@ -51,9 +47,7 @@ def bursts_single_subject(
     l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
     # 75th percentile of the power
-    l_beta_thr = [
-        burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm
-    ]
+    l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
 
     low = 0
     high = 1
@@ -83,16 +77,13 @@ def bursts_single_subject(
     burst_duration_cl_m1 = burst_duration_cl[m1]
     # Mean burst duration
     mean_burst_duration = [
-        np.nanmean(burst_duration_cl[ch_idx], axis=0)
-        for ch_idx in range(NUM_CH)
+        np.nanmean(burst_duration_cl[ch_idx], axis=0) for ch_idx in range(NUM_CH)
     ]
     mean_dur_m1 = mean_burst_duration[m1]
 
     # Histogram of burst duration
     histogram_duration = [
-        np.histogram(
-            burst_duration_cl[ch_idx], density=False, bins=20, range=(0, 2)
-        )[0]
+        np.histogram(burst_duration_cl[ch_idx], density=False, bins=20, range=(0, 2))[0]
         for ch_idx in range(NUM_CH)
     ]
     hist_dur_m1 = histogram_duration[m1]
@@ -128,9 +119,7 @@ def bursts_single_subject(
     )
 
     # M1 Beta Burst Dynamics
-    M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(
-        normhist_dur_m1
-    )
+    M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(normhist_dur_m1)
 
     # normalized beta power
     npow = postprocessing.dataframe_npow(psd_M1)

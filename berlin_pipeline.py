@@ -1,10 +1,12 @@
+from typing import Union
 import runpy
+from turtle import done
 
 import pandas as pd
 
 from bids import BIDSLayout
 import mne_bids
-
+import matplotlib.pyplot as plt
 from src import pipeline
 
 
@@ -17,41 +19,48 @@ def main():
     path_bids = project_constants["PATH_BIDS"]
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
-    files_off = project_constants["files_off"]
-    files_on = project_constants["files_on"]
-    files1_off = project_constants["files1_off"]
-    files1_on = project_constants["files1_on"]
-    files3_off = project_constants["files3_off"]
-    files3_on = project_constants["files3_on"]
-    files4_off = project_constants["files4_off"]
-    files4_on = project_constants["files4_on"]
-    files5_off = project_constants["files5_off"]
-    files5_on = project_constants["files5_on"]
-    files6_off = project_constants["files6_off"]
-    files6_on = project_constants["files6_on"]
-    files7_off = project_constants["files7_off"]
-    files7_on = project_constants["files7_on"]
-    files8_off = project_constants["files8_off"]
-    files8_on = project_constants["files8_on"]
-    files9_off = project_constants["files9_off"]
-    files9_on = project_constants["files9_on"]
-    files10_off = project_constants["files10_off"]
-    files10_on = project_constants["files10_on"]
+    files = project_constants["files"]
+    remove_subjects: Union[str, None] = ["002", "010", "011", "012"]
+    if remove_subjects:
+        for remove_subject in remove_subjects:
+            files = [file for file in files if remove_subject not in file]
+
+    files1_off = [f for f in files if "001" in f and "MedOff" in f]
+    files1_on = [f for f in files if "001" in f and "MedOn" in f]
+    files3_off = [f for f in files if "003" in f and "MedOff" in f]
+    files3_on = [f for f in files if "003" in f and "MedOn" in f]
+    files4_off = [f for f in files if "004" in f and "MedOff" in f]
+    files4_on = [f for f in files if "004" in f and "MedOn" in f]
+    files5_off = [f for f in files if "005" in f and "MedOff" in f]
+    files5_on = [f for f in files if "005" in f and "MedOn" in f]
+    files6_off = [f for f in files if "006" in f and "MedOff" in f]
+    files6_on = [f for f in files if "006" in f and "MedOn" in f]
+    files7_off = [f for f in files if "007" in f and "MedOff" in f]
+    files7_on = [f for f in files if "007" in f and "MedOn" in f]
+    files8_off = [f for f in files if "008" in f and "MedOff" in f]
+    files8_on = [f for f in files if "008" in f and "MedOn" in f]
+    files9_off = [f for f in files if "009" in f and "MedOff" in f]
+    files9_on = [f for f in files if "009" in f and "MedOn" in f]
+    files10_off = [f for f in files if "010" in f and "MedOff" in f]
+    files10_on = [f for f in files if "010" in f and "MedOn" in f]
 
     # Define variables
     burst_char_pd_all = []
     M1_burst_dynamics_all = []
     npow_list_all = []
 
-    #  Process Files #
-    for path_run in files3_off:
+    burst_char_pd_all_on = []
+    M1_burst_dynamics_all_on = []
+    npow_list_all_on = []
+
+    #  Process runs in one subject #
+    # def bursts_single_subject(runs):
+    for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
-        (
-            burst_char_pd,
-            M1_burst_dynamics,
-            npow,
-        ) = pipeline.bursts_single_subject(
+        med = "On" if "MedOn" in entities["session"] else "Off"
+        run = entities["run"]
+        (burst_char_pd, M1_burst_dynamics, npow,) = pipeline.bursts_single_run(
             path_run=path_run,
             path_bids=path_bids,
             sub=sub,
@@ -59,21 +68,17 @@ def main():
             new_ch_names=new_ch_names_map[sub],
         )
         burst_char_pd["Subject"] = sub
+        burst_char_pd["Medication"] = med
+        burst_char_pd["Run"] = run
         M1_burst_dynamics["Subject"] = sub
         npow["Subject"] = sub
         burst_char_pd_all.append(burst_char_pd)
         M1_burst_dynamics_all.append(M1_burst_dynamics)
         npow_list_all.append(npow)
 
-#    burst_char_pd_df = pd.DataFrame(burst_char_pd_all)
-#    M1_burst_dynamics_df = pd.DataFrame(M1_burst_dynamics_all)
-#    npow_df = pd.DataFrame(npow_list_all)
-
-
-
     return burst_char_pd_all, M1_burst_dynamics_all, npow_list_all
 
 
 if __name__ == "__main__":
     burst_char_pd_all, M1_burst_dynamics_all, npow_list_all = main()
-    print("done")
+print(done)
