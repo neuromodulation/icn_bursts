@@ -9,7 +9,6 @@ import mne_bids
 import matplotlib.pyplot as plt
 from src import pipeline
 
-
 # SCRIPT START #
 def main():
     """Run this script."""
@@ -25,36 +24,12 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
 
-    files1_off = [f for f in files if "001" in f and "MedOff" in f]
-    files1_on = [f for f in files if "001" in f and "MedOn" in f]
-    files3_off = [f for f in files if "003" in f and "MedOff" in f]
-    files3_on = [f for f in files if "003" in f and "MedOn" in f]
-    files4_off = [f for f in files if "004" in f and "MedOff" in f]
-    files4_on = [f for f in files if "004" in f and "MedOn" in f]
-    files5_off = [f for f in files if "005" in f and "MedOff" in f]
-    files5_on = [f for f in files if "005" in f and "MedOn" in f]
-    files6_off = [f for f in files if "006" in f and "MedOff" in f]
-    files6_on = [f for f in files if "006" in f and "MedOn" in f]
-    files7_off = [f for f in files if "007" in f and "MedOff" in f]
-    files7_on = [f for f in files if "007" in f and "MedOn" in f]
-    files8_off = [f for f in files if "008" in f and "MedOff" in f]
-    files8_on = [f for f in files if "008" in f and "MedOn" in f]
-    files9_off = [f for f in files if "009" in f and "MedOff" in f]
-    files9_on = [f for f in files if "009" in f and "MedOn" in f]
-    files10_off = [f for f in files if "010" in f and "MedOff" in f]
-    files10_on = [f for f in files if "010" in f and "MedOn" in f]
-
     # Define variables
     burst_char_pd_all = []
     M1_burst_dynamics_all = []
     npow_list_all = []
 
-    burst_char_pd_all_on = []
-    M1_burst_dynamics_all_on = []
-    npow_list_all_on = []
-
     #  Process runs in one subject #
-    # def bursts_single_subject(runs):
     for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
