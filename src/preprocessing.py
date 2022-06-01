@@ -45,7 +45,7 @@ def bipolar_reference_s1(raw, raw_ecog, new_ch_names):
 
 
 def bipolar_reference_s10_on(raw, raw_ecog, new_ch_names):
-    anode = raw_ecog[0:4]
+    anode = raw_ecog[0:5]
     cathode = raw_ecog[1:5]
     raw_ecog_bi = mne.set_bipolar_reference(
         raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names

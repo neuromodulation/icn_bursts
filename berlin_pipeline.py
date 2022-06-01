@@ -19,7 +19,7 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    remove_subjects: Union[str, None] = ["002", "010", "011", "012"]
+    remove_subjects: Union[str, None] = ["002", "011", "012"]
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
@@ -41,12 +41,17 @@ def main():
             sub=sub,
             m1=m1_ids[sub],
             new_ch_names=new_ch_names_map[sub],
+            med=med,
         )
         burst_char_pd["Subject"] = sub
         burst_char_pd["Medication"] = med
         burst_char_pd["Run"] = run
         M1_burst_dynamics["Subject"] = sub
+        M1_burst_dynamics["Medication"] = med
+        M1_burst_dynamics["Run"] = run
         npow["Subject"] = sub
+        npow["Medication"] = med
+        npow["Run"] = run
         burst_char_pd_all.append(burst_char_pd)
         M1_burst_dynamics_all.append(M1_burst_dynamics)
         npow_list_all.append(npow)

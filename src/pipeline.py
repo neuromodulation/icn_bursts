@@ -15,6 +15,7 @@ def bursts_single_run(
     sub: str,
     m1: int,
     new_ch_names: list[str],
+    med: list[str],
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
     raw, data, sfreq, line_freq = IO.read_BIDS_data(path_run, path_bids)
@@ -22,6 +23,10 @@ def bursts_single_run(
 
     if sub == "001":
         raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
+    elif sub == "010" and med == "On":
+        raw_ecog_bi = preprocessing.bipolar_reference_s10_on(
+            raw, raw_ecog, new_ch_names
+        )
     else:
         raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
