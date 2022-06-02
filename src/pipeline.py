@@ -23,7 +23,7 @@ def bursts_single_run(
 
     if sub == "001":
         raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
-    elif sub == "010" and med == "On":
+    elif sub == "010":
         raw_ecog_bi = preprocessing.bipolar_reference_s10_on(
             raw, raw_ecog, new_ch_names
         )

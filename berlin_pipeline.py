@@ -7,7 +7,10 @@ import pandas as pd
 from bids import BIDSLayout
 import mne_bids
 import matplotlib.pyplot as plt
-from src import pipeline
+import seaborn as sns
+from src import pipeline, plot_utils
+import seaborn as sns
+import numpy as np
 
 # SCRIPT START #
 def main():
@@ -19,6 +22,7 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
+    files_3 = [f for f in files if "003" in f]
     remove_subjects: Union[str, None] = ["002", "011", "012"]
     if remove_subjects:
         for remove_subject in remove_subjects:
@@ -30,7 +34,7 @@ def main():
     npow_list_all = []
 
     #  Process runs in one subject #
-    for path_run in files:
+    for path_run in files_3:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         med = "On" if "MedOn" in entities["session"] else "Off"
@@ -61,4 +65,15 @@ def main():
 
 if __name__ == "__main__":
     burst_char_pd_all, M1_burst_dynamics_all, npow_list_all = main()
+
+
+# sns.set(style="white", font_scale=1)
+plt.hist(
+    M1_burst_dynamics_all[0].drop(columns=["Subject", "Medication", "Run"]).to_numpy(),
+    bins=np.arange(0.1, 0.9),
+    range=range,
+)
+plt.show()
+
+
 print(done)

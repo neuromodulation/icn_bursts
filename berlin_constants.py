@@ -16,7 +16,7 @@ data_path = (
     r"/rawdata"
 )
 M1_IDS = {
-    "001": 2,
+    "001": 0,
     "003": 3,
     "004": 4,
     "005": 4,
@@ -24,7 +24,7 @@ M1_IDS = {
     "007": 3,
     "008": 4,
     "009": 2,
-    "010": 4,
+    "010": 3,
 }
 NEW_CH_NAMES_MAP = {
     "001": [
@@ -83,7 +83,6 @@ NEW_CH_NAMES_MAP = {
         "ECOG_L_5_6_SMC_AT",
     ],
     "010": [
-        "ECOG_L_1_2_SMC_AT",
         "ECOG_L_2_3_SMC_AT",
         "ECOG_L_3_4_SMC_AT",
         "ECOG_L_4_5_SMC_AT",
