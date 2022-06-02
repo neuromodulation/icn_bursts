@@ -22,7 +22,7 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    files_3 = [f for f in files if "003" in f]
+    files_10 = [f for f in files if "010" in f]
     remove_subjects: Union[str, None] = ["002", "011", "012"]
     if remove_subjects:
         for remove_subject in remove_subjects:
@@ -34,7 +34,7 @@ def main():
     npow_list_all = []
 
     #  Process runs in one subject #
-    for path_run in files_3:
+    for path_run in files_10:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         med = "On" if "MedOn" in entities["session"] else "Off"
@@ -60,20 +60,33 @@ def main():
         M1_burst_dynamics_all.append(M1_burst_dynamics)
         npow_list_all.append(npow)
 
+    # Plot results
+    data_pre = (
+        M1_burst_dynamics_all[0]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+    )
+
+    data = data_pre.flatten()
+    bins = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, ">0.8"]
+    sns.barplot(x=bins, y=data)
+    plt.title("Distribution of burst duration")
+    sns.despine()
+
     return burst_char_pd_all, M1_burst_dynamics_all, npow_list_all
 
 
 if __name__ == "__main__":
     burst_char_pd_all, M1_burst_dynamics_all, npow_list_all = main()
 
+# data_pre = (
+#    M1_burst_dynamics_all[0].drop(columns=["Subject", "Medication", "Run"]).to_numpy()
+# )
 
-# sns.set(style="white", font_scale=1)
-plt.hist(
-    M1_burst_dynamics_all[0].drop(columns=["Subject", "Medication", "Run"]).to_numpy(),
-    bins=np.arange(0.1, 0.9),
-    range=range,
-)
-plt.show()
+# data = data_pre.flatten()
+# bins = np.arange(0.1, 0.9, 0.1)
+# plt.bar(x=bins, height=data, width=0.05)
+# plt.show()
 
 
 print(done)
