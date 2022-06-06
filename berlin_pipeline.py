@@ -122,9 +122,14 @@ sns.despine()
 
 
 # Distribution of Duration
+plt.figure(3)
+
+sns.despine()
 
 
 # PSD
+plt.figure(4)
 
+sns.despine()
 
 print(done)
