@@ -34,7 +34,7 @@ def main():
     npow_list_all = []
 
     #  Process runs in one subject #
-    for path_run in files_10:
+    for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         med = "On" if "MedOn" in entities["session"] else "Off"
@@ -60,33 +60,71 @@ def main():
         M1_burst_dynamics_all.append(M1_burst_dynamics)
         npow_list_all.append(npow)
 
-    # Plot results
-    data_pre = (
-        M1_burst_dynamics_all[0]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-    )
+    # Structure Results
+    features = pd.concat(burst_char_pd_all)
+    dist = pd.concat(M1_burst_dynamics_all)
+    psd = pd.concat(npow_list_all)
 
-    data = data_pre.flatten()
-    bins = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, ">0.8"]
-    sns.barplot(x=bins, y=data)
-    plt.title("Distribution of burst duration")
-    sns.despine()
+    # data_pre = (
+    #    M1_burst_dynamics_all[0]
+    #    .drop(columns=["Subject", "Medication", "Run"])
+    #    .to_numpy()
+    # )
 
-    return burst_char_pd_all, M1_burst_dynamics_all, npow_list_all
+    # data = data_pre.flatten()
+    # bins = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, ">0.8"]
+
+    return burst_char_pd_all, M1_burst_dynamics_all, npow_list_all, features, dist, psd
 
 
 if __name__ == "__main__":
-    burst_char_pd_all, M1_burst_dynamics_all, npow_list_all = main()
+    (
+        burst_char_pd_all,
+        M1_burst_dynamics_all,
+        npow_list_all,
+        features,
+        dist,
+        psd,
+    ) = main()
 
-# data_pre = (
-#    M1_burst_dynamics_all[0].drop(columns=["Subject", "Medication", "Run"]).to_numpy()
-# )
 
-# data = data_pre.flatten()
-# bins = np.arange(0.1, 0.9, 0.1)
-# plt.bar(x=bins, height=data, width=0.05)
-# plt.show()
+# PLOT FEATURES #
+
+sns.set(style="white", font_scale=1)
+
+# Burst Features
+plt.figure(1)
+plt.subplot(131)
+sns.boxplot(data=features, x="Medication", y="Duration")
+sns.despine()
+
+plt.subplot(132)
+sns.boxplot(data=features, x="Medication", y="Amplitude")
+sns.despine()
+
+plt.subplot(133)
+sns.boxplot(data=features, x="Medication", y="Rate")
+sns.despine()
+
+
+plt.figure(2)
+plt.subplot(311)
+sns.boxplot(data=features, x="Subject", y="Duration", hue="Medication")
+sns.despine()
+
+plt.subplot(312)
+sns.boxplot(data=features, x="Subject", y="Amplitude", hue="Medication")
+sns.despine()
+
+plt.subplot(313)
+sns.boxplot(data=features, x="Subject", y="Rate", hue="Medication")
+sns.despine()
+
+
+# Distribution of Duration
+
+
+# PSD
 
 
 print(done)
