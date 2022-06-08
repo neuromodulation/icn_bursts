@@ -92,33 +92,137 @@ if __name__ == "__main__":
 
 sns.set(style="white", font_scale=1)
 
+print(done)
+
 # Burst Features
+
 plt.figure(1)
+alpha_box = 0.4
 plt.subplot(131)
-sns.boxplot(data=features, x="Medication", y="Duration")
-sns.despine()
+sns.boxplot(
+    x="Medication",
+    y="Duration",
+    data=features,
+    palette="viridis",
+    boxprops=dict(alpha=alpha_box),
+    showfliers=False,
+    whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+    capprops={"alpha": alpha_box},
+    medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+)
+sns.stripplot(
+    x="Medication", y="Duration", data=features, palette="viridis", dodge=True, s=5
+)
 
 plt.subplot(132)
-sns.boxplot(data=features, x="Medication", y="Amplitude")
-sns.despine()
+sns.boxplot(
+    x="Medication",
+    y="Amplitude",
+    data=features,
+    palette="viridis",
+    boxprops=dict(alpha=alpha_box),
+    showfliers=False,
+    whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+    capprops={"alpha": alpha_box},
+    medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+)
+sns.stripplot(
+    x="Medication", y="Amplitude", data=features, palette="viridis", dodge=True, s=5
+)
 
 plt.subplot(133)
-sns.boxplot(data=features, x="Medication", y="Rate")
+sns.boxplot(
+    x="Medication",
+    y="Rate",
+    data=features,
+    palette="viridis",
+    boxprops=dict(alpha=alpha_box),
+    showfliers=False,
+    whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+    capprops={"alpha": alpha_box},
+    medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+)
+sns.stripplot(
+    x="Medication", y="Rate", data=features, palette="viridis", dodge=True, s=5
+)
+
+plt.suptitle("M1 burst features high beta")
 sns.despine()
 
 
 plt.figure(2)
+alpha_box = 0.4
 plt.subplot(311)
-sns.boxplot(data=features, x="Subject", y="Duration", hue="Medication")
-sns.despine()
+sns.boxplot(
+    x="Subject",
+    y="Duration",
+    hue="Medication",
+    data=features,
+    palette="viridis",
+    boxprops=dict(alpha=alpha_box),
+    showfliers=False,
+    whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+    capprops={"alpha": alpha_box},
+    medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+)
+sns.stripplot(
+    x="Subject",
+    y="Duration",
+    hue="Medication",
+    data=features,
+    palette="viridis",
+    dodge=True,
+    s=5,
+)
 
 plt.subplot(312)
-sns.boxplot(data=features, x="Subject", y="Amplitude", hue="Medication")
-sns.despine()
+sns.boxplot(
+    x="Subject",
+    y="Amplitude",
+    hue="Medication",
+    data=features,
+    palette="viridis",
+    boxprops=dict(alpha=alpha_box),
+    showfliers=False,
+    whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+    capprops={"alpha": alpha_box},
+    medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+)
+sns.stripplot(
+    x="Subject",
+    y="Amplitude",
+    hue="Medication",
+    data=features,
+    palette="viridis",
+    dodge=True,
+    s=5,
+)
 
 plt.subplot(313)
-sns.boxplot(data=features, x="Subject", y="Rate", hue="Medication")
+sns.boxplot(
+    x="Subject",
+    y="Rate",
+    hue="Medication",
+    data=features,
+    palette="viridis",
+    boxprops=dict(alpha=alpha_box),
+    showfliers=False,
+    whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+    capprops={"alpha": alpha_box},
+    medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+)
+sns.stripplot(
+    x="Subject",
+    y="Rate",
+    hue="Medication",
+    data=features,
+    palette="viridis",
+    dodge=True,
+    s=5,
+)
 sns.despine()
+
+print(done)
 
 
 # Distribution of Duration
@@ -132,4 +236,3 @@ plt.figure(4)
 
 sns.despine()
 
-print(done)

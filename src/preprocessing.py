@@ -53,6 +53,15 @@ def bipolar_reference_s10_on(raw, raw_ecog, new_ch_names):
     return raw_ecog_bi
 
 
+def bipolar_reference_s10_off(raw, raw_ecog, new_ch_names):
+    anode = raw_ecog[1:5]
+    cathode = raw_ecog[2:6]
+    raw_ecog_bi = mne.set_bipolar_reference(
+        raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names
+    )
+    return raw_ecog_bi
+
+
 def filtering(raw_ecog_bi):
     """
     Filtering (Highpass 3 Hz, Notchfilter 50,251,50Hz, Lowpass 250Hz)

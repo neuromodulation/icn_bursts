@@ -23,7 +23,11 @@ def bursts_single_run(
 
     if sub == "001":
         raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
-    elif sub == "010":
+    elif sub == "010" and med == "Off":
+        raw_ecog_bi = preprocessing.bipolar_reference_s10_off(
+            raw, raw_ecog, new_ch_names
+        )
+    elif sub == "010" and med == "On":
         raw_ecog_bi = preprocessing.bipolar_reference_s10_on(
             raw, raw_ecog, new_ch_names
         )
@@ -72,8 +76,8 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=200)
-        for idx, l in enumerate(l_beta_avg_norm[full])
+        burst_calc.get_burst_length(l, l_beta_thr[high][idx], sfreq=200)
+        for idx, l in enumerate(l_beta_avg_norm[high])
     ]
     burst_duration_cl = [
         burst_calc.exclude_short_bursts(burst_duration[ch_idx])
@@ -105,8 +109,8 @@ def bursts_single_run(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
-        for idx, l in enumerate(l_beta_avg_norm[full])
+        burst_calc.get_burst_amplitude(l, l_beta_thr[high][idx])
+        for idx, l in enumerate(l_beta_avg_norm[high])
     ]
     burst_amplitude_m1 = burst_amplitude[m1]
 
