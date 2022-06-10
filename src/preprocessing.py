@@ -1,6 +1,7 @@
 import numpy as np
 import mne
 from scipy import stats
+import os
 
 
 def pick_ecog(raw):
@@ -91,3 +92,67 @@ def z_score_signal(signal):
     stand_signal = stats.zscore(signal, axis=1)
     return stand_signal
 
+
+def generate_annotations_fpath(
+    folderpath: str,
+    dataset: str,
+    subject: str,
+    session: str,
+    task: str,
+    acquisition: str,
+    run: str,
+) -> str:
+    """Generates a filepath for an annotations file that corresponds to an individual
+    recording session based on the MNE data-storage filepath structure.
+    PARAMETERS
+    ----------
+    folderpath : str
+    -   The path of the folder where the datasets are located.
+    dataset : str
+    -   The name of the dataset folder within the folder given in 'folderpath'.
+    subject : str
+    -   The name of the subject for which the filepath should be generated.
+    session : str
+    -   The name of the session for which the filepath should be generated.
+    task : str
+    -   The name of the task for which the filepath should be generated.
+    acquisition : str
+    -   The name of the acquisition mode for which the filepath should be
+        generated.
+    run : str
+    -   The name of the run for which the filepath should be generated.
+    RETURNS
+    -------
+    str
+    -   The filepath of the annotations object.
+    """
+    subfolders = f"{dataset}/sub-{subject}/ses-{session}"
+    filename = (
+        f"sub-{subject}_ses-{session}_task-{task}_acq-{acquisition}_run-{run}_"
+        "annotations.csv"
+    )
+    return os.path.join(folderpath, subfolders, filename)
+
+
+def check_annots_orig_time(annots: mne.Annotations) -> mne.Annotations:
+    """Checks whether a meaningful origin time (i.e. not 1970-01-01) is present
+    in the MNE Annotations object, setting it to 'None' if this is not the case.
+    PARAMETERS
+    ----------
+    annots : MNE Annotations
+    -   The annotations to check.
+    RETURNS
+    -------
+    annots : MNE Annotations
+    -   The annotations, with non-meaningful origin time corrected, if
+    applicable.
+    """
+    orig_time = annots.orig_time
+    if orig_time.day == 1 and orig_time.month == 1 and orig_time.year == 1970:
+        annots = mne.Annotations(
+            onset=annots.onset,
+            duration=annots.duration,
+            description=annots.description,
+            orig_time=None,
+        )
+    return annots

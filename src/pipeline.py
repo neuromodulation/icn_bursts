@@ -2,6 +2,7 @@
 
 import pathlib
 import pandas as pd
+import mne
 from typing import Union
 
 import numpy as np
@@ -16,11 +17,26 @@ def bursts_single_run(
     m1: int,
     new_ch_names: list[str],
     med: list[str],
+    session: str,
+    task: str,
+    acquisition: str,
+    run: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
     raw, data, sfreq, line_freq = IO.read_BIDS_data(path_run, path_bids)
-    raw_ecog = preprocessing.pick_ecog(raw)
-
+    annotations = mne.read_annotations(
+        preprocessing.generate_annotations_fpath(
+            folderpath="/Users/alidzaye/rest_annotations",
+            dataset="BIDS_Berlin_ECOG_LFP",
+            subject=sub,
+            session=session,
+            task=task,
+            acquisition=acquisition,
+            run=run,
+        )
+    )
+    raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
+    raw_ecog = preprocessing.pick_ecog(raw_annots)
     if sub == "001":
         raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
     elif sub == "010" and med == "Off":
@@ -76,8 +92,8 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[high][idx], sfreq=200)
-        for idx, l in enumerate(l_beta_avg_norm[high])
+        burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=200)
+        for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_duration_cl = [
         burst_calc.exclude_short_bursts(burst_duration[ch_idx])
@@ -109,8 +125,8 @@ def bursts_single_run(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[high][idx])
-        for idx, l in enumerate(l_beta_avg_norm[high])
+        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
+        for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_amplitude_m1 = burst_amplitude[m1]
 

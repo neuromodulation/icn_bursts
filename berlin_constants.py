@@ -90,6 +90,7 @@ NEW_CH_NAMES_MAP = {
     ],
 }
 layout = BIDSLayout(data_path)
+
 files = layout.get(
     extension="vhdr", task="Rest", acquisition="StimOff", return_type="filename",
 )
