@@ -34,7 +34,7 @@ def main():
     M1_burst_dynamics_all = []
     npow_list_all = []
 
-    #  Process runs in one subject #
+    #  Process runs #
     for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
@@ -126,5 +126,5 @@ plot_utils.plot_psd_s8(psd_s8off, psd_s8on)
 plot_utils.plot_psd_s9(psd_s9off, psd_s9on)
 plot_utils.plot_psd_s10(psd_s10off, psd_s10on)
 
-
+print("done")
 
