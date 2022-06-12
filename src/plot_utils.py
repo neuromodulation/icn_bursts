@@ -7,6 +7,308 @@ import string
 ALPHA_BOX = 0.4
 
 
+def plot_avgm1_burst_features(avg_features):
+    fig = plt.figure(1)
+    alpha_box = 0.4
+    plt.subplot(131)
+    sns.boxplot(
+        x="Medication",
+        y="Duration",
+        data=avg_features,
+        palette="viridis",
+        boxprops=dict(alpha=alpha_box),
+        showfliers=False,
+        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        capprops={"alpha": alpha_box},
+        medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+    )
+    sns.stripplot(
+        x="Medication",
+        y="Duration",
+        data=avg_features,
+        palette="viridis",
+        dodge=True,
+        s=5,
+    )
+
+    plt.subplot(132)
+    sns.boxplot(
+        x="Medication",
+        y="Amplitude",
+        data=avg_features,
+        palette="viridis",
+        boxprops=dict(alpha=alpha_box),
+        showfliers=False,
+        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        capprops={"alpha": alpha_box},
+        medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+    )
+    sns.stripplot(
+        x="Medication",
+        y="Amplitude",
+        data=avg_features,
+        palette="viridis",
+        dodge=True,
+        s=5,
+    )
+
+    plt.subplot(133)
+    sns.boxplot(
+        x="Medication",
+        y="Rate",
+        data=avg_features,
+        palette="viridis",
+        boxprops=dict(alpha=alpha_box),
+        showfliers=False,
+        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        capprops={"alpha": alpha_box},
+        medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+    )
+    sns.stripplot(
+        x="Medication", y="Rate", data=avg_features, palette="viridis", dodge=True, s=5
+    )
+
+    plt.suptitle("M1 burst features high beta")
+    sns.despine()
+    return fig
+
+
+def plot_m1_burst_features(features):
+    fig = plt.figure(2)
+    alpha_box = 0.4
+    plt.subplot(311)
+    sns.boxplot(
+        x="Subject",
+        y="Duration",
+        hue="Medication",
+        data=features,
+        palette="viridis",
+        boxprops=dict(alpha=alpha_box),
+        showfliers=False,
+        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        capprops={"alpha": alpha_box},
+        medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+    )
+    sns.stripplot(
+        x="Subject",
+        y="Duration",
+        hue="Medication",
+        data=features,
+        palette="viridis",
+        dodge=True,
+        s=5,
+    )
+
+    plt.subplot(312)
+    sns.boxplot(
+        x="Subject",
+        y="Amplitude",
+        hue="Medication",
+        data=features,
+        palette="viridis",
+        boxprops=dict(alpha=alpha_box),
+        showfliers=False,
+        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        capprops={"alpha": alpha_box},
+        medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+    )
+    sns.stripplot(
+        x="Subject",
+        y="Amplitude",
+        hue="Medication",
+        data=features,
+        palette="viridis",
+        dodge=True,
+        s=5,
+    )
+
+    plt.subplot(313)
+    sns.boxplot(
+        x="Subject",
+        y="Rate",
+        hue="Medication",
+        data=features,
+        palette="viridis",
+        boxprops=dict(alpha=alpha_box),
+        showfliers=False,
+        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        capprops={"alpha": alpha_box},
+        medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
+    )
+    sns.stripplot(
+        x="Subject",
+        y="Rate",
+        hue="Medication",
+        data=features,
+        palette="viridis",
+        dodge=True,
+        s=5,
+    )
+    sns.despine()
+    return fig
+
+
+def plot_distribution(df_gavg_dist, df_sub_dist):
+    fig = plt.figure(3)
+    sns.set(style="white", font_scale=1.5)
+    sns.barplot(
+        x="burst duration (s)",
+        y="probability of bursts (%)",
+        hue="Medication",
+        data=df_gavg_dist,
+        palette="husl",
+        saturation=0.4,
+    )
+    sns.stripplot(
+        x="burst duration (s)",
+        y="probability of bursts (%)",
+        hue="Medication",
+        data=df_sub_dist,
+        palette="husl",
+        dodge=True,
+        s=5,
+    )
+    plt.title("Distribution of burst duration")
+
+    sns.despine()
+    return fig
+
+
+def plot_gavg_psd(psd_off, psd_on):
+    fig = plt.figure(4)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_off, label="Off")
+    plt.plot(psd_on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("averaged PSD")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s3(psd_s3off, psd_s3on):
+    fig = plt.figure(5)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s3off, label="Off")
+    plt.plot(psd_s3on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub3")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s4(psd_s4off, psd_s4on):
+    fig = plt.figure(6)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s4off, label="Off")
+    plt.plot(psd_s4on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub4")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s5(psd_s5off, psd_s5on):
+    fig = plt.figure(7)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s5off, label="Off")
+    plt.plot(psd_s5on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub5")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s6(psd_s6off, psd_s6on):
+    fig = plt.figure(8)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s6off, label="Off")
+    plt.plot(psd_s6on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub6")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s7(psd_s7off, psd_s7on):
+    fig = plt.figure(9)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s7off, label="Off")
+    plt.plot(psd_s7on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub7")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s8(psd_s8off, psd_s8on):
+    fig = plt.figure(10)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s8off, label="Off")
+    plt.plot(psd_s8on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub8")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s9(psd_s9off, psd_s9on):
+    fig = plt.figure(11)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s9off, label="Off")
+    plt.plot(psd_s9on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub9")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s10(psd_s10off, psd_s10on):
+    fig = plt.figure(12)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s10off, label="Off")
+    plt.plot(psd_s10on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub10")
+
+    sns.despine()
+    return fig
+
+
 def histplot_burst_length(burst_length, bins=8, range=(0.1, 0.8)):
     """ plot in histogram burst lengths"""
     sns.set(style="white", font_scale=1)

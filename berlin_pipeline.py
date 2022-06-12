@@ -68,61 +68,63 @@ def main():
         M1_burst_dynamics_all.append(M1_burst_dynamics)
         npow_list_all.append(npow)
 
-    # Structure Results
-    features = pd.concat(burst_char_pd_all)
-    dist = pd.concat(M1_burst_dynamics_all)
-    psd = pd.concat(npow_list_all)
-
-    # Average runs for every subject
-    avg_features = postprocessing.average_features_sub(burst_char_pd_all)
-
-    # data_pre = (
-    #    M1_burst_dynamics_all[0]
-    #    .drop(columns=["Subject", "Medication", "Run"])
-    #    .to_numpy()
-    # )
-
-    # data = data_pre.flatten()
-    # bins = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, ">0.8"]
-
     return (
         burst_char_pd_all,
         M1_burst_dynamics_all,
         npow_list_all,
-        features,
-        dist,
-        psd,
-        avg_features,
     )
 
 
 if __name__ == "__main__":
-    (
-        burst_char_pd_all,
-        M1_burst_dynamics_all,
-        npow_list_all,
-        features,
-        dist,
-        psd,
-        avg_features,
-    ) = main()
+    (burst_char_pd_all, M1_burst_dynamics_all, npow_list_all,) = main()
 
+# Structure Results in DataFrame
+features = pd.concat(burst_char_pd_all)
+dist = pd.concat(M1_burst_dynamics_all)
+psd = pd.concat(npow_list_all)
 
-# PLOT FEATURES #
+# Average Runs
+avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
+df_gavg_dist, df_sub_dist = postprocessing.avg_distribution(M1_burst_dynamics_all)
+(
+    psd_s3off,
+    psd_s3on,
+    psd_s4off,
+    psd_s4on,
+    psd_s5off,
+    psd_s5on,
+    psd_s6off,
+    psd_s6on,
+    psd_s7off,
+    psd_s7on,
+    psd_s8off,
+    psd_s8on,
+    psd_s9off,
+    psd_s9on,
+    psd_s10off,
+    psd_s10on,
+    psd_off,
+    psd_on,
+) = postprocessing.avg_psd(npow_list_all)
 
-postprocessing.plot_avgm1_burst_features(avg_features)
-postprocessing.plot_m1_burst_features(features)
-
-print(done)
+# PLOTS #
+# Features
+plot_utils.plot_avgm1_burst_features(avg_features)
+plot_utils.plot_m1_burst_features(features)
 
 # Distribution of Duration
-plt.figure(3)
-
-sns.despine()
-
+plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 # PSD
-plt.figure(4)
+plot_utils.plot_gavg_psd(psd_off, psd_on)
+plot_utils.plot_psd_s3(psd_s3off, psd_s3on)
+plot_utils.plot_psd_s4(psd_s4off, psd_s4on)
+plot_utils.plot_psd_s5(psd_s5off, psd_s5on)
+plot_utils.plot_psd_s6(psd_s6off, psd_s6on)
+plot_utils.plot_psd_s7(psd_s7off, psd_s7on)
+plot_utils.plot_psd_s8(psd_s8off, psd_s8on)
+plot_utils.plot_psd_s9(psd_s9off, psd_s9on)
+plot_utils.plot_psd_s10(psd_s10off, psd_s10on)
 
-sns.despine()
+
 
