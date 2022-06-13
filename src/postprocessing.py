@@ -3,8 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-sns.set(style="white", font_scale=1)
-
 
 def dataframe_burst_char(mean_burst_duration_M1, burst_amplitude_M1, burst_rate_M1):
     """
@@ -12,9 +10,9 @@ def dataframe_burst_char(mean_burst_duration_M1, burst_amplitude_M1, burst_rate_
     """
     pdburst = pd.DataFrame(
         {
-            "Duration": mean_burst_duration_M1,
-            "Amplitude": burst_amplitude_M1,
-            "Rate": burst_rate_M1,
+            "Duration (s)": mean_burst_duration_M1,
+            "Amplitude (au)": burst_amplitude_M1,
+            "Rate (/s)": burst_rate_M1,
         },
         index=[0],
     )
@@ -103,54 +101,54 @@ def avg_features_sub(burst_char_pd_all):
     )
     df_5on = pd.DataFrame(
         {
-            "Duration": [dur_5on],
-            "Amplitude": [amp_5on],
-            "Rate": [rate_5on],
+            "Duration (s)": [dur_5on],
+            "Amplitude (au)": [amp_5on],
+            "Rate (/s)": [rate_5on],
             "Subject": "005",
             "Medication": "On",
         }
     )
     df_6off = pd.DataFrame(
         {
-            "Duration": [dur_6off],
-            "Amplitude": [amp_6off],
-            "Rate": [rate_6off],
+            "Duration (s)": [dur_6off],
+            "Amplitude (au)": [amp_6off],
+            "Rate (/s)": [rate_6off],
             "Subject": "006",
             "Medication": "Off",
         }
     )
     df_6on = pd.DataFrame(
         {
-            "Duration": [dur_6on],
-            "Amplitude": [amp_6on],
-            "Rate": [rate_6on],
+            "Duration (s)": [dur_6on],
+            "Amplitude (au)": [amp_6on],
+            "Rate (/s)": [rate_6on],
             "Subject": "006",
             "Medication": "On",
         }
     )
     df_7on = pd.DataFrame(
         {
-            "Duration": [dur_7on],
-            "Amplitude": [amp_7on],
-            "Rate": [rate_7on],
+            "Duration (s)": [dur_7on],
+            "Amplitude (au)": [amp_7on],
+            "Rate (/s)": [rate_7on],
             "Subject": "007",
             "Medication": "On",
         }
     )
     df_8on = pd.DataFrame(
         {
-            "Duration": [dur_8on],
-            "Amplitude": [amp_8on],
-            "Rate": [rate_8on],
+            "Duration (s)": [dur_8on],
+            "Amplitude (au)": [amp_8on],
+            "Rate (/s)": [rate_8on],
             "Subject": "008",
             "Medication": "On",
         }
     )
     df_9off = pd.DataFrame(
         {
-            "Duration": [dur_9off],
-            "Amplitude": [amp_9off],
-            "Rate": [rate_9off],
+            "Duration (s)": [dur_9off],
+            "Amplitude (au)": [amp_9off],
+            "Rate (/s)": [rate_9off],
             "Subject": "009",
             "Medication": "Off",
         }

@@ -22,7 +22,7 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    files_10 = [f for f in files if "010" in f]
+    files_3 = [f for f in files if "003" in f]
     remove_subjects: Union[str, None] = ["001", "002", "011", "012"]
     if remove_subjects:
         for remove_subject in remove_subjects:
@@ -114,6 +114,8 @@ plot_utils.plot_m1_burst_features(features)
 
 # Distribution of Duration
 plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
+
+print("done")
 
 # PSD
 plot_utils.plot_gavg_psd(psd_off, psd_on)

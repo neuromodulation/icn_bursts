@@ -98,12 +98,12 @@ def downsample(raw_ecog_filt):
     """
     Downsample Data to 1600Hz for faster processing
     """
-    raw_ecog_dow = raw_ecog_filt.copy().resample(1600)
+    raw_ecog_dow = raw_ecog_filt.copy().resample(250)
     return raw_ecog_dow
 
 
 def get_data(raw_ecog_dow):
-    signal = raw_ecog_dow.copy().get_data()
+    signal = raw_ecog_dow.copy().get_data(reject_by_annotation="omit")
     return signal
 
 

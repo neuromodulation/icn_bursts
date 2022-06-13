@@ -8,23 +8,24 @@ ALPHA_BOX = 0.4
 
 
 def plot_avgm1_burst_features(avg_features):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(1)
     alpha_box = 0.4
     plt.subplot(131)
     sns.boxplot(
         x="Medication",
-        y="Duration",
+        y="Duration (s)",
         data=avg_features,
         palette="viridis",
         boxprops=dict(alpha=alpha_box),
         showfliers=False,
-        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        whiskerprops={"linewidth": 4, "zorder": 10, "alpha": alpha_box},
         capprops={"alpha": alpha_box},
         medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
     )
     sns.stripplot(
         x="Medication",
-        y="Duration",
+        y="Duration (s)",
         data=avg_features,
         palette="viridis",
         dodge=True,
@@ -34,18 +35,18 @@ def plot_avgm1_burst_features(avg_features):
     plt.subplot(132)
     sns.boxplot(
         x="Medication",
-        y="Amplitude",
+        y="Amplitude (au)",
         data=avg_features,
         palette="viridis",
         boxprops=dict(alpha=alpha_box),
         showfliers=False,
-        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        whiskerprops={"linewidth": 4, "zorder": 10, "alpha": alpha_box},
         capprops={"alpha": alpha_box},
         medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
     )
     sns.stripplot(
         x="Medication",
-        y="Amplitude",
+        y="Amplitude (au)",
         data=avg_features,
         palette="viridis",
         dodge=True,
@@ -55,31 +56,37 @@ def plot_avgm1_burst_features(avg_features):
     plt.subplot(133)
     sns.boxplot(
         x="Medication",
-        y="Rate",
+        y="Rate (/s)",
         data=avg_features,
         palette="viridis",
         boxprops=dict(alpha=alpha_box),
         showfliers=False,
-        whiskerprops={"linewidth": 2, "zorder": 10, "alpha": alpha_box},
+        whiskerprops={"linewidth": 4, "zorder": 10, "alpha": alpha_box},
         capprops={"alpha": alpha_box},
         medianprops=dict(linestyle="-.", linewidth=5, color="grey", alpha=alpha_box),
     )
     sns.stripplot(
-        x="Medication", y="Rate", data=avg_features, palette="viridis", dodge=True, s=5
+        x="Medication",
+        y="Rate (/s)",
+        data=avg_features,
+        palette="viridis",
+        dodge=True,
+        s=5,
     )
 
-    plt.suptitle("M1 burst features high beta")
+    plt.suptitle("M1 burst features full beta")
     sns.despine()
     return fig
 
 
 def plot_m1_burst_features(features):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(2)
     alpha_box = 0.4
     plt.subplot(311)
     sns.boxplot(
         x="Subject",
-        y="Duration",
+        y="Duration (s)",
         hue="Medication",
         data=features,
         palette="viridis",
@@ -91,7 +98,7 @@ def plot_m1_burst_features(features):
     )
     sns.stripplot(
         x="Subject",
-        y="Duration",
+        y="Duration (s)",
         hue="Medication",
         data=features,
         palette="viridis",
@@ -102,7 +109,7 @@ def plot_m1_burst_features(features):
     plt.subplot(312)
     sns.boxplot(
         x="Subject",
-        y="Amplitude",
+        y="Amplitude (au)",
         hue="Medication",
         data=features,
         palette="viridis",
@@ -114,7 +121,7 @@ def plot_m1_burst_features(features):
     )
     sns.stripplot(
         x="Subject",
-        y="Amplitude",
+        y="Amplitude (au)",
         hue="Medication",
         data=features,
         palette="viridis",
@@ -125,7 +132,7 @@ def plot_m1_burst_features(features):
     plt.subplot(313)
     sns.boxplot(
         x="Subject",
-        y="Rate",
+        y="Rate (/s)",
         hue="Medication",
         data=features,
         palette="viridis",
@@ -137,7 +144,7 @@ def plot_m1_burst_features(features):
     )
     sns.stripplot(
         x="Subject",
-        y="Rate",
+        y="Rate (/s)",
         hue="Medication",
         data=features,
         palette="viridis",
@@ -149,6 +156,7 @@ def plot_m1_burst_features(features):
 
 
 def plot_distribution(df_gavg_dist, df_sub_dist):
+    sns.set(style="white", font_scale=4)
     fig = plt.figure(3)
     sns.set(style="white", font_scale=1.5)
     sns.barplot(
@@ -175,6 +183,7 @@ def plot_distribution(df_gavg_dist, df_sub_dist):
 
 
 def plot_gavg_psd(psd_off, psd_on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(4)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_off, label="Off")
@@ -190,6 +199,7 @@ def plot_gavg_psd(psd_off, psd_on):
 
 
 def plot_psd_s3(psd_s3off, psd_s3on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(5)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s3off, label="Off")
@@ -205,6 +215,7 @@ def plot_psd_s3(psd_s3off, psd_s3on):
 
 
 def plot_psd_s4(psd_s4off, psd_s4on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(6)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s4off, label="Off")
@@ -220,6 +231,7 @@ def plot_psd_s4(psd_s4off, psd_s4on):
 
 
 def plot_psd_s5(psd_s5off, psd_s5on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(7)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s5off, label="Off")
@@ -235,6 +247,7 @@ def plot_psd_s5(psd_s5off, psd_s5on):
 
 
 def plot_psd_s6(psd_s6off, psd_s6on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(8)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s6off, label="Off")
@@ -250,6 +263,7 @@ def plot_psd_s6(psd_s6off, psd_s6on):
 
 
 def plot_psd_s7(psd_s7off, psd_s7on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(9)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s7off, label="Off")
@@ -265,6 +279,7 @@ def plot_psd_s7(psd_s7off, psd_s7on):
 
 
 def plot_psd_s8(psd_s8off, psd_s8on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(10)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s8off, label="Off")
@@ -280,6 +295,7 @@ def plot_psd_s8(psd_s8off, psd_s8on):
 
 
 def plot_psd_s9(psd_s9off, psd_s9on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(11)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s9off, label="Off")
@@ -295,6 +311,7 @@ def plot_psd_s9(psd_s9off, psd_s9on):
 
 
 def plot_psd_s10(psd_s10off, psd_s10on):
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(12)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s10off, label="Off")
