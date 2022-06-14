@@ -22,8 +22,8 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    files_3 = [f for f in files if "003" in f]
-    remove_subjects: Union[str, None] = ["001", "002", "011", "012"]
+    files_11 = [f for f in files if "011" in f]
+    remove_subjects: Union[str, None] = ["001", "002", "012"]
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
@@ -35,7 +35,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files:
+    for path_run in files_11:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
@@ -82,6 +82,8 @@ if __name__ == "__main__":
 features = pd.concat(burst_char_pd_all)
 dist = pd.concat(M1_burst_dynamics_all)
 psd = pd.concat(npow_list_all)
+
+print("done")
 
 # Average Runs
 avg_features = postprocessing.avg_features_sub(burst_char_pd_all)

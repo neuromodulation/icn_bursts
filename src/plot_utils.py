@@ -8,7 +8,7 @@ ALPHA_BOX = 0.4
 
 
 def plot_avgm1_burst_features(avg_features):
-    sns.set(style="white", font_scale=1)
+    sns.set(style="white", font_scale=1.5)
     fig = plt.figure(1)
     alpha_box = 0.4
     plt.subplot(131)
@@ -74,13 +74,13 @@ def plot_avgm1_burst_features(avg_features):
         s=5,
     )
 
-    plt.suptitle("M1 burst features full beta")
+    # plt.suptitle("M1 burst features full beta")
     sns.despine()
     return fig
 
 
 def plot_m1_burst_features(features):
-    sns.set(style="white", font_scale=1)
+    sns.set(style="white", font_scale=3)
     fig = plt.figure(2)
     alpha_box = 0.4
     plt.subplot(311)
@@ -156,27 +156,27 @@ def plot_m1_burst_features(features):
 
 
 def plot_distribution(df_gavg_dist, df_sub_dist):
-    sns.set(style="white", font_scale=4)
+    sns.set(style="white", font_scale=5)
     fig = plt.figure(3)
     sns.set(style="white", font_scale=1.5)
     sns.barplot(
-        x="burst duration (s)",
-        y="probability of bursts (%)",
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
         hue="Medication",
         data=df_gavg_dist,
         palette="husl",
         saturation=0.4,
     )
     sns.stripplot(
-        x="burst duration (s)",
-        y="probability of bursts (%)",
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
         hue="Medication",
         data=df_sub_dist,
         palette="husl",
         dodge=True,
         s=5,
     )
-    plt.title("Distribution of burst duration")
+    # plt.title("Distribution of burst duration")
 
     sns.despine()
     return fig
@@ -199,7 +199,7 @@ def plot_gavg_psd(psd_off, psd_on):
 
 
 def plot_psd_s3(psd_s3off, psd_s3on):
-    sns.set(style="white", font_scale=1)
+    sns.set(style="white", font_scale=3)
     fig = plt.figure(5)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s3off, label="Off")

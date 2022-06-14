@@ -372,100 +372,100 @@ def avg_distribution(M1_burst_dynamics_all):
         axis=0,
     )
     bins = [
-        "0.1-0.2",
-        "0.2-0.3",
-        "0.3-0.4",
-        "0.4-0.5",
-        "0.5-0.6",
-        "0.6-0.7",
-        "0.7-0.8",
-        ">0.8",
+        "0.1 - 0.2",
+        "0.2 - 0.3",
+        "0.3 - 0.4",
+        "0.4 - 0.5",
+        "0.5 - 0.6",
+        "0.6 - 0.7",
+        "0.7 - 0.8",
+        "> 0.8",
     ]
-    d_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_off}
-    d_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_on}
+    d_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_off}
+    d_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_on}
     dt_off = pd.DataFrame(d_off)
-    dt_off.insert(1, "Medication", "Off")
+    dt_off.insert(1, "Medication", "OFF")
     dt_on = pd.DataFrame(d_on)
-    dt_on.insert(1, "Medication", "On")
+    dt_on.insert(1, "Medication", "ON")
 
     df_gavg_dist = pd.concat([dt_off, dt_on], ignore_index=True)
 
-    d3_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s3off}
-    d3_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s3on}
+    d3_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s3off}
+    d3_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s3on}
     dt3_off = pd.DataFrame(d3_off)
-    dt3_off.insert(1, "Medication", "Off")
+    dt3_off.insert(1, "Medication", "OFF")
     dt3_on = pd.DataFrame(d3_on)
-    dt3_on.insert(1, "Medication", "On")
+    dt3_on.insert(1, "Medication", "ON")
 
     df3_avg_dist = pd.concat([dt3_off, dt3_on], ignore_index=True)
     df3_avg_dist.insert(1, "Subject", 3)
 
-    d4_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s4off}
-    d4_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s4on}
+    d4_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s4off}
+    d4_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s4on}
     dt4_off = pd.DataFrame(d4_off)
-    dt4_off.insert(1, "Medication", "Off")
+    dt4_off.insert(1, "Medication", "OFF")
     dt4_on = pd.DataFrame(d4_on)
-    dt4_on.insert(1, "Medication", "On")
+    dt4_on.insert(1, "Medication", "ON")
 
     df4_avg_dist = pd.concat([dt4_off, dt4_on], ignore_index=True)
     df4_avg_dist.insert(1, "Subject", 4)
 
-    d5_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s5off}
-    d5_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s5on}
+    d5_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s5off}
+    d5_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s5on}
     dt5_off = pd.DataFrame(d5_off)
-    dt5_off.insert(1, "Medication", "Off")
+    dt5_off.insert(1, "Medication", "OFF")
     dt5_on = pd.DataFrame(d5_on)
-    dt5_on.insert(1, "Medication", "On")
+    dt5_on.insert(1, "Medication", "ON")
 
     df5_avg_dist = pd.concat([dt5_off, dt5_on], ignore_index=True)
     df5_avg_dist.insert(1, "Subject", 5)
 
-    d6_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s6off}
-    d6_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s6on}
+    d6_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s6off}
+    d6_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s6on}
     dt6_off = pd.DataFrame(d6_off)
-    dt6_off.insert(1, "Medication", "Off")
+    dt6_off.insert(1, "Medication", "OFF")
     dt6_on = pd.DataFrame(d6_on)
-    dt6_on.insert(1, "Medication", "On")
+    dt6_on.insert(1, "Medication", "ON")
 
     df6_avg_dist = pd.concat([dt6_off, dt6_on], ignore_index=True)
     df6_avg_dist.insert(1, "Subject", 6)
 
-    d7_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s7off}
-    d7_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s7on}
+    d7_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s7off}
+    d7_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s7on}
     dt7_off = pd.DataFrame(d7_off)
-    dt7_off.insert(1, "Medication", "Off")
+    dt7_off.insert(1, "Medication", "OFF")
     dt7_on = pd.DataFrame(d7_on)
-    dt7_on.insert(1, "Medication", "On")
+    dt7_on.insert(1, "Medication", "ON")
 
     df7_avg_dist = pd.concat([dt7_off, dt7_on], ignore_index=True)
     df7_avg_dist.insert(1, "Subject", 7)
 
-    d8_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s8off}
-    d8_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s8on}
+    d8_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s8off}
+    d8_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s8on}
     dt8_off = pd.DataFrame(d8_off)
-    dt8_off.insert(1, "Medication", "Off")
+    dt8_off.insert(1, "Medication", "OFF")
     dt8_on = pd.DataFrame(d8_on)
-    dt8_on.insert(1, "Medication", "On")
+    dt8_on.insert(1, "Medication", "ON")
 
     df8_avg_dist = pd.concat([dt8_off, dt8_on], ignore_index=True)
     df8_avg_dist.insert(1, "Subject", 8)
 
-    d9_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s9off}
-    d9_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s9on}
+    d9_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s9off}
+    d9_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s9on}
     dt9_off = pd.DataFrame(d9_off)
-    dt9_off.insert(1, "Medication", "Off")
+    dt9_off.insert(1, "Medication", "OFF")
     dt9_on = pd.DataFrame(d9_on)
-    dt9_on.insert(1, "Medication", "On")
+    dt9_on.insert(1, "Medication", "ON")
 
     df9_avg_dist = pd.concat([dt9_off, dt9_on], ignore_index=True)
     df9_avg_dist.insert(1, "Subject", 9)
 
-    d10_off = {"burst duration (s)": bins, "probability of bursts (%)": dis_s10off}
-    d10_on = {"burst duration (s)": bins, "probability of bursts (%)": dis_s10on}
+    d10_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s10off}
+    d10_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s10on}
     dt10_off = pd.DataFrame(d10_off)
-    dt10_off.insert(1, "Medication", "Off")
+    dt10_off.insert(1, "Medication", "OFF")
     dt10_on = pd.DataFrame(d10_on)
-    dt10_on.insert(1, "Medication", "On")
+    dt10_on.insert(1, "Medication", "ON")
 
     df10_avg_dist = pd.concat([dt10_off, dt10_on], ignore_index=True)
     df10_avg_dist.insert(1, "Subject", 10)

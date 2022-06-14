@@ -25,6 +25,7 @@ M1_IDS = {
     "008": 4,
     "009": 2,
     "010": 3,
+    "011": 2,
 }
 NEW_CH_NAMES_MAP = {
     "001": [
@@ -84,6 +85,12 @@ NEW_CH_NAMES_MAP = {
     ],
     "010": [
         "ECOG_L_2_3_SMC_AT",
+        "ECOG_L_3_4_SMC_AT",
+        "ECOG_L_4_5_SMC_AT",
+        "ECOG_L_5_6_SMC_AT",
+    ],
+    "011": [
+        "ECOG_L_1_2_SMC_AT" "ECOG_L_2_3_SMC_AT",
         "ECOG_L_3_4_SMC_AT",
         "ECOG_L_4_5_SMC_AT",
         "ECOG_L_5_6_SMC_AT",
