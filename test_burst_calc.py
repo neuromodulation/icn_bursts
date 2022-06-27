@@ -14,15 +14,13 @@ class TestGetBurstLength:
     """Class for testing get_burst_length()."""
 
     def test_no_bursts(self) -> None:
-        """Test case where no bursts are present in data."""
+        """Test Case where no bursts are present in data."""
         n_samples = 1000
         sfreq = 10
         threshold = 1
         power = np.zeros((n_samples,))
         bursts_len = burst_calc.get_burst_length(
-            beta_averp_norm=power,
-            beta_thr=threshold,
-            sfreq=sfreq,
+            beta_averp_norm=power, beta_thr=threshold, sfreq=sfreq,
         )
         assert bursts_len.size == 0
 
@@ -33,13 +31,9 @@ class TestGetBurstLength:
         threshold = 0
         power = np.ones((n_samples,))
         bursts_len = burst_calc.get_burst_length(
-            beta_averp_norm=power,
-            beta_thr=threshold,
-            sfreq=sfreq,
+            beta_averp_norm=power, beta_thr=threshold, sfreq=sfreq,
         )
-        np.testing.assert_array_almost_equal(
-            bursts_len, np.array([n_samples / sfreq])
-        )
+        np.testing.assert_array_almost_equal(bursts_len, np.array([n_samples / sfreq]))
 
     def test_array_starts_with_no_bursts(self) -> None:
         burst_starts = np.array([1, 400, 700])
@@ -48,14 +42,10 @@ class TestGetBurstLength:
         sfreq = 10
         threshold = 0.5
         power = np.zeros((n_samples,))
-        for ind, (burst_start, burst_end) in enumerate(
-            zip(burst_starts, burst_ends)
-        ):
+        for ind, (burst_start, burst_end) in enumerate(zip(burst_starts, burst_ends)):
             power[burst_start:burst_end] = ind + 1
         bursts_len = burst_calc.get_burst_length(
-            beta_averp_norm=power,
-            beta_thr=threshold,
-            sfreq=sfreq,
+            beta_averp_norm=power, beta_thr=threshold, sfreq=sfreq,
         )
         np.testing.assert_array_almost_equal(
             bursts_len, (burst_ends - burst_starts) / sfreq
@@ -69,14 +59,10 @@ class TestGetBurstLength:
         sfreq = 10
         threshold = 0.5
         power = np.zeros((n_samples,))
-        for ind, (burst_start, burst_end) in enumerate(
-            zip(burst_starts, burst_ends)
-        ):
+        for ind, (burst_start, burst_end) in enumerate(zip(burst_starts, burst_ends)):
             power[burst_start:burst_end] = ind + 1
         bursts_len = burst_calc.get_burst_length(
-            beta_averp_norm=power,
-            beta_thr=threshold,
-            sfreq=sfreq,
+            beta_averp_norm=power, beta_thr=threshold, sfreq=sfreq,
         )
         np.testing.assert_array_almost_equal(
             bursts_len, (burst_ends - burst_starts) / sfreq
