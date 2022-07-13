@@ -3,9 +3,9 @@ import numpy as np
 from scipy import stats
 import mne
 
-LOW_BETA = (12, 20)
-HIGH_BETA = (19, 35)
-FULL_BETA = (12, 35)
+LOW_BETA = (13, 21)
+HIGH_BETA = (20, 36)
+FULL_BETA = (13, 36)
 
 
 def Time_Frequency_Estimation(signal):

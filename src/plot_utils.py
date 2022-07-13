@@ -80,7 +80,7 @@ def plot_avgm1_burst_features(avg_features):
 
 
 def plot_m1_burst_features(features):
-    sns.set(style="white", font_scale=3)
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(2)
     alpha_box = 0.4
     plt.subplot(311)
@@ -156,9 +156,8 @@ def plot_m1_burst_features(features):
 
 
 def plot_distribution(df_gavg_dist, df_sub_dist):
-    sns.set(style="white", font_scale=5)
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(3)
-    sns.set(style="white", font_scale=1.5)
     sns.barplot(
         x="Burst Duration (s)",
         y="Probability of Bursts (%)",
