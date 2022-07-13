@@ -485,7 +485,7 @@ def avg_distribution(M1_burst_dynamics_all):
     return df_gavg_dist, df_sub_dist
 
 
-def avg_psd(npow_list_all):
+def arrange_psd(npow_list_all):
     psd_s3off = (
         npow_list_all[0]
         .drop(columns=["Subject", "Medication", "Run"])
@@ -516,50 +516,41 @@ def avg_psd(npow_list_all):
         .to_numpy()
         .flatten()
     )
-    psd_s5on = np.mean(
-        np.array(
-            [
-                npow_list_all[5]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                npow_list_all[6]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    psd_s5on_1 = (
+        npow_list_all[5]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
-    psd_s6off = np.mean(
-        np.array(
-            [
-                npow_list_all[7]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                npow_list_all[8]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    psd_s5on_2 = (
+        npow_list_all[6]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
-    psd_s6on = np.mean(
-        np.array(
-            [
-                npow_list_all[9]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                npow_list_all[10]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    psd_s6off_1 = (
+        npow_list_all[7]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s6off_2 = (
+        npow_list_all[8]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s6on_1 = (
+        npow_list_all[9]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s6on_2 = (
+        npow_list_all[10]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
     psd_s7off = (
         npow_list_all[11]
@@ -567,20 +558,17 @@ def avg_psd(npow_list_all):
         .to_numpy()
         .flatten()
     )
-    psd_s7on = np.mean(
-        np.array(
-            [
-                npow_list_all[12]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                npow_list_all[13]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    psd_s7on_1 = (
+        npow_list_all[12]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s7on_2 = (
+        npow_list_all[13]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
     psd_s8off = (
         npow_list_all[14]
@@ -588,41 +576,42 @@ def avg_psd(npow_list_all):
         .to_numpy()
         .flatten()
     )
-    psd_s8on = np.mean(
-        np.array(
-            [
-                npow_list_all[15]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                npow_list_all[16]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    psd_s8on_1 = (
+        npow_list_all[15]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
-    psd_s9off = np.mean(
-        [
-            npow_list_all[17]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-            npow_list_all[18]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-            npow_list_all[19]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-            npow_list_all[20]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-        ],
-        axis=0,
+    psd_s8on_2 = (
+        npow_list_all[16]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+
+    psd_s9off_1 = (
+        npow_list_all[17]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s9off_2 = (
+        npow_list_all[18]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s9off_3 = (
+        npow_list_all[19]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s9off_4 = (
+        npow_list_all[20]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
     psd_s9on = (
         npow_list_all[21]
@@ -647,10 +636,14 @@ def avg_psd(npow_list_all):
             psd_s3off,
             psd_s4off,
             psd_s5off,
-            psd_s6off,
+            psd_s6off_1,
+            psd_s6off_2,
             psd_s7off,
             psd_s8off,
-            psd_s9off,
+            psd_s9off_1,
+            psd_s9off_2,
+            psd_s9off_3,
+            psd_s9off_4,
             psd_s10off,
         ],
         axis=0,
@@ -659,10 +652,14 @@ def avg_psd(npow_list_all):
         [
             psd_s3on,
             psd_s4on,
-            psd_s5on,
-            psd_s6on,
-            psd_s7on,
-            psd_s8on,
+            psd_s5on_1,
+            psd_s5on_2,
+            psd_s6on_1,
+            psd_s6on_2,
+            psd_s7on_1,
+            psd_s7on_2,
+            psd_s8on_1,
+            psd_s8on_2,
             psd_s9on,
             psd_s10on,
         ],
@@ -674,14 +671,22 @@ def avg_psd(npow_list_all):
         psd_s4off,
         psd_s4on,
         psd_s5off,
-        psd_s5on,
-        psd_s6off,
-        psd_s6on,
+        psd_s5on_1,
+        psd_s5on_2,
+        psd_s6off_1,
+        psd_s6off_2,
+        psd_s6on_1,
+        psd_s6on_2,
         psd_s7off,
-        psd_s7on,
+        psd_s7on_1,
+        psd_s7on_2,
         psd_s8off,
-        psd_s8on,
-        psd_s9off,
+        psd_s8on_1,
+        psd_s8on_2,
+        psd_s9off_1,
+        psd_s9off_2,
+        psd_s9off_3,
+        psd_s9off_4,
         psd_s9on,
         psd_s10off,
         psd_s10on,
