@@ -44,6 +44,10 @@ def percentile(l_beta, percentile):
     return [np.percentile(l_ch, q=percentile) for l_ch in l_beta]
 
 
+def common_percentile(l_beta, percentile):
+    return [np.percentile(l_ch, q=percentile) for l_ch in l_beta]
+
+
 def get_burst_length(beta_averp_norm, beta_thr, sfreq=250):
     """
     Analysing the duration of beta burst 
@@ -99,8 +103,7 @@ def get_burst_amplitude(beta_amplitude, beta_thr):
 
     return mean_amplitude
 
-
-def get_burst_amplitude(beta_amplitude, beta_thr):
+    # def get_burst_amplitude(beta_amplitude, beta_thr):
     amplitude = []
     bursts = False
     cont = False

@@ -72,7 +72,12 @@ def bursts_single_run(
     l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
     # 75th percentile of the power
-    l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
+    l_beta_thr_x = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
+
+    # 75th percentile of the power
+    # l_beta_thr = 0.2260152088216756
+    # l_beta_thr = 0.10935225150741212
+    l_beta_thr = 0.16768373016454385
 
     low = 0
     high = 1
@@ -92,7 +97,7 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=250)
+        burst_calc.get_burst_length(l, l_beta_thr, sfreq=250)
         for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_duration_cl = [
@@ -125,7 +130,7 @@ def bursts_single_run(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
+        burst_calc.get_burst_amplitude(l, l_beta_thr)
         for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_amplitude_m1 = burst_amplitude[m1]
