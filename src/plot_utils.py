@@ -105,7 +105,7 @@ def plot_m1_burst_features(features):
         dodge=True,
         s=5,
     )
-
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=1, borderaxespad=0)
     plt.subplot(312)
     sns.boxplot(
         x="Subject",
@@ -128,7 +128,7 @@ def plot_m1_burst_features(features):
         dodge=True,
         s=5,
     )
-
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=1, borderaxespad=0)
     plt.subplot(313)
     sns.boxplot(
         x="Subject",
@@ -151,6 +151,7 @@ def plot_m1_burst_features(features):
         dodge=True,
         s=5,
     )
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=1, borderaxespad=0)
     sns.despine()
     return fig
 
@@ -163,7 +164,7 @@ def plot_distribution(df_gavg_dist, df_sub_dist):
         y="Probability of Bursts (%)",
         hue="Medication",
         data=df_gavg_dist,
-        palette="husl",
+        palette="colorblind",
         saturation=0.4,
     )
     sns.stripplot(
@@ -171,7 +172,7 @@ def plot_distribution(df_gavg_dist, df_sub_dist):
         y="Probability of Bursts (%)",
         hue="Medication",
         data=df_sub_dist,
-        palette="husl",
+        palette="colorblind",
         dodge=True,
         s=5,
     )
@@ -328,6 +329,22 @@ def plot_psd_s10(psd_s10off, psd_s10on):
     plt.ylabel("Relative spectral power (au)")
     plt.legend(title="Medication", fontsize=15, title_fontsize=15)
     plt.title("PSD sub10")
+
+    sns.despine()
+    return fig
+
+
+def plot_psd_s11(psd_s11off, psd_s11on):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(12)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s11off, label="Off")
+    plt.plot(psd_s11on, label="On")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub11")
 
     sns.despine()
     return fig
