@@ -16,7 +16,14 @@ data_path = (
     r"/rawdata"
 )
 
-data_path_2 = r"/Users/alidzaye/Desktop/rawdata"
+PATH_BIDS = (
+    r"/Users/alidzaye/Library/CloudStorage"
+    r"/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin"
+    r"/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP"
+    r"/rawdata"
+)
+
+data_path_2 = r"/Users/alidzaye/rawdata"
 
 M1_IDS = {
     "001": 0,
@@ -29,6 +36,7 @@ M1_IDS = {
     "009": 2,
     "010": 3,
     "011": 2,
+    "012": 0,
 }
 NEW_CH_NAMES_MAP = {
     "001": [
@@ -93,6 +101,13 @@ NEW_CH_NAMES_MAP = {
         "ECOG_L_5_6_SMC_AT",
     ],
     "011": [
+        "ECOG_L_1_2_SMC_AT",
+        "ECOG_L_2_3_SMC_AT",
+        "ECOG_L_3_4_SMC_AT",
+        "ECOG_L_4_5_SMC_AT",
+        "ECOG_L_5_6_SMC_AT",
+    ],
+    "012": [
         "ECOG_L_1_2_SMC_AT",
         "ECOG_L_2_3_SMC_AT",
         "ECOG_L_3_4_SMC_AT",

@@ -22,8 +22,8 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    files_11 = [f for f in files if "011" in f]
-    remove_subjects: Union[str, None] = ["001", "002", "012", "013", "014"]
+    files_12 = [f for f in files if "012" in f]
+    remove_subjects: Union[str, None] = ["001", "002", "013", "014"]
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
@@ -35,7 +35,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files:
+    for path_run in files_12:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
@@ -83,6 +83,7 @@ features = pd.concat(burst_char_pd_all)
 dist = pd.concat(M1_burst_dynamics_all)
 psd = pd.concat(npow_list_all)
 
+print("done")
 
 # Average Runs
 avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
@@ -120,11 +121,11 @@ df_gavg_dist, df_sub_dist = postprocessing.avg_distribution(M1_burst_dynamics_al
 
 # PLOTS #
 # Features
-# plot_utils.plot_avgm1_burst_features(avg_features)
-# plot_utils.plot_m1_burst_features(features)
+plot_utils.plot_avgm1_burst_features(avg_features)
+plot_utils.plot_m1_burst_features(features)
 
 # Distribution of Duration
-# plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
+plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 print("done")
 

@@ -99,25 +99,3 @@ def get_burst_amplitude(beta_amplitude, beta_thr):
 
     return mean_amplitude
 
-
-def get_burst_amplitude(beta_amplitude, beta_thr):
-    amplitude = []
-    bursts = False
-    cont = False
-    for val in beta_amplitude:
-        if val >= beta_thr:
-            bursts = True
-            if cont == False:
-                burst = [val]
-                cont = True
-            else:
-                burst.append(val)
-        else:
-            if bursts == True:
-                cont = False
-                amplitude.append(burst)
-    mean_amplitude_single_burst = [np.mean(burst) for burst in amplitude]
-    mean_amplitude = np.mean(mean_amplitude_single_burst)
-
-    return mean_amplitude
-
