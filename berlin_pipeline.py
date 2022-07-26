@@ -22,12 +22,13 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    files_12 = [f for f in files if "012" in f]
-    remove_subjects: Union[str, None] = ["001", "002", "013", "014"]
+    files_3 = [f for f in files if "003" in f]
+    remove_subjects: Union[str, None] = ["001", "002", '012', "013", "014"]
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
-    files = preprocessing.remove_runs(files)
+    files = preprocessing.pick_runs(files)
+    #files = preprocessing.remove_runs(files)
 
     # Define variables
     burst_char_pd_all = []
@@ -35,7 +36,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files_12:
+    for path_run in files_3:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
