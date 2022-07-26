@@ -3,27 +3,26 @@ ECOG-LFP dataset."""
 import os
 from bids import BIDSLayout
 
-PATH_BIDS = (
+PATH_BIDS_2 = (
     r"/Users/alidzaye/Library/CloudStorage"
     r"/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin"
     r"/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP"
     r"/rawdata"
 )
+data_path_2 = (
+    r"/Users/alidzaye/Library/CloudStorage"
+    r"/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin"
+    r"/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP"
+    r"/rawdata"
+)
+
+PATH_BIDS = (
+    r"/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata"
+) 
+
 data_path = (
-    r"/Users/alidzaye/Library/CloudStorage"
-    r"/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin"
-    r"/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP"
-    r"/rawdata"
+    r"/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata"
 )
-
-PATH_BIDS = (
-    r"/Users/alidzaye/Library/CloudStorage"
-    r"/OneDrive-SharedLibraries-Charité-UniversitätsmedizinBerlin"
-    r"/Interventional Cognitive Neuromodulation - Data/BIDS_Berlin_ECOG_LFP"
-    r"/rawdata"
-)
-
-data_path_2 = r"/Users/alidzaye/rawdata"
 
 M1_IDS = {
     "001": 0,
@@ -36,7 +35,7 @@ M1_IDS = {
     "009": 2,
     "010": 3,
     "011": 2,
-    "012": 0,
+    "012": 0
 }
 NEW_CH_NAMES_MAP = {
     "001": [

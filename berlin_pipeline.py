@@ -85,7 +85,7 @@ psd = pd.concat(npow_list_all)
 
 print("done")
 
-# Average Runs
+# Average Runs (multiple subs)
 avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
 df_gavg_dist, df_sub_dist = postprocessing.avg_distribution(M1_burst_dynamics_all)
 (
