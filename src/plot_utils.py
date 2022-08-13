@@ -230,13 +230,12 @@ def plot_psd_s4(psd_s4off, psd_s4on):
     return fig
 
 
-def plot_psd_s5(psd_s5off, psd_s5on_1, psd_s5on_2):
+def plot_psd_s5(psd_s5off, psd_s5on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(7)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s5off, label="Off (18)")
-    plt.plot(psd_s5on_1, label="On-1 (12)")
-    plt.plot(psd_s5on_2, label="On-2 (16)")
+    plt.plot(psd_s5on, label="On (12)")
     plt.xlim(0, 60)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Relative spectral power (au)")
@@ -247,14 +246,12 @@ def plot_psd_s5(psd_s5off, psd_s5on_1, psd_s5on_2):
     return fig
 
 
-def plot_psd_s6(psd_s6off_1, psd_s6off_2, psd_s6on_1, psd_s6on_2):
+def plot_psd_s6(psd_s6off, psd_s6on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(8)
     sns.set(style="white", font_scale=1)
-    plt.plot(psd_s6off_1, label="Off-1 (27)")
-    plt.plot(psd_s6off_2, label="Off-2 (26)")
-    plt.plot(psd_s6on_1, label="On-1 (15)")
-    plt.plot(psd_s6on_2, label="On-2 (15)")
+    plt.plot(psd_s6off, label="Off (27)")
+    plt.plot(psd_s6on, label="On (15)")
     plt.xlim(0, 60)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Relative spectral power (au)")
@@ -265,14 +262,13 @@ def plot_psd_s6(psd_s6off_1, psd_s6off_2, psd_s6on_1, psd_s6on_2):
     return fig
 
 
-def plot_psd_s7(psd_s7off, psd_s7on_1, psd_s7on_2):
+def plot_psd_s7(psd_s7off, psd_s7on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(9)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s7off, label="Off (32)")
-    plt.plot(psd_s7on_1, label="On-1 (13)")
-    plt.plot(psd_s7on_2, label="On-2 (22)")
-    plt.xlim(0, 60)
+    plt.plot(psd_s7on, label="On (13)")
+    plt.xlim(0, 140)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Relative spectral power (au)")
     plt.legend(title="Medication", fontsize=15, title_fontsize=15)
@@ -282,13 +278,12 @@ def plot_psd_s7(psd_s7off, psd_s7on_1, psd_s7on_2):
     return fig
 
 
-def plot_psd_s8(psd_s8off, psd_s8on_1, psd_s8on_2):
+def plot_psd_s8(psd_s8off, psd_s8on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(10)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s8off, label="Off (26)")
-    plt.plot(psd_s8on_1, label="On-1 (4)")
-    plt.plot(psd_s8on_2, label="On-2 (4)")
+    plt.plot(psd_s8on, label="On (4)")
     plt.xlim(0, 60)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Relative spectral power (au)")
@@ -299,14 +294,11 @@ def plot_psd_s8(psd_s8off, psd_s8on_1, psd_s8on_2):
     return fig
 
 
-def plot_psd_s9(psd_s9off_1, psd_s9off_2, psd_s9off_3, psd_s9off_4, psd_s9on):
+def plot_psd_s9(psd_s9off, psd_s9on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(11)
     sns.set(style="white", font_scale=1)
-    plt.plot(psd_s9off_1, label="Off-1 (15)")
-    plt.plot(psd_s9off_2, label="Off-2 (10)")
-    plt.plot(psd_s9off_3, label="Off-3 (10)")
-    plt.plot(psd_s9off_4, label="Off-4 (10)")
+    plt.plot(psd_s9off, label="Off (15)")
     plt.plot(psd_s9on, label="On (7)")
     plt.xlim(0, 60)
     plt.xlabel("Frequency (Hz)")
@@ -336,7 +328,7 @@ def plot_psd_s10(psd_s10off, psd_s10on):
 
 def plot_psd_s11(psd_s11off, psd_s11on):
     sns.set(style="white", font_scale=1)
-    fig = plt.figure(12)
+    fig = plt.figure(13)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s11off, label="Off (27)")
     plt.plot(psd_s11on, label="On (tbc)")

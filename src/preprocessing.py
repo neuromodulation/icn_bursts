@@ -33,7 +33,7 @@ def pick_runs(files):
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-006/ses-EcogLfpMedOff01/ieeg/sub-006_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-006/ses-EcogLfpMedOn01/ieeg/sub-006_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOff01/ieeg/sub-007_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOff01/ieeg/sub-008_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOn01/ieeg/sub-008_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOff01/ieeg/sub-009_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
@@ -109,9 +109,9 @@ def filtering(raw_ecog_bi):
     """
     Filtering (Highpass 3 Hz, Notchfilter 50,251,50Hz, Lowpass 250Hz)
     """
-    raw_ecog_hi = raw_ecog_bi.copy().filter(3, None,)
-    raw_ecog_hi_lo = raw_ecog_hi.copy().filter(None, 250)
-    raw_ecog_filt = raw_ecog_hi_lo.copy().notch_filter(
+    raw_ecog_hi = raw_ecog_bi.filter(3, None,)
+    raw_ecog_hi_lo = raw_ecog_hi.filter(None, 250)
+    raw_ecog_filt = raw_ecog_hi_lo.notch_filter(
         np.arange(50, 251, 50), filter_length="auto", phase="zero"
     )
     return raw_ecog_filt
@@ -121,12 +121,12 @@ def downsample(raw_ecog_filt):
     """
     Downsample Data to 1600Hz for faster processing
     """
-    raw_ecog_dow = raw_ecog_filt.copy().resample(250)
+    raw_ecog_dow = raw_ecog_filt.resample(250)
     return raw_ecog_dow
 
 
 def get_data(raw_ecog_dow):
-    signal = raw_ecog_dow.copy().get_data(reject_by_annotation="omit")
+    signal = raw_ecog_dow.get_data(reject_by_annotation="omit")
     return signal
 
 

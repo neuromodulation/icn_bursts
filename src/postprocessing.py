@@ -39,129 +39,33 @@ def avg_features_sub(burst_char_pd_all):
     feat_4off = burst_char_pd_all[2]
     feat_4on = burst_char_pd_all[3]
     feat_5off = burst_char_pd_all[4]
-    dur_5on = np.mean([burst_char_pd_all[5].iat[0, 0], burst_char_pd_all[6].iat[0, 0]])
-    dur_6off = np.mean([burst_char_pd_all[7].iat[0, 0], burst_char_pd_all[8].iat[0, 0]])
-    dur_6on = np.mean([burst_char_pd_all[9].iat[0, 0], burst_char_pd_all[10].iat[0, 0]])
-    feat_7off = burst_char_pd_all[11]
-    dur_7on = np.mean(
-        [burst_char_pd_all[12].iat[0, 0], burst_char_pd_all[13].iat[0, 0],]
-    )
-    feat_8off = burst_char_pd_all[14]
-    dur_8on = np.mean(
-        [burst_char_pd_all[15].iat[0, 0], burst_char_pd_all[16].iat[0, 0]]
-    )
-    dur_9off = np.mean(
-        [
-            burst_char_pd_all[17].iat[0, 0],
-            burst_char_pd_all[18].iat[0, 0],
-            burst_char_pd_all[19].iat[0, 0],
-            burst_char_pd_all[20].iat[0, 0],
-        ]
-    )
-    feat_9on = burst_char_pd_all[21]
-    feat_10off = burst_char_pd_all[22]
-    feat_10on = burst_char_pd_all[23]
-    feat_11off = burst_char_pd_all[24]
-    feat_11on = burst_char_pd_all[25]
-    amp_5on = np.mean([burst_char_pd_all[5].iat[0, 1], burst_char_pd_all[6].iat[0, 1]])
-    amp_6off = np.mean([burst_char_pd_all[7].iat[0, 1], burst_char_pd_all[8].iat[0, 1]])
-    amp_6on = np.mean([burst_char_pd_all[9].iat[0, 1], burst_char_pd_all[10].iat[0, 1]])
-    amp_7on = np.mean(
-        [burst_char_pd_all[12].iat[0, 1], burst_char_pd_all[13].iat[0, 1],]
-    )
-    amp_8on = np.mean(
-        [burst_char_pd_all[15].iat[0, 1], burst_char_pd_all[16].iat[0, 1]]
-    )
-    amp_9off = np.mean(
-        [
-            burst_char_pd_all[17].iat[0, 1],
-            burst_char_pd_all[18].iat[0, 1],
-            burst_char_pd_all[19].iat[0, 1],
-            burst_char_pd_all[20].iat[0, 1],
-        ]
-    )
-    rate_5on = np.mean([burst_char_pd_all[5].iat[0, 2], burst_char_pd_all[6].iat[0, 2]])
-    rate_6off = np.mean(
-        [burst_char_pd_all[7].iat[0, 2], burst_char_pd_all[8].iat[0, 2]]
-    )
-    rate_6on = np.mean(
-        [burst_char_pd_all[9].iat[0, 2], burst_char_pd_all[10].iat[0, 2]]
-    )
-    rate_7on = np.mean(
-        [burst_char_pd_all[12].iat[0, 2], burst_char_pd_all[13].iat[0, 2],]
-    )
-    rate_8on = np.mean(
-        [burst_char_pd_all[15].iat[0, 2], burst_char_pd_all[16].iat[0, 2]]
-    )
-    rate_9off = np.mean(
-        [
-            burst_char_pd_all[17].iat[0, 2],
-            burst_char_pd_all[18].iat[0, 2],
-            burst_char_pd_all[19].iat[0, 2],
-            burst_char_pd_all[20].iat[0, 2],
-        ]
-    )
-    df_5on = pd.DataFrame(
-        {
-            "Duration (s)": [dur_5on],
-            "Amplitude (au)": [amp_5on],
-            "Rate (/s)": [rate_5on],
-            "Subject": "005",
-            "Medication": "On",
-        }
-    )
-    df_6off = pd.DataFrame(
-        {
-            "Duration (s)": [dur_6off],
-            "Amplitude (au)": [amp_6off],
-            "Rate (/s)": [rate_6off],
-            "Subject": "006",
-            "Medication": "Off",
-        }
-    )
-    df_6on = pd.DataFrame(
-        {
-            "Duration (s)": [dur_6on],
-            "Amplitude (au)": [amp_6on],
-            "Rate (/s)": [rate_6on],
-            "Subject": "006",
-            "Medication": "On",
-        }
-    )
-    df_7on = pd.DataFrame(
-        {
-            "Duration (s)": [dur_7on],
-            "Amplitude (au)": [amp_7on],
-            "Rate (/s)": [rate_7on],
-            "Subject": "007",
-            "Medication": "On",
-        }
-    )
-    df_8on = pd.DataFrame(
-        {
-            "Duration (s)": [dur_8on],
-            "Amplitude (au)": [amp_8on],
-            "Rate (/s)": [rate_8on],
-            "Subject": "008",
-            "Medication": "On",
-        }
-    )
-    df_9off = pd.DataFrame(
-        {
-            "Duration (s)": [dur_9off],
-            "Amplitude (au)": [amp_9off],
-            "Rate (/s)": [rate_9off],
-            "Subject": "009",
-            "Medication": "Off",
-        }
-    )
+    feat_5on = burst_char_pd_all[5]
+    feat_6off = burst_char_pd_all[6]
+    feat_6on = burst_char_pd_all[7]
+    feat_7off = burst_char_pd_all[8]
+    feat_7on = burst_char_pd_all[9]
+    feat_8off = burst_char_pd_all[10]
+    feat_8on = burst_char_pd_all[11]
+    feat_9off = burst_char_pd_all[12]
+    feat_9on = burst_char_pd_all[13]
+    feat_10off = burst_char_pd_all[14]
+    feat_10on = burst_char_pd_all[15]
+    feat_11off = burst_char_pd_all[16]
+    feat_11on = burst_char_pd_all[17]
+
     rfeat_3off = feat_3off.drop(columns=["Run"])
     rfeat_3on = feat_3on.drop(columns=["Run"])
     rfeat_4off = feat_4off.drop(columns=["Run"])
     rfeat_4on = feat_4on.drop(columns=["Run"])
     rfeat_5off = feat_5off.drop(columns=["Run"])
+    rfeat_5on = feat_5on.drop(columns=["Run"])
+    rfeat_6off = feat_6off.drop(columns=["Run"])
+    rfeat_6on = feat_6on.drop(columns=["Run"])
     rfeat_7off = feat_7off.drop(columns=["Run"])
+    rfeat_7on = feat_7on.drop(columns=["Run"])
     rfeat_8off = feat_8off.drop(columns=["Run"])
+    rfeat_8on = feat_8on.drop(columns=["Run"])
+    rfeat_9off = feat_9off.drop(columns=["Run"])
     rfeat_9on = feat_9on.drop(columns=["Run"])
     rfeat_10off = feat_10off.drop(columns=["Run"])
     rfeat_10on = feat_10on.drop(columns=["Run"])
@@ -175,14 +79,14 @@ def avg_features_sub(burst_char_pd_all):
             rfeat_4off,
             rfeat_4on,
             rfeat_5off,
-            df_5on,
-            df_6off,
-            df_6on,
+            rfeat_5on,
+            rfeat_6off,
+            rfeat_6on,
             rfeat_7off,
-            df_7on,
+            rfeat_7on,
             rfeat_8off,
-            df_8on,
-            df_9off,
+            rfeat_8on,
+            rfeat_9off,
             rfeat_9on,
             rfeat_10off,
             rfeat_10on,
@@ -225,140 +129,80 @@ def avg_distribution(M1_burst_dynamics_all):
         .to_numpy()
         .flatten()
     )
-    dis_s5on = np.mean(
-        np.array(
-            [
-                M1_burst_dynamics_all[5]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                M1_burst_dynamics_all[6]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    dis_s5on = (
+        M1_burst_dynamics_all[5]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
-    dis_s6off = np.mean(
-        np.array(
-            [
-                M1_burst_dynamics_all[7]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                M1_burst_dynamics_all[8]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    dis_s6off = (
+        M1_burst_dynamics_all[6]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
-    dis_s6on = np.mean(
-        np.array(
-            [
-                M1_burst_dynamics_all[9]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                M1_burst_dynamics_all[10]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
+    dis_s6on = (
+        M1_burst_dynamics_all[7]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
     )
     dis_s7off = (
+        M1_burst_dynamics_all[8]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    dis_s7on = (
+        M1_burst_dynamics_all[9]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    dis_s8off = (
+        M1_burst_dynamics_all[10]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    dis_s8on = (
         M1_burst_dynamics_all[11]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    dis_s7on = np.mean(
-        np.array(
-            [
-                M1_burst_dynamics_all[12]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                M1_burst_dynamics_all[13]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
-    )
-    dis_s8off = (
-        M1_burst_dynamics_all[14]
+    dis_s9off = (
+        M1_burst_dynamics_all[12]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    dis_s8on = np.mean(
-        np.array(
-            [
-                M1_burst_dynamics_all[15]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-                M1_burst_dynamics_all[16]
-                .drop(columns=["Subject", "Medication", "Run"])
-                .to_numpy()
-                .flatten(),
-            ]
-        ),
-        axis=0,
-    )
-    dis_s9off = np.mean(
-        [
-            M1_burst_dynamics_all[17]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-            M1_burst_dynamics_all[18]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-            M1_burst_dynamics_all[19]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-            M1_burst_dynamics_all[20]
-            .drop(columns=["Subject", "Medication", "Run"])
-            .to_numpy()
-            .flatten(),
-        ],
-        axis=0,
-    )
     dis_s9on = (
-        M1_burst_dynamics_all[21]
+        M1_burst_dynamics_all[13]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
     dis_s10off = (
-        M1_burst_dynamics_all[22]
+        M1_burst_dynamics_all[14]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
     dis_s10on = (
-        M1_burst_dynamics_all[23]
+        M1_burst_dynamics_all[15]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
     dis_s11off = (
-        M1_burst_dynamics_all[24]
+        M1_burst_dynamics_all[16]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
     dis_s11on = (
-        M1_burst_dynamics_all[25]
+        M1_burst_dynamics_all[17]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
@@ -547,129 +391,80 @@ def arrange_psd(npow_list_all):
         .to_numpy()
         .flatten()
     )
-    psd_s5on_1 = (
+    psd_s5on = (
         npow_list_all[5]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s5on_2 = (
+    psd_s6off = (
         npow_list_all[6]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s6off_1 = (
+    psd_s6on = (
         npow_list_all[7]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s6off_2 = (
+    psd_s7off = (
         npow_list_all[8]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s6on_1 = (
+    psd_s7on = (
         npow_list_all[9]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s6on_2 = (
+    psd_s8off = (
         npow_list_all[10]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s7off = (
+    psd_s8on = (
         npow_list_all[11]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s7on_1 = (
+    psd_s9off = (
         npow_list_all[12]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s7on_2 = (
+    psd_s9on = (
         npow_list_all[13]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s8off = (
+    psd_s10off = (
         npow_list_all[14]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s8on_1 = (
+    psd_s10on = (
         npow_list_all[15]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-    psd_s8on_2 = (
+    psd_s11off = (
         npow_list_all[16]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
     )
-
-    psd_s9off_1 = (
-        npow_list_all[17]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s9off_2 = (
-        npow_list_all[18]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s9off_3 = (
-        npow_list_all[19]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s9off_4 = (
-        npow_list_all[20]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s9on = (
-        npow_list_all[21]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s10off = (
-        npow_list_all[22]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s10on = (
-        npow_list_all[23]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
-    psd_s11off = (
-        npow_list_all[24]
-        .drop(columns=["Subject", "Medication", "Run"])
-        .to_numpy()
-        .flatten()
-    )
     psd_s11on = (
-        npow_list_all[25]
+        npow_list_all[17]
         .drop(columns=["Subject", "Medication", "Run"])
         .to_numpy()
         .flatten()
@@ -679,14 +474,10 @@ def arrange_psd(npow_list_all):
             psd_s3off,
             psd_s4off,
             psd_s5off,
-            psd_s6off_1,
-            psd_s6off_2,
+            psd_s6off,
             psd_s7off,
             psd_s8off,
-            psd_s9off_1,
-            psd_s9off_2,
-            psd_s9off_3,
-            psd_s9off_4,
+            psd_s9off,
             psd_s10off,
             psd_s11off,
         ],
@@ -696,14 +487,10 @@ def arrange_psd(npow_list_all):
         [
             psd_s3on,
             psd_s4on,
-            psd_s5on_1,
-            psd_s5on_2,
-            psd_s6on_1,
-            psd_s6on_2,
-            psd_s7on_1,
-            psd_s7on_2,
-            psd_s8on_1,
-            psd_s8on_2,
+            psd_s5on,
+            psd_s6on,
+            psd_s7on,
+            psd_s8on,
             psd_s9on,
             psd_s10on,
             psd_s11on,
@@ -716,22 +503,14 @@ def arrange_psd(npow_list_all):
         psd_s4off,
         psd_s4on,
         psd_s5off,
-        psd_s5on_1,
-        psd_s5on_2,
-        psd_s6off_1,
-        psd_s6off_2,
-        psd_s6on_1,
-        psd_s6on_2,
+        psd_s5on,
+        psd_s6off,
+        psd_s6on,
         psd_s7off,
-        psd_s7on_1,
-        psd_s7on_2,
+        psd_s7on,
         psd_s8off,
-        psd_s8on_1,
-        psd_s8on_2,
-        psd_s9off_1,
-        psd_s9off_2,
-        psd_s9off_3,
-        psd_s9off_4,
+        psd_s8on,
+        psd_s9off,
         psd_s9on,
         psd_s10off,
         psd_s10on,
