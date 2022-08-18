@@ -37,7 +37,9 @@ def bursts_single_run(
     )
     raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
     raw_ecog = preprocessing.pick_ecog(raw_annots)
-    if sub == "001":
+    #raw_lfp = preprocessing.pick_lfp(raw_annots)
+
+    if sub == "012":
         raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
     elif sub == "010" and med == "Off":
         raw_ecog_bi = preprocessing.bipolar_reference_s10_off(

@@ -25,7 +25,6 @@ data_path = (
 )
 
 M1_IDS = {
-    "001": 0,
     "003": 3,
     "004": 4,
     "005": 4,
@@ -35,15 +34,11 @@ M1_IDS = {
     "009": 2,
     "010": 3,
     "011": 2,
-    "012": 0
+    "012": 0,
+    "013": 3,
+    "014": 4
 }
 NEW_CH_NAMES_MAP = {
-    "001": [
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
-    ],
     "003": [
         "ECOG_L_1_2_SMC_AT",
         "ECOG_L_2_3_SMC_AT",
@@ -59,25 +54,25 @@ NEW_CH_NAMES_MAP = {
         "ECOG_L_5_6_SMC_AT",
     ],
     "005": [
-        "ECOG_L_1_2_SMC_AT",
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT",
     ],
     "006": [
-        "ECOG_L_1_2_SMC_AT",
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT",
     ],
     "007": [
-        "ECOG_L_1_2_SMC_AT",
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT",
     ],
     "008": [
         "ECOG_L_1_2_SMC_AT",
@@ -94,25 +89,38 @@ NEW_CH_NAMES_MAP = {
         "ECOG_L_5_6_SMC_AT",
     ],
     "010": [
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT",
     ],
     "011": [
-        "ECOG_L_1_2_SMC_AT",
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT",
     ],
     "012": [
-        "ECOG_L_1_2_SMC_AT",
-        "ECOG_L_2_3_SMC_AT",
-        "ECOG_L_3_4_SMC_AT",
-        "ECOG_L_4_5_SMC_AT",
-        "ECOG_L_5_6_SMC_AT",
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT"
     ],
+    "013": [
+        "ECOG_R_7_8_SMC_AT",
+        "ECOG_R_8_9_SMC_AT",
+        "ECOG_R_9_10_SMC_AT",
+        "ECOG_R_10_11_SMC_AT",
+        "ECOG_R_11_12_SMC_AT"
+    ],
+    "014": [
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT"
+    ]
 }
 layout = BIDSLayout(data_path)
 

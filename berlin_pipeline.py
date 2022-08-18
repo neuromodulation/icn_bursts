@@ -22,13 +22,12 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    files_12 = [f for f in files if "012" in f]
-    remove_subjects: Union[str, None] = ["001", "002", "013", "014"]
+    remove_subjects: Union[str, None] = ["001", "002", '013', '014']
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    #files = preprocessing.remove_runs(files)
+    files_6 = [f for f in files if "006" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -36,7 +35,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files_12:
+    for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
@@ -84,7 +83,7 @@ features = pd.concat(burst_char_pd_all)
 dist = pd.concat(M1_burst_dynamics_all)
 psd = pd.concat(npow_list_all)
 
-print("done")
+#print("done")
 
 # Average Runs (multiple subs)
 avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
@@ -108,6 +107,8 @@ df_gavg_dist, df_sub_dist = postprocessing.avg_distribution(M1_burst_dynamics_al
     psd_s10on,
     psd_s11off,
     psd_s11on,
+    psd_s12off,
+    psd_s12on,
     psd_off,
     psd_on,
 ) = postprocessing.arrange_psd(npow_list_all)
@@ -133,6 +134,7 @@ plot_utils.plot_psd_s8(psd_s8off, psd_s8on)
 plot_utils.plot_psd_s9(psd_s9off, psd_s9on)
 plot_utils.plot_psd_s10(psd_s10off, psd_s10on)
 plot_utils.plot_psd_s11(psd_s11off, psd_s11on)
+plot_utils.plot_psd_s12(psd_s12off, psd_s12on)
 
 print("done")
 

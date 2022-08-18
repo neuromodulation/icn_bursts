@@ -52,6 +52,8 @@ def avg_features_sub(burst_char_pd_all):
     feat_10on = burst_char_pd_all[15]
     feat_11off = burst_char_pd_all[16]
     feat_11on = burst_char_pd_all[17]
+    feat_12off = burst_char_pd_all[18]
+    feat_12on = burst_char_pd_all[19]
 
     rfeat_3off = feat_3off.drop(columns=["Run"])
     rfeat_3on = feat_3on.drop(columns=["Run"])
@@ -71,6 +73,8 @@ def avg_features_sub(burst_char_pd_all):
     rfeat_10on = feat_10on.drop(columns=["Run"])
     rfeat_11off = feat_11off.drop(columns=["Run"])
     rfeat_11on = feat_11on.drop(columns=["Run"])
+    rfeat_12off = feat_12off.drop(columns=["Run"])
+    rfeat_12on = feat_12on.drop(columns=["Run"])
 
     avg_features = pd.concat(
         [
@@ -92,6 +96,8 @@ def avg_features_sub(burst_char_pd_all):
             rfeat_10on,
             rfeat_11off,
             rfeat_11on,
+            rfeat_12off,
+            rfeat_12on,
         ]
     )
     return avg_features
@@ -207,6 +213,18 @@ def avg_distribution(M1_burst_dynamics_all):
         .to_numpy()
         .flatten()
     )
+    dis_s12off = (
+        M1_burst_dynamics_all[18]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    dis_s12on = (
+        M1_burst_dynamics_all[19]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
     dis_off = np.mean(
         [
             dis_s3off,
@@ -218,6 +236,7 @@ def avg_distribution(M1_burst_dynamics_all):
             dis_s9off,
             dis_s10off,
             dis_s11off,
+            dis_s12off
         ],
         axis=0,
     )
@@ -232,6 +251,7 @@ def avg_distribution(M1_burst_dynamics_all):
             dis_s9on,
             dis_s10on,
             dis_s11on,
+            dis_s12on
         ],
         axis=0,
     )
@@ -344,6 +364,16 @@ def avg_distribution(M1_burst_dynamics_all):
     df11_avg_dist = pd.concat([dt11_off, dt11_on], ignore_index=True)
     df11_avg_dist.insert(1, "Subject", 11)
 
+    d12_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s12off}
+    d12_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s12on}
+    dt12_off = pd.DataFrame(d12_off)
+    dt12_off.insert(1, "Medication", "OFF")
+    dt12_on = pd.DataFrame(d12_on)
+    dt12_on.insert(1, "Medication", "ON")
+
+    df12_avg_dist = pd.concat([dt12_off, dt12_on], ignore_index=True)
+    df12_avg_dist.insert(1, "Subject", 12)
+
     df_sub_dist = pd.concat(
         [
             df3_avg_dist,
@@ -355,6 +385,7 @@ def avg_distribution(M1_burst_dynamics_all):
             df9_avg_dist,
             df10_avg_dist,
             df11_avg_dist,
+            df12_avg_dist
         ]
     )
     return df_gavg_dist, df_sub_dist
@@ -469,6 +500,18 @@ def arrange_psd(npow_list_all):
         .to_numpy()
         .flatten()
     )
+    psd_s12off = (
+        npow_list_all[18]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
+    psd_s12on = (
+        npow_list_all[19]
+        .drop(columns=["Subject", "Medication", "Run"])
+        .to_numpy()
+        .flatten()
+    )
     psd_off = np.mean(
         [
             psd_s3off,
@@ -480,6 +523,7 @@ def arrange_psd(npow_list_all):
             psd_s9off,
             psd_s10off,
             psd_s11off,
+            psd_s12off
         ],
         axis=0,
     )
@@ -494,6 +538,7 @@ def arrange_psd(npow_list_all):
             psd_s9on,
             psd_s10on,
             psd_s11on,
+            psd_s12on
         ],
         axis=0,
     )
@@ -516,6 +561,8 @@ def arrange_psd(npow_list_all):
         psd_s10on,
         psd_s11off,
         psd_s11on,
+        psd_s12off,
+        psd_s12on,
         psd_off,
         psd_on,
     )
