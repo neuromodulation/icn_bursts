@@ -121,7 +121,7 @@ plot_utils.plot_m1_burst_features(features)
 # Distribution of Duration
 plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
-#print("done")
+print("done")
 
 # PSD
 plot_utils.plot_gavg_psd(psd_off, psd_on)

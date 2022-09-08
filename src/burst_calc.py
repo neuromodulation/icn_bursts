@@ -6,6 +6,7 @@ import mne
 LOW_BETA = (13, 21)
 HIGH_BETA = (20, 36)
 FULL_BETA = (13, 36)
+mu_beta = (7,9)
 
 
 def Time_Frequency_Estimation(signal):
@@ -24,12 +25,14 @@ def beta_bands(run_TF):
     l_low_beta = []
     l_high_beta = []
     l_full_beta = []
+    l_mu_beta = []
     for ch_idx in range(run_TF.shape[0]):
         l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
         l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
         l_full_beta.append(run_TF[ch_idx, FULL_BETA[0] : FULL_BETA[1], :])
+        l_mu_beta.append(run_TF[ch_idx, mu_beta[0] : mu_beta[1], :])
 
-    return l_low_beta, l_high_beta, l_full_beta
+    return l_low_beta, l_high_beta, l_full_beta, l_mu_beta
 
 
 def avg_power(l_beta):
