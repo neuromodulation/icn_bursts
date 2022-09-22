@@ -87,6 +87,10 @@ def pick_lfp9(raw):
     raw_lfp = [raw.ch_names[8], raw.ch_names[15]]
     return raw_lfp
 
+def pick_lfp15(raw):
+    raw_lfp = [raw.ch_names[0], raw.ch_names[3]]
+    return raw_lfp
+
 def bipolar_reference(raw, raw_ecog, new_ch_names):
 
     anode = raw_ecog[0:5]
