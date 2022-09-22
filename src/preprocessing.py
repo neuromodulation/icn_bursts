@@ -47,7 +47,9 @@ def pick_runs(files):
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-013/ses-EcogLfpMedOff01/ieeg/sub-013_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-013/ses-EcogLfpMedOn02/ieeg/sub-013_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOff01/ieeg/sub-014_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOn01/ieeg/sub-014_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr'
+        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOn01/ieeg/sub-014_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-015/ses-EcogLfpMedOff01/ieeg/sub-015_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-015/ses-EcogLfpMedOn01/ieeg/sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr'
     }
     files = [i for i in files if i in runs]
     return files
