@@ -356,6 +356,36 @@ def plot_psd_s12(psd_s12off, psd_s12on):
     sns.despine()
     return fig
 
+def plot_psd_s13(psd_s13off, psd_s13on):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(15)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s13off, label="Off (27)")
+    plt.plot(psd_s13on, label="On (9 diff sess)")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub13")
+
+    sns.despine()
+    return fig
+
+def plot_psd_s14(psd_s14off, psd_s14on):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(16)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s14off, label="Off (miss)")
+    plt.plot(psd_s14on, label="On (miss)")
+    plt.xlim(0, 60)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub14")
+
+    sns.despine()
+    return fig
+
 
 def histplot_burst_length(burst_length, bins=8, range=(0.1, 0.8)):
     """ plot in histogram burst lengths"""

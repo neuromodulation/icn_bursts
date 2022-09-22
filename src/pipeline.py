@@ -35,7 +35,11 @@ def bursts_single_run(
             run=run,
         )
     )
-    raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
+    if sub == '004':
+        raw_annots = raw.set_annotations(annotations)
+    else:
+        raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
+    
     #raw_ecog = preprocessing.pick_ecog(raw_annots)
 
     if sub == '003':
@@ -66,6 +70,10 @@ def bursts_single_run(
 
     raw_lfp_bi = preprocessing.bipolar_reference_lfp(raw, raw_lfp, 'LFP_R_1_8')
 
+
+
+    #print('done')
+
     #raw_lfp_bi = raw_lfp_bi_all.ch_names[31]
 
     NUM_CH = len(raw_lfp_bi.ch_names)
@@ -74,14 +82,15 @@ def bursts_single_run(
 
     raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
 
-    signal = preprocessing.get_data(raw_lfp_dow)
+    #raw_lfp_dow.pick_channels(['LFP_R_1_8', "ECOG_L_1_2_SMC_AT"]).plot()
 
-    #signal = signal_all[31]
+    #print('done')
+
+    signal = preprocessing.get_data(raw_lfp_dow)
 
     stand_signal = preprocessing.z_score_signal(signal)
 
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
-    #run_TF = run_TF_all[31]
 
     # list of low, high, full beta bands for all channels
     l_beta = burst_calc.beta_bands(run_TF)
@@ -114,8 +123,8 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[low][idx], sfreq=250)
-        for idx, l in enumerate(l_beta_avg_norm[low])
+        burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=250)
+        for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_duration_cl = [
         burst_calc.exclude_short_bursts(burst_duration[ch_idx])
@@ -148,8 +157,8 @@ def bursts_single_run(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[low][idx])
-        for idx, l in enumerate(l_beta_avg_norm[low])
+        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
+        for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_amplitude_lfp = burst_amplitude[len(raw_lfp_bi.ch_names)-1]
 
