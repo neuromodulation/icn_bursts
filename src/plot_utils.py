@@ -371,7 +371,7 @@ def plot_psd_s13(psd_s13off, psd_s13on):
     sns.despine()
     return fig
 
-def plot_psd_s12(psd_s14off, psd_s14on):
+def plot_psd_s14(psd_s14off, psd_s14on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(16)
     sns.set(style="white", font_scale=1)
@@ -385,7 +385,6 @@ def plot_psd_s12(psd_s14off, psd_s14on):
 
     sns.despine()
     return fig
-
 
 def histplot_burst_length(burst_length, bins=8, range=(0.1, 0.8)):
     """ plot in histogram burst lengths"""

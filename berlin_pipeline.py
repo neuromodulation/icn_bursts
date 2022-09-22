@@ -35,7 +35,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files_x:
+    for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]

@@ -95,8 +95,8 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[mu][idx], sfreq=250)
-        for idx, l in enumerate(l_beta_avg_norm[mu])
+        burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=250)
+        for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_duration_cl = [
         burst_calc.exclude_short_bursts(burst_duration[ch_idx])
@@ -128,8 +128,8 @@ def bursts_single_run(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[mu][idx])
-        for idx, l in enumerate(l_beta_avg_norm[mu])
+        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
+        for idx, l in enumerate(l_beta_avg_norm[full])
     ]
     burst_amplitude_m1 = burst_amplitude[m1]
 
