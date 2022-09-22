@@ -35,7 +35,10 @@ def bursts_single_run(
             run=run,
         )
     )
-    raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
+    if sub == '004':
+        raw_annots = raw.set_annotations(annotations)
+    else:
+        raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
     raw_ecog = preprocessing.pick_ecog(raw_annots)
     #raw_lfp = preprocessing.pick_lfp(raw_annots)
 
