@@ -28,7 +28,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "015" in f]
+    files_x = [f for f in files if "007" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -36,7 +36,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files_x:
+    for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
@@ -85,9 +85,9 @@ dist = pd.concat(M1_burst_dynamics_all)
 psd = pd.concat(npow_list_all)
 
 
-plot_utils.plot_avgm1_burst_features(features)
+#plot_utils.plot_avgm1_burst_features(features)
 
-print("done")
+#print("done")
 
 # Average Runs (multiple subs)
 avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
@@ -148,7 +148,6 @@ plot_utils.plot_psd_s10(psd_s10off, psd_s10on)
 plot_utils.plot_psd_s11(psd_s11off, psd_s11on)
 plot_utils.plot_psd_s12(psd_s12off, psd_s12on)
 plot_utils.plot_psd_s13(psd_s13off, psd_s13on)
-plot_utils.plot_psd_s14(psd_s14off, psd_s14on)
 plot_utils.plot_psd_s14(psd_s14off, psd_s14on)
 plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
 

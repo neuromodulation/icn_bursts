@@ -103,13 +103,16 @@ def bursts_single_run(
     # Z-Scored averaged beta traces
     l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
-    # 75th percentile of the power
-    l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_avg_norm]
-
     low = 0
     high = 1
     full = 2
     mu = 3
+
+    # smoothing traces
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[full]]
+
+    # 75th percentile of the power
+    l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
@@ -125,8 +128,8 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[full][idx], sfreq=250)
-        for idx, l in enumerate(l_beta_avg_norm[full])
+        burst_calc.get_burst_length(l, l_beta_thr[idx], sfreq=250)
+        for idx, l in enumerate(l_beta_smooth)
     ]
     burst_duration_cl = [
         burst_calc.exclude_short_bursts(burst_duration[ch_idx])
@@ -139,7 +142,6 @@ def bursts_single_run(
     ]
     mean_dur_lfp = mean_burst_duration[len(raw_lfp_bi.ch_names)-1]
     
-
     # Histogram of burst duration
     histogram_duration = [
         np.histogram(burst_duration_cl[ch_idx], density=False, bins=20, range=(0, 2))[0]
@@ -159,8 +161,8 @@ def bursts_single_run(
 
     # Burst Amplitude
     burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[full][idx])
-        for idx, l in enumerate(l_beta_avg_norm[full])
+        burst_calc.get_burst_amplitude(l, l_beta_thr[idx])
+        for idx, l in enumerate(l_beta_smooth)
     ]
     burst_amplitude_lfp = burst_amplitude[len(raw_lfp_bi.ch_names)-1]
 
