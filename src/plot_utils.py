@@ -182,6 +182,23 @@ def plot_distribution(df_gavg_dist, df_sub_dist):
     return fig
 
 
+def plot_distribution_sub(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(20)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data= dist,
+        palette="colorblind",
+        saturation=0.4
+    )
+    # plt.title("Distribution of burst duration")
+
+    sns.despine()
+    return fig
+
+
 def plot_gavg_psd(psd_off, psd_on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(4)
@@ -388,7 +405,7 @@ def plot_psd_s14(psd_s14off, psd_s14on):
 
 def plot_psd_s15(psd_s15off, psd_s15on):
     sns.set(style="white", font_scale=1)
-    fig = plt.figure(16)
+    fig = plt.figure(17)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s15off, label="Off (miss)")
     plt.plot(psd_s15on, label="On (miss)")
