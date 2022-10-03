@@ -109,19 +109,19 @@ dist13 = df_sub_dist[df_sub_dist['Subject']==13]
 dist14 = df_sub_dist[df_sub_dist['Subject']==14]
 dist15 = df_sub_dist[df_sub_dist['Subject']==15]
 
-plot_utils.plot_distribution_sub(dist3)
-plot_utils.plot_distribution_sub(dist4)
-plot_utils.plot_distribution_sub(dist5)
-plot_utils.plot_distribution_sub(dist6)
-plot_utils.plot_distribution_sub(dist7)
-plot_utils.plot_distribution_sub(dist8)
-plot_utils.plot_distribution_sub(dist9)
-plot_utils.plot_distribution_sub(dist10)
-plot_utils.plot_distribution_sub(dist11)
-plot_utils.plot_distribution_sub(dist12)
-plot_utils.plot_distribution_sub(dist13)
-plot_utils.plot_distribution_sub(dist14)
-plot_utils.plot_distribution_sub(dist15)
+plot_utils.plot_distribution_sub3(dist3)
+plot_utils.plot_distribution_sub4(dist4)
+plot_utils.plot_distribution_sub5(dist5)
+plot_utils.plot_distribution_sub6(dist6)
+plot_utils.plot_distribution_sub7(dist7)
+plot_utils.plot_distribution_sub8(dist8)
+plot_utils.plot_distribution_sub9(dist9)
+plot_utils.plot_distribution_sub10(dist10)
+plot_utils.plot_distribution_sub11(dist11)
+plot_utils.plot_distribution_sub12(dist12)
+plot_utils.plot_distribution_sub13(dist13)
+plot_utils.plot_distribution_sub14(dist14)
+plot_utils.plot_distribution_sub15(dist15)
 
 print("done")
 
