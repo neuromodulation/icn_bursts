@@ -68,7 +68,39 @@ def bursts_single_run(
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
     # list of low, high, full beta bands for all channels
-    l_beta = burst_calc.beta_bands(run_TF)
+    if sub == '003':
+        l_beta = burst_calc.beta_bands_sub3(run_TF)
+    if sub == '004':
+        l_beta = burst_calc.beta_bands_sub4(run_TF)
+    if sub == '005':
+        l_beta = burst_calc.beta_bands_sub5(run_TF)
+    if sub == '006':
+        l_beta = burst_calc.beta_bands_sub6(run_TF)
+    if sub == '007':
+        l_beta = burst_calc.beta_bands_sub7(run_TF)
+    if sub == '008':
+        l_beta = burst_calc.beta_bands_sub8(run_TF)
+    if sub == '009':
+        l_beta = burst_calc.beta_bands_sub9(run_TF)
+    if sub == '010':
+        l_beta = burst_calc.beta_bands_sub10(run_TF)
+    if sub == '011':
+        l_beta = burst_calc.beta_bands_sub11(run_TF)
+    if sub == '012':
+        l_beta = burst_calc.beta_bands_sub12(run_TF)
+    if sub == '013':
+        l_beta = burst_calc.beta_bands_sub13(run_TF)
+    if sub == '014':
+        l_beta = burst_calc.beta_bands_sub14(run_TF)
+    #if sub == '015':
+    #    l_beta = burst_calc.beta_bands_sub15(run_TF)
+
+    
+    theta = 0
+    mu = 1
+    low = 2
+    high = 3
+    #full = 4
 
     # Averaging power in all beta bands
     l_beta_avg = [burst_calc.avg_power(l) for l in l_beta]
@@ -76,13 +108,9 @@ def bursts_single_run(
     # Z-Scored averaged beta traces
     l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
-    low = 0
-    high = 1
-    full = 2
-    mu = 3
 
     # smoothing traces
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[full]]
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[theta]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
