@@ -17,7 +17,7 @@ def beta_bands_sub3 (run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
-    THETA = (7, 10)
+    THETA = (7, 9)
     MU = (8, 13)
     LOW_BETA = (13, 21)
     HIGH_BETA = (20, 36)
@@ -77,7 +77,7 @@ def beta_bands_sub6 (run_TF):
     THETA = (6, 9)
     MU = (8, 13)
     LOW_BETA = (15, 18)
-    HIGH_BETA = (20, 36)
+    HIGH_BETA = (25, 28)
     l_theta = []
     l_mu = []
     l_low_beta = []
@@ -109,8 +109,8 @@ def beta_bands_sub7 (run_TF):
 
 def beta_bands_sub8 (run_TF):
     THETA = (4, 7)
-    MU = (9, 12)
-    LOW_BETA = (13, 21)
+    MU = (8, 13)
+    LOW_BETA = (18, 21)
     HIGH_BETA = (20, 36)
     l_theta = []
     l_mu = []
@@ -160,7 +160,7 @@ def beta_bands_sub10 (run_TF):
 
 def beta_bands_sub11 (run_TF):
     THETA = (4, 7)
-    MU = (7, 10)
+    MU = (8, 11)
     LOW_BETA = (13, 16)
     HIGH_BETA = (26, 29)
     l_theta = []
@@ -312,7 +312,7 @@ def get_burst_amplitude(beta_amplitude, beta_thr):
 
     return mean_amplitude
 
-def smooth(x,window_len=50,window='hamming'):
+def smooth(x,window_len=50,window='hanning'):
     """smooth the data using a window with requested size.
     
     This method is based on the convolution of a scaled window with the signal.
