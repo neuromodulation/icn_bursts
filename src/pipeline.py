@@ -92,8 +92,8 @@ def bursts_single_run(
         l_beta = burst_calc.beta_bands_sub13(run_TF)
     if sub == '014':
         l_beta = burst_calc.beta_bands_sub14(run_TF)
-    #if sub == '015':
-    #    l_beta = burst_calc.beta_bands_sub15(run_TF)
+    if sub == '015':
+        l_beta = burst_calc.beta_bands_sub15(run_TF)
 
     
     theta = 0
@@ -110,7 +110,7 @@ def bursts_single_run(
 
 
     # smoothing traces
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[theta]]
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[low]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]

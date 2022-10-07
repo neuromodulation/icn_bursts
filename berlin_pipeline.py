@@ -22,12 +22,12 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    remove_subjects: Union[str, None] = ["001", "002",'015']
+    remove_subjects: Union[str, None] = ["001", "002"]
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "014" in f]
+    files_x = [f for f in files if "015" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -103,7 +103,7 @@ dist11 = df_sub_dist[df_sub_dist['Subject']==11]
 dist12 = df_sub_dist[df_sub_dist['Subject']==12]
 dist13 = df_sub_dist[df_sub_dist['Subject']==13]
 dist14 = df_sub_dist[df_sub_dist['Subject']==14]
-#dist15 = df_sub_dist[df_sub_dist['Subject']==15]
+dist15 = df_sub_dist[df_sub_dist['Subject']==15]
 
 plot_utils.plot_distribution_sub3(dist3)
 plot_utils.plot_distribution_sub4(dist4)
@@ -117,7 +117,7 @@ plot_utils.plot_distribution_sub11(dist11)
 plot_utils.plot_distribution_sub12(dist12)
 plot_utils.plot_distribution_sub13(dist13)
 plot_utils.plot_distribution_sub14(dist14)
-#plot_utils.plot_distribution_sub15(dist15)
+plot_utils.plot_distribution_sub15(dist15)
 
 
 (
@@ -145,6 +145,8 @@ plot_utils.plot_distribution_sub14(dist14)
     psd_s13on,
     psd_s14off,
     psd_s14on,
+    psd_s15off,
+    psd_s15on,
     psd_off,
     psd_on,
 ) = postprocessing.arrange_psd(npow_list_all)
@@ -173,6 +175,6 @@ plot_utils.plot_psd_s11(psd_s11off, psd_s11on)
 plot_utils.plot_psd_s12(psd_s12off, psd_s12on)
 plot_utils.plot_psd_s13(psd_s13off, psd_s13on)
 plot_utils.plot_psd_s14(psd_s14off, psd_s14on)
-
+plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
 print("done")
 

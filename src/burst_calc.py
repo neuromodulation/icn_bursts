@@ -7,7 +7,7 @@ import numpy
 LOW_BETA = (13, 21)
 HIGH_BETA = (20, 36)
 FULL_BETA = (13, 36)
-mu_beta = (7,9)
+mu_beta = (8,13)
 
 
 def Time_Frequency_Estimation(signal):
@@ -42,8 +42,8 @@ def beta_bands_sub3 (run_TF):
     """
     THETA = (4, 7)
     MU = (11, 13)
-    LOW_BETA = (19, 22)
-    HIGH_BETA = (20, 36)
+    LOW_BETA = (13, 21)
+    HIGH_BETA = (20, 23)
 #   FULL_BETA = (13, 36)
 
     l_theta = []
@@ -115,8 +115,8 @@ def beta_bands_sub6 (run_TF):
 
 def beta_bands_sub7 (run_TF):
     THETA = (4, 7)
-    MU = (8, 13)
-    LOW_BETA = (13, 21)
+    MU = (11, 13)
+    LOW_BETA = (12, 15)
     HIGH_BETA = (20, 23)
     l_theta = []
     l_mu = []
@@ -133,7 +133,7 @@ def beta_bands_sub7 (run_TF):
 def beta_bands_sub8 (run_TF):
     THETA = (4, 7)
     MU = (8, 13)
-    LOW_BETA = (12, 15)
+    LOW_BETA = (12, 21)
     HIGH_BETA = (16, 19)
     l_theta = []
     l_mu = []
@@ -150,7 +150,7 @@ def beta_bands_sub8 (run_TF):
 def beta_bands_sub9 (run_TF):
     THETA = (4, 7)
     MU = (8, 11)
-    LOW_BETA = (17, 20)
+    LOW_BETA = (18, 21)
     HIGH_BETA = (20, 36)
     l_theta = []
     l_mu = []
@@ -218,7 +218,7 @@ def beta_bands_sub12 (run_TF):
 def beta_bands_sub13 (run_TF):
     THETA = (4, 7)
     MU = (7, 10)
-    LOW_BETA = (14, 17)
+    LOW_BETA = (13, 21)
     HIGH_BETA = (23, 26)
     l_theta = []
     l_mu = []
@@ -250,10 +250,10 @@ def beta_bands_sub14 (run_TF):
     return  l_theta, l_mu, l_low_beta, l_high_beta
 
 def beta_bands_sub15 (run_TF):
-    THETA = (5, 8)
+    THETA = (4, 7)
     MU = (8, 13)
     LOW_BETA = (13, 21)
-    HIGH_BETA = (20, 36)
+    HIGH_BETA = (21, 24)
     l_theta = []
     l_mu = []
     l_low_beta = []
