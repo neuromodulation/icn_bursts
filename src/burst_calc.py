@@ -334,7 +334,7 @@ def get_burst_amplitude(beta_amplitude, beta_thr):
 
     return mean_amplitude
 
-def smooth(x,window_len=50,window='hamming'):
+def smooth(x,window_len=50,window='hanning'):
     """smooth the data using a window with requested size.
     
     This method is based on the convolution of a scaled window with the signal.
