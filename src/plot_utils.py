@@ -8,7 +8,7 @@ ALPHA_BOX = 0.4
 
 
 def plot_avgm1_burst_features(avg_features):
-    sns.set(style="white", font_scale=1.5)
+    sns.set(style="white", font_scale=1)
     fig = plt.figure(1)
     alpha_box = 0.4
     plt.subplot(131)
