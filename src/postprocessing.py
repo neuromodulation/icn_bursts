@@ -279,7 +279,7 @@ def avg_distribution(M1_burst_dynamics_all):
         .to_numpy()
         .flatten()
     )
-    dis_off = np.mean(
+    dis_off = np.nanmean(
         [
             dis_s3off,
             dis_s4off,
