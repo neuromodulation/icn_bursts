@@ -362,7 +362,7 @@ def plot_psd_s13(psd_s13off, psd_s13on):
     fig = plt.figure(15)
     sns.set(style="white", font_scale=1)
     plt.plot(psd_s13off, label="Off (27)")
-    plt.plot(psd_s13on, label="On (9 diff sess)")
+    plt.plot(psd_s13on, label="On (9)")
     plt.xlim(0, 60)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Relative spectral power (au)")
