@@ -115,6 +115,11 @@ def bursts_single_run(
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
+    # plot signal
+    raw_ecog_dow.times[-1]
+
+    
+
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
     power_spectra = [
