@@ -4,6 +4,8 @@ import pathlib
 import pandas as pd
 import mne
 from typing import Union
+import seaborn as sns
+from matplotlib import pyplot as plt
 
 import numpy as np
 
@@ -116,7 +118,14 @@ def bursts_single_run(
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # plot signal
-    raw_ecog_dow.times[-1]
+    #plt.plot (l_beta_smooth[4], color='b')
+    #plt.axhline(l_beta_thr[4], color='r', linestyle='--')
+    #plt.xlim(0,10)
+    #plt.ylim(-3,15)
+    #plt.ylabel('Amplitude (au)')
+    #plt.xlabel('Time (s)')
+    #sns.despine()
+    
 
     
 

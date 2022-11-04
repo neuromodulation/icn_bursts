@@ -66,7 +66,7 @@ def beta_bands_sub4 (run_TF):
     THETA = (4, 7)
     MU = (10, 13)
     LOW_BETA = (13, 21)
-    HIGH_BETA = (25, 18)
+    HIGH_BETA = (25, 28)
     l_theta = []
     l_mu = []
     l_low_beta = []
