@@ -195,7 +195,7 @@ def bursts_single_run(
     burst_amplitude_lfp = burst_amplitude[len(raw_lfp_bi.ch_names)-1]
 
     # Burst Rate
-    burst_rate_lfp = np.sum(histogram_duration[len(raw_lfp_bi.ch_names)-1] / raw.times[-1])
+    burst_rate_lfp = np.sum(histogram_duration[len(raw_lfp_bi.ch_names)-1] / raw_annots.times[-1])
 
     # 3. STRUCTURE FEATURES #
     # Burst Features
