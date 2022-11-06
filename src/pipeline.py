@@ -183,7 +183,7 @@ def bursts_single_run(
 
     # Burst Rate
     burst_rate = [
-        np.sum(histogram_duration[ch_idx] / raw.times[-1])
+        np.sum(histogram_duration[ch_idx] / raw_annots.times[-1])
         for ch_idx in range(len(raw_ecog_bi.get_channel_types()))
     ]
     burst_rate_m1 = burst_rate[m1]
