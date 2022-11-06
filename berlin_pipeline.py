@@ -27,7 +27,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "004" in f]
+    files_x = [f for f in files if "010" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -35,7 +35,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files:
+    for path_run in files_x:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
