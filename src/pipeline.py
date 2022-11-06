@@ -112,14 +112,14 @@ def bursts_single_run(
 
 
     # smoothing traces
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[high]]
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[theta]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # plot signal
-    #plt.plot (l_beta_smooth[4], color='b')
-    #plt.axhline(l_beta_thr[4], color='r', linestyle='--')
+    #plt.plot (l_beta_smooth[m1], color='b')
+    #plt.axhline(l_beta_thr[m1], color='r', linestyle='--')
     #plt.xlim(0,10)
     #plt.ylim(-3,15)
     #plt.ylabel('Amplitude (au)')
