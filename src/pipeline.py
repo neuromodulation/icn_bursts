@@ -103,6 +103,7 @@ def bursts_single_run(
     low = 2
     high = 3
     #full = 4
+    beta = 4
 
     # Averaging power in all beta bands
     l_beta_avg = [burst_calc.avg_power(l) for l in l_beta]
@@ -112,7 +113,7 @@ def bursts_single_run(
 
 
     # smoothing traces
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[high]]
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[beta]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
