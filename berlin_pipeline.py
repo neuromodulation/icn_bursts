@@ -11,6 +11,7 @@ import seaborn as sns
 from src import pipeline, plot_utils, preprocessing, postprocessing
 import seaborn as sns
 import numpy as np
+from scipy.stats import wilcoxon
 
 # SCRIPT START #
 def main():
@@ -95,6 +96,14 @@ plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 print("done")
 
+on = features[features['Medication']=='On']
+off = features[features['Medication']=='Off']
+duration_on = on['Duration (s)']
+duration_off = off['Duration (s)']
+res = wilcoxon(duration_off, duration_on)
+res.statistic, res.pvalue
+
+print("done")
 
 # Plot Distribution single subject 
 dist3 = df_sub_dist[df_sub_dist['Subject']==3]
