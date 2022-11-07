@@ -23,7 +23,7 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    remove_subjects: Union[str, None] = ["001","002"] # "003","007","008"]
+    remove_subjects: Union[str, None] = ["001","002", '010'] 
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
@@ -94,7 +94,7 @@ avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
 df_gavg_dist, df_sub_dist = postprocessing.avg_distribution(M1_burst_dynamics_all)
 
 plot_utils.plot_avgm1_burst_features(avg_features)
-plot_utils.plot_m1_burst_features(features)
+#plot_utils.plot_m1_burst_features(features)
 
 # Distribution of Duration
 plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
