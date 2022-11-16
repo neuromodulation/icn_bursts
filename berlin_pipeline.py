@@ -12,6 +12,7 @@ from src import pipeline, plot_utils, preprocessing, postprocessing
 import seaborn as sns
 import numpy as np
 import mne
+from scipy.stats import wilcoxon
 
 # SCRIPT START #
 def main():
@@ -23,7 +24,7 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    remove_subjects: Union[str, None] = ["001","002", '010'] 
+    remove_subjects: Union[str, None] = ["001","002",] #'010'] 
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
@@ -100,6 +101,28 @@ plot_utils.plot_avgm1_burst_features(avg_features)
 plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 print("done")
+
+on = features[features['Medication']=='On']
+off = features[features['Medication']=='Off']
+duration_on = on['Duration (s)']
+duration_off = off['Duration (s)']
+res = wilcoxon(duration_off, duration_on)
+res.statistic, res.pvalue
+
+print("done")
+
+#def statistic(duration_on, duration_off), axis):
+#statistic = np.mean(duration_on) - np.mean(duration_off)
+
+
+#from scipy.stats import permutation_test
+# because our statistic is vectorized, we pass `vectorized=True`
+# `n_resamples=np.inf` indicates that an exact test is to be performed
+#resi = permutation_test((duration_on, duration_off), statistic, vectorized=True,
+              #         n_resamples=np.inf, alternative='less')
+#print(res.statistic)
+
+#print(resi.pvalue)
 
 
 # Plot Distribution single subject 
