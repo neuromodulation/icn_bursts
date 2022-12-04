@@ -29,7 +29,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "003" in f]
+    files_x = [f for f in files if "005" in f]
 
     # Define variables
     burst_char_pd_all = []
