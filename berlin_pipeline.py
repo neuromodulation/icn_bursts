@@ -23,12 +23,12 @@ def main():
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
     files = project_constants["files"]
-    remove_subjects: Union[str, None] = ["001", "002"] #'010'] 
+    remove_subjects: Union[str, None] = ["001", "002" "010"]
     if remove_subjects:
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "010" in f]
+    files_x = [f for f in files if "003" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -36,7 +36,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files:
+    for path_run in files_x:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
@@ -84,7 +84,7 @@ features = pd.concat(burst_char_pd_all)
 dist = pd.concat(M1_burst_dynamics_all)
 psd = pd.concat(npow_list_all)
 
-#print("done")
+# print("done")
 
 # Average Runs (multiple subs)
 avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
@@ -96,43 +96,43 @@ plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 print("done")
 
-on = features[features['Medication']=='On']
-off = features[features['Medication']=='Off']
-duration_on = on['Duration (s)']
-duration_off = off['Duration (s)']
+on = features[features["Medication"] == "On"]
+off = features[features["Medication"] == "Off"]
+duration_on = on["Duration (s)"]
+duration_off = off["Duration (s)"]
 res = wilcoxon(duration_off, duration_on)
 res.statistic, res.pvalue
 
 print("done")
 
-# Plot Distribution single subject 
-dist3 = df_sub_dist[df_sub_dist['Subject']==3]
-dist4 = df_sub_dist[df_sub_dist['Subject']==4]
-dist5 = df_sub_dist[df_sub_dist['Subject']==5]
-dist6 = df_sub_dist[df_sub_dist['Subject']==6]
-dist7 = df_sub_dist[df_sub_dist['Subject']==7]
-dist8 = df_sub_dist[df_sub_dist['Subject']==8]
-dist9 = df_sub_dist[df_sub_dist['Subject']==9]
-dist10 = df_sub_dist[df_sub_dist['Subject']==10]
-dist11 = df_sub_dist[df_sub_dist['Subject']==11]
-dist12 = df_sub_dist[df_sub_dist['Subject']==12]
-dist13 = df_sub_dist[df_sub_dist['Subject']==13]
-dist14 = df_sub_dist[df_sub_dist['Subject']==14]
-dist15 = df_sub_dist[df_sub_dist['Subject']==15]
+# Plot Distribution single subject
+dist3 = df_sub_dist[df_sub_dist["Subject"] == 3]
+dist4 = df_sub_dist[df_sub_dist["Subject"] == 4]
+dist5 = df_sub_dist[df_sub_dist["Subject"] == 5]
+dist6 = df_sub_dist[df_sub_dist["Subject"] == 6]
+dist7 = df_sub_dist[df_sub_dist["Subject"] == 7]
+dist8 = df_sub_dist[df_sub_dist["Subject"] == 8]
+dist9 = df_sub_dist[df_sub_dist["Subject"] == 9]
+dist10 = df_sub_dist[df_sub_dist["Subject"] == 10]
+dist11 = df_sub_dist[df_sub_dist["Subject"] == 11]
+dist12 = df_sub_dist[df_sub_dist["Subject"] == 12]
+dist13 = df_sub_dist[df_sub_dist["Subject"] == 13]
+dist14 = df_sub_dist[df_sub_dist["Subject"] == 14]
+dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
 
-#plot_utils.plot_distribution_sub3(dist3)
-#plot_utils.plot_distribution_sub4(dist4)
-#plot_utils.plot_distribution_sub5(dist5)
-#plot_utils.plot_distribution_sub6(dist6)
-#plot_utils.plot_distribution_sub7(dist7)
-#plot_utils.plot_distribution_sub8(dist8)
-#plot_utils.plot_distribution_sub9(dist9)
-#plot_utils.plot_distribution_sub10(dist10)
-#plot_utils.plot_distribution_sub11(dist11)
-#plot_utils.plot_distribution_sub12(dist12)
-#plot_utils.plot_distribution_sub13(dist13)
-#plot_utils.plot_distribution_sub14(dist14)
-#plot_utils.plot_distribution_sub15(dist15)
+# plot_utils.plot_distribution_sub3(dist3)
+# plot_utils.plot_distribution_sub4(dist4)
+# plot_utils.plot_distribution_sub5(dist5)
+# plot_utils.plot_distribution_sub6(dist6)
+# plot_utils.plot_distribution_sub7(dist7)
+# plot_utils.plot_distribution_sub8(dist8)
+# plot_utils.plot_distribution_sub9(dist9)
+# plot_utils.plot_distribution_sub10(dist10)
+# plot_utils.plot_distribution_sub11(dist11)
+# plot_utils.plot_distribution_sub12(dist12)
+# plot_utils.plot_distribution_sub13(dist13)
+# plot_utils.plot_distribution_sub14(dist14)
+# plot_utils.plot_distribution_sub15(dist15)
 
 
 (

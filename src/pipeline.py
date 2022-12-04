@@ -63,12 +63,12 @@ def bursts_single_run(
 
     raw_ecog_filt = preprocessing.filtering(raw_ecog_bi)
 
-    # plot recording and save annotation
-    # raw_ecog_filt.pick_channels(['LFP_R_1_8', "ECOG_L_1_2_SMC_AT"]).plot()
-    # print('done')
-    # raw_ecog_filt.annotations.save('sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
-
     raw_ecog_dow = preprocessing.downsample(raw_ecog_filt)
+
+    # plot recording and save annotation
+    # raw_ecog_dow.plot()
+    # print("done")
+    # raw_ecog_dow.annotations.save('sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
     signal = preprocessing.get_data(raw_ecog_dow)
 
@@ -125,10 +125,10 @@ def bursts_single_run(
 
     # Plot Signal
     # signals_array, time_array = raw_ecog_dow[:, :]
-    # plt.plot (l_beta_smooth[m1], color='b')
-    # plt.axhline(l_beta_thr[m1], color='r', linestyle='--')
+    # plt.plot(l_beta_smooth[m1], color="b")
+    # plt.axhline(l_beta_thr[m1], color="r", linestyle="--")
     # sns.despine()
-    # print('done')
+    # print("done")
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
