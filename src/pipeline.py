@@ -123,14 +123,12 @@ def bursts_single_run(
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
-    # plot signal
+    # Plot Signal
+    # signals_array, time_array = raw_ecog_dow[:, :]
     # plt.plot (l_beta_smooth[m1], color='b')
     # plt.axhline(l_beta_thr[m1], color='r', linestyle='--')
-    # plt.xlim(0,10)
-    # plt.ylim(-3,15)
-    # plt.ylabel('Amplitude (au)')
-    # plt.xlabel('Time (s)')
     # sns.despine()
+    # print('done')
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
