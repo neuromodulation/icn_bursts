@@ -37,12 +37,14 @@ def bursts_single_run(
             run=run,
         )
     )
-    if sub == '004':
+    if sub == "004":
         raw_annots = raw.set_annotations(annotations)
     else:
-        raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
+        raw_annots = raw.set_annotations(
+            preprocessing.check_annots_orig_time(annotations)
+        )
     raw_ecog = preprocessing.pick_ecog(raw_annots)
-    #raw_lfp = preprocessing.pick_lfp(raw_annots)
+    # raw_lfp = preprocessing.pick_lfp(raw_annots)
 
     if sub == "012":
         raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
@@ -61,6 +63,11 @@ def bursts_single_run(
 
     raw_ecog_filt = preprocessing.filtering(raw_ecog_bi)
 
+    # plot recording and save annotation
+    # raw_ecog_filt.pick_channels(['LFP_R_1_8', "ECOG_L_1_2_SMC_AT"]).plot()
+    # print('done')
+    # raw_ecog_filt.annotations.save('sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
+
     raw_ecog_dow = preprocessing.downsample(raw_ecog_filt)
 
     signal = preprocessing.get_data(raw_ecog_dow)
@@ -70,39 +77,38 @@ def bursts_single_run(
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
     # list of low, high, full beta bands for all channels
-    if sub == '003':
+    if sub == "003":
         l_beta = burst_calc.beta_bands_sub3(run_TF)
-    if sub == '004':
+    if sub == "004":
         l_beta = burst_calc.beta_bands_sub4(run_TF)
-    if sub == '005':
+    if sub == "005":
         l_beta = burst_calc.beta_bands_sub5(run_TF)
-    if sub == '006':
+    if sub == "006":
         l_beta = burst_calc.beta_bands_sub6(run_TF)
-    if sub == '007':
+    if sub == "007":
         l_beta = burst_calc.beta_bands_sub7(run_TF)
-    if sub == '008':
+    if sub == "008":
         l_beta = burst_calc.beta_bands_sub8(run_TF)
-    if sub == '009':
+    if sub == "009":
         l_beta = burst_calc.beta_bands_sub9(run_TF)
-    if sub == '010':
+    if sub == "010":
         l_beta = burst_calc.beta_bands_sub10(run_TF)
-    if sub == '011':
+    if sub == "011":
         l_beta = burst_calc.beta_bands_sub11(run_TF)
-    if sub == '012':
+    if sub == "012":
         l_beta = burst_calc.beta_bands_sub12(run_TF)
-    if sub == '013':
+    if sub == "013":
         l_beta = burst_calc.beta_bands_sub13(run_TF)
-    if sub == '014':
+    if sub == "014":
         l_beta = burst_calc.beta_bands_sub14(run_TF)
-    if sub == '015':
+    if sub == "015":
         l_beta = burst_calc.beta_bands_sub15(run_TF)
 
-    
     theta = 0
     mu = 1
     low = 2
     high = 3
-    #full = 4
+    # full = 4
     beta = 4
 
     # Averaging power in all beta bands
@@ -111,7 +117,6 @@ def bursts_single_run(
     # Z-Scored averaged beta traces
     l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
-
     # smoothing traces
     l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[high]]
 
@@ -119,16 +124,13 @@ def bursts_single_run(
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # plot signal
-    #plt.plot (l_beta_smooth[m1], color='b')
-    #plt.axhline(l_beta_thr[m1], color='r', linestyle='--')
-    #plt.xlim(0,10)
-    #plt.ylim(-3,15)
-    #plt.ylabel('Amplitude (au)')
-    #plt.xlabel('Time (s)')
-    #sns.despine()
-    
-
-    
+    # plt.plot (l_beta_smooth[m1], color='b')
+    # plt.axhline(l_beta_thr[m1], color='r', linestyle='--')
+    # plt.xlim(0,10)
+    # plt.ylim(-3,15)
+    # plt.ylabel('Amplitude (au)')
+    # plt.xlabel('Time (s)')
+    # sns.despine()
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
