@@ -38,8 +38,8 @@ def pick_runs(files):
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOn01/ieeg/sub-008_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOff01/ieeg/sub-009_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOn01/ieeg/sub-009_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOff01/ieeg/sub-010_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOn01/ieeg/sub-010_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        #'/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOff01/ieeg/sub-010_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        #'/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOn01/ieeg/sub-010_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-011/ses-EcogLfpMedOff01/ieeg/sub-011_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-011/ses-EcogLfpMedOn01/ieeg/sub-011_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
         '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-012/ses-EcogLfpMedOff02/ieeg/sub-012_ses-EcogLfpMedOff02_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
@@ -64,31 +64,35 @@ def pick_ecog(raw):
     return raw_ecog_red
 
 def pick_lfp3(raw):
-    raw_lfp = [raw.ch_names[4], raw.ch_names[7]]
+    raw_lfp = raw.pick_channels(['LFP_L_1_STN_MT', 'LFP_L_4_STN_MT'])
     return raw_lfp
 
 def pick_lfp4(raw):
-    raw_lfp = [raw.ch_names[16], raw.ch_names[23]]
-    return raw_lfp
-
-def pick_lfp5(raw):
-    raw_lfp = [raw.ch_names[8], raw.ch_names[11]]
-    return raw_lfp
-
-def pick_lfp(raw):
-    raw_lfp = [raw.ch_names[0], raw.ch_names[7]]
-    return raw_lfp
-
-def pick_lfp8(raw):
-    raw_lfp = [raw.ch_names[16], raw.ch_names[31]]
+    raw_lfp = raw.pick_channels(['LFP_L_1_STN_BS', 'LFP_L_8_STN_BS'])
     return raw_lfp
 
 def pick_lfp9(raw):
-    raw_lfp = [raw.ch_names[8], raw.ch_names[15]]
+    raw_lfp = raw.pick_channels(['LFP_L_1_STN_MT', 'LFP_L_8_STN_MT'])
+    return raw_lfp
+
+def pick_lfp12(raw):
+    raw_lfp = raw.pick_channels(['LFP_R_01_STN_MT', 'LFP_R_08_STN_MT'])
+    return raw_lfp
+
+def pick_lfp13(raw):
+    raw_lfp = raw.pick_channels(['LFP_R_01_STN_MT', 'LFP_R_08_STN_MT'])
+    return raw_lfp
+
+def pick_lfp_other(raw):
+    raw_lfp = raw.pick_channels(['LFP_R_1_STN_MT', 'LFP_R_8_STN_MT'])
+    return raw_lfp
+
+def pick_lfp8(raw):
+    raw_lfp = raw.pick_channels(['LFP_L_1_STN_BS', 'LFP_L_16_STN_BS'])
     return raw_lfp
 
 def pick_lfp15(raw):
-    raw_lfp = [raw.ch_names[0], raw.ch_names[3]]
+    raw_lfp = raw.pick_channels(['LFP_R_01_STN_MT', 'LFP_R_08_STN_MT'])
     return raw_lfp
 
 def bipolar_reference(raw, raw_ecog, new_ch_names):
@@ -102,8 +106,8 @@ def bipolar_reference(raw, raw_ecog, new_ch_names):
 
 def bipolar_reference_lfp(raw, raw_lfp, new_ch_names):
 
-    anode = raw_lfp[0]
-    cathode = raw_lfp[1]
+    anode = raw_lfp.ch_names[0]
+    cathode = raw_lfp.ch_names[1]
     raw_lfp_bi = mne.set_bipolar_reference(
         raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names
     )

@@ -21,7 +21,7 @@ def beta_bands_sub3 (run_TF):
     MU = (8, 13)
     LOW_BETA = (13, 21)
     HIGH_BETA = (20, 36)
-#   FULL_BETA = (13, 36)
+    #FULL_BETA = (13, 36)
 
     l_theta = []
     l_mu = []
@@ -37,7 +37,7 @@ def beta_bands_sub3 (run_TF):
         #l_full_beta.append(run_TF[ch_idx, FULL_BETA[0] : FULL_BETA[1], :])
        
 
-    return  l_theta, l_mu, l_low_beta, l_high_beta, #l_full_beta
+    return  l_theta, l_mu, l_low_beta, l_high_beta,# l_full_beta
 
 def beta_bands_sub4 (run_TF):
     THETA = (4, 7)

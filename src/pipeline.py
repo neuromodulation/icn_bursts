@@ -4,6 +4,8 @@ import pathlib
 import pandas as pd
 import mne
 from typing import Union
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 import numpy as np
 
@@ -40,53 +42,45 @@ def bursts_single_run(
     else:
         raw_annots = raw.set_annotations(preprocessing.check_annots_orig_time(annotations))
     
-    #raw_ecog = preprocessing.pick_ecog(raw_annots)
-
     if sub == '003':
         raw_lfp = preprocessing.pick_lfp3(raw_annots)
     if sub == '004':
         raw_lfp = preprocessing.pick_lfp4(raw_annots)
-    if sub == '005':
-        raw_lfp = preprocessing.pick_lfp5(raw_annots)
     if sub == '008':
         raw_lfp = preprocessing.pick_lfp8(raw_annots)
     if sub == '009':
         raw_lfp = preprocessing.pick_lfp9(raw_annots)
     if sub == '015':
         raw_lfp = preprocessing.pick_lfp15(raw_annots)
-    else:
-        raw_lfp = preprocessing.pick_lfp(raw_annots)
-
-    #if sub == "012":
-    #    raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
-    #elif sub == "010" and med == "Off":
-    #    raw_ecog_bi = preprocessing.bipolar_reference_s10_off(
-    #        raw, raw_ecog, new_ch_names
-    #    )
-    #elif sub == "010" and med == "On":
-    #    raw_ecog_bi = preprocessing.bipolar_reference_s10_on(
-    #        raw, raw_ecog, new_ch_names
-    #    )
+    if sub == '005':
+        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    if sub == '006':
+        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    if sub == '007':
+        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    if sub == '011':
+        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    if sub == '012':
+        raw_lfp = preprocessing.pick_lfp12(raw_annots)
+    if sub == '013':
+        raw_lfp = preprocessing.pick_lfp13(raw_annots)
+    if sub == '014':
+        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
     #else:
-    #    raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
+    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
 
-    raw_lfp_bi = preprocessing.bipolar_reference_lfp(raw, raw_lfp, 'LFP_R_1_8')
-
-
-
-    #print('done')
-
-    #raw_lfp_bi = raw_lfp_bi_all.ch_names[31]
+    raw_lfp_bi = preprocessing.bipolar_reference_lfp(raw_annots, raw_lfp, 'LFP')
 
     NUM_CH = len(raw_lfp_bi.ch_names)
 
     raw_lfp_filt = preprocessing.filtering(raw_lfp_bi)
 
-    raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
-
-    #raw_lfp_dow.pick_channels(['LFP_R_1_8', "ECOG_L_1_2_SMC_AT"]).plot()
-
+    # plot recording and save annotation
+    #raw_lfp_filt.pick_channels(['LFP_R_1_8', "ECOG_L_1_2_SMC_AT"]).plot()
     #print('done')
+    #raw_lfp_filt.annotations.save('sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
+
+    raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
 
     signal = preprocessing.get_data(raw_lfp_dow)
 
@@ -94,7 +88,7 @@ def bursts_single_run(
 
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
-    # list of low, high, full beta bands for all channels
+    # list of beta bands
     if sub == '003':
         l_beta = burst_calc.beta_bands_sub3(run_TF)
     if sub == '004':
@@ -141,6 +135,13 @@ def bursts_single_run(
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
+
+    # Plot Signal
+    #signals_array, time_array = raw_lfp_dow[:, :]
+    #plt.plot (l_beta_smooth[-1], color='b')
+    #plt.axhline(l_beta_thr[-1], color='r', linestyle='--')
+    #sns.despine()
+    #print('done')
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
