@@ -80,8 +80,8 @@ def bursts_single_run(
     raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
 
     # plot recording and save annotation
-    # raw_lfp_dow.pick_channels(["LFP", "ECOG_L_1_2_SMC_AT"]).plot()
-    # print("done")
+    raw_lfp_dow.pick_channels(["LFP", "ECOG_L_1_2_SMC_AT"]).plot()
+    print("done")
     # raw_lfp_dow.annotations.save('sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
     signal = preprocessing.get_data(raw_lfp_dow)
