@@ -36,7 +36,7 @@ def main():
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files_x:
+    for path_run in files:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
@@ -113,7 +113,6 @@ dist6 = df_sub_dist[df_sub_dist["Subject"] == 6]
 dist7 = df_sub_dist[df_sub_dist["Subject"] == 7]
 dist8 = df_sub_dist[df_sub_dist["Subject"] == 8]
 dist9 = df_sub_dist[df_sub_dist["Subject"] == 9]
-dist10 = df_sub_dist[df_sub_dist["Subject"] == 10]
 dist11 = df_sub_dist[df_sub_dist["Subject"] == 11]
 dist12 = df_sub_dist[df_sub_dist["Subject"] == 12]
 dist13 = df_sub_dist[df_sub_dist["Subject"] == 13]
@@ -150,8 +149,6 @@ dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
     psd_s8on,
     psd_s9off,
     psd_s9on,
-    psd_s10off,
-    psd_s10on,
     psd_s11off,
     psd_s11on,
     psd_s12off,
@@ -185,7 +182,6 @@ plot_utils.plot_psd_s6(psd_s6off, psd_s6on)
 plot_utils.plot_psd_s7(psd_s7off, psd_s7on)
 plot_utils.plot_psd_s8(psd_s8off, psd_s8on)
 plot_utils.plot_psd_s9(psd_s9off, psd_s9on)
-plot_utils.plot_psd_s10(psd_s10off, psd_s10on)
 plot_utils.plot_psd_s11(psd_s11off, psd_s11on)
 plot_utils.plot_psd_s12(psd_s12off, psd_s12on)
 plot_utils.plot_psd_s13(psd_s13off, psd_s13on)

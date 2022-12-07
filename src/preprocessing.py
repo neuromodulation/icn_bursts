@@ -6,53 +6,55 @@ import os
 
 def remove_runs(files):
     unwanted_runs = {
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-3_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOn01/ieeg/sub-003_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOff01/ieeg/sub-004_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-3_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-4_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn02/ieeg/sub-004_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOff01/ieeg/sub-005_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOff01/ieeg/sub-005_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-3_ieeg.vhdr'
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-2_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-3_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOn01/ieeg/sub-003_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOff01/ieeg/sub-004_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-2_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-3_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-4_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn02/ieeg/sub-004_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOff01/ieeg/sub-005_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOff01/ieeg/sub-005_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-2_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-3_ieeg.vhdr",
     }
     files = [ele for ele in files if ele not in unwanted_runs]
     return files
 
+
 def pick_runs(files):
     runs = {
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOn03/ieeg/sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOff01/ieeg/sub-004_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOff02/ieeg/sub-005_ses-EcogLfpMedOff02_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOn01/ieeg/sub-005_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-006/ses-EcogLfpMedOff01/ieeg/sub-006_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-006/ses-EcogLfpMedOn01/ieeg/sub-006_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOff01/ieeg/sub-007_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOff01/ieeg/sub-008_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOn01/ieeg/sub-008_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOff01/ieeg/sub-009_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOn01/ieeg/sub-009_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOff01/ieeg/sub-010_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOn01/ieeg/sub-010_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-011/ses-EcogLfpMedOff01/ieeg/sub-011_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-011/ses-EcogLfpMedOn01/ieeg/sub-011_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-012/ses-EcogLfpMedOff02/ieeg/sub-012_ses-EcogLfpMedOff02_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-012/ses-EcogLfpMedOn01/ieeg/sub-012_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-013/ses-EcogLfpMedOff01/ieeg/sub-013_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-013/ses-EcogLfpMedOn02/ieeg/sub-013_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOff01/ieeg/sub-014_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOn01/ieeg/sub-014_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-015/ses-EcogLfpMedOff01/ieeg/sub-015_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
-        '/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-015/ses-EcogLfpMedOn01/ieeg/sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr'
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOff01/ieeg/sub-003_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-003/ses-EcogLfpMedOn03/ieeg/sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOff01/ieeg/sub-004_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-004/ses-EcogLfpMedOn01/ieeg/sub-004_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOff02/ieeg/sub-005_ses-EcogLfpMedOff02_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-005/ses-EcogLfpMedOn01/ieeg/sub-005_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-006/ses-EcogLfpMedOff01/ieeg/sub-006_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-006/ses-EcogLfpMedOn01/ieeg/sub-006_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOff01/ieeg/sub-007_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-007/ses-EcogLfpMedOn01/ieeg/sub-007_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-2_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOff01/ieeg/sub-008_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-008/ses-EcogLfpMedOn01/ieeg/sub-008_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOff01/ieeg/sub-009_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-009/ses-EcogLfpMedOn01/ieeg/sub-009_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        #'/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOff01/ieeg/sub-010_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        #'/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-010/ses-EcogLfpMedOn01/ieeg/sub-010_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr',
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-011/ses-EcogLfpMedOff01/ieeg/sub-011_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-011/ses-EcogLfpMedOn01/ieeg/sub-011_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-012/ses-EcogLfpMedOff02/ieeg/sub-012_ses-EcogLfpMedOff02_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-012/ses-EcogLfpMedOn01/ieeg/sub-012_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-013/ses-EcogLfpMedOff01/ieeg/sub-013_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-013/ses-EcogLfpMedOn02/ieeg/sub-013_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOff01/ieeg/sub-014_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-014/ses-EcogLfpMedOn01/ieeg/sub-014_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-015/ses-EcogLfpMedOff01/ieeg/sub-015_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
+        "/Users/alidzaye/BIDS_Berlin_ECOG_LFP/rawdata/sub-015/ses-EcogLfpMedOn01/ieeg/sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_ieeg.vhdr",
     }
     files = [i for i in files if i in runs]
     return files
+
 
 def pick_ecog(raw):
     """
@@ -63,9 +65,10 @@ def pick_ecog(raw):
     raw_ecog_red = raw_ecog[0][0:6]
     return raw_ecog_red
 
+
 def pick_lfp(raw):
     raw_lfp = []
-    raw_lfp.append(raw.pick_channels(['LFP_R_1_STN_MT', 'LFP_R_8_STN_MT']))
+    raw_lfp.append(raw.pick_channels(["LFP_R_1_STN_MT", "LFP_R_8_STN_MT"]))
     return raw_lfp
 
 
