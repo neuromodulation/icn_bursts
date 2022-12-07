@@ -20,9 +20,9 @@ def beta_bands_sub3(run_TF):
     """
     THETA = (7, 9)
     MU = (8, 11)
-    LOW_BETA = (15, 19)
-    HIGH_BETA = (21, 25)
-    FULL_BETA = (15, 19)
+    LOW_BETA = (15, 18)
+    HIGH_BETA = (21, 24)
+    FULL_BETA = (15, 18)
 
     l_theta = []
     l_mu = []
@@ -43,9 +43,9 @@ def beta_bands_sub3(run_TF):
 def beta_bands_sub4(run_TF):
     THETA = (7, 9)
     MU = (8, 11)
-    LOW_BETA = (14, 18)
-    HIGH_BETA = (27, 31)
-    FULL_BETA = (14, 18)
+    LOW_BETA = (14, 17)
+    HIGH_BETA = (27, 30)
+    FULL_BETA = (14, 17)
 
     l_theta = []
     l_mu = []
@@ -64,11 +64,11 @@ def beta_bands_sub4(run_TF):
 
 
 def beta_bands_sub5(run_TF):
-    THETA = (5, 9)
+    THETA = (5, 8)
     MU = (8, 11)
-    LOW_BETA = (16, 20)
-    HIGH_BETA = (27, 31)
-    FULL_BETA = (16, 20)
+    LOW_BETA = (16, 19)
+    HIGH_BETA = (27, 30)
+    FULL_BETA = (16, 19)
 
     l_theta = []
     l_mu = []
@@ -87,11 +87,11 @@ def beta_bands_sub5(run_TF):
 
 
 def beta_bands_sub6(run_TF):
-    THETA = (5, 9)
+    THETA = (5, 8)
     MU = (8, 11)
-    LOW_BETA = (15, 19)
-    HIGH_BETA = (25, 29)
-    FULL_BETA = (25, 29)
+    LOW_BETA = (15, 18)
+    HIGH_BETA = (25, 28)
+    FULL_BETA = (25, 28)
 
     l_theta = []
     l_mu = []
@@ -110,11 +110,11 @@ def beta_bands_sub6(run_TF):
 
 
 def beta_bands_sub7(run_TF):
-    THETA = (4, 8)
+    THETA = (4, 7)
     MU = (8, 11)
-    LOW_BETA = (12, 16)
-    HIGH_BETA = (21, 25)
-    FULL_BETA = (21, 25)
+    LOW_BETA = (12, 15)
+    HIGH_BETA = (21, 24)
+    FULL_BETA = (21, 24)
 
     l_theta = []
     l_mu = []
@@ -133,11 +133,11 @@ def beta_bands_sub7(run_TF):
 
 
 def beta_bands_sub8(run_TF):
-    THETA = (5, 9)
+    THETA = (5, 8)
     MU = (8, 11)
-    LOW_BETA = (15, 19)
-    HIGH_BETA = (20, 24)
-    FULL_BETA = (15, 19)
+    LOW_BETA = (15, 18)
+    HIGH_BETA = (20, 23)
+    FULL_BETA = (15, 18)
 
     l_theta = []
     l_mu = []
@@ -157,10 +157,10 @@ def beta_bands_sub8(run_TF):
 
 def beta_bands_sub9(run_TF):
     THETA = (6, 9)
-    MU = (9, 13)
-    LOW_BETA = (17, 21)
-    HIGH_BETA = (20, 24)
-    FULL_BETA = (20, 24)
+    MU = (9, 12)
+    LOW_BETA = (17, 20)
+    HIGH_BETA = (20, 23)
+    FULL_BETA = (20, 23)
 
     l_theta = []
     l_mu = []
@@ -179,11 +179,11 @@ def beta_bands_sub9(run_TF):
 
 
 def beta_bands_sub11(run_TF):
-    THETA = (4, 8)
+    THETA = (4, 7)
     MU = (11, 13)
-    LOW_BETA = (13, 17)
-    HIGH_BETA = (26, 30)
-    FULL_BETA = (13, 17)
+    LOW_BETA = (13, 16)
+    HIGH_BETA = (26, 29)
+    FULL_BETA = (13, 16)
 
     l_theta = []
     l_mu = []
@@ -202,11 +202,11 @@ def beta_bands_sub11(run_TF):
 
 
 def beta_bands_sub12(run_TF):
-    THETA = (4, 8)
-    MU = (8, 12)
-    LOW_BETA = (19, 23)
-    HIGH_BETA = (23, 27)
-    FULL_BETA = (23, 27)
+    THETA = (4, 7)
+    MU = (8, 11)
+    LOW_BETA = (18, 21)
+    HIGH_BETA = (23, 26)
+    FULL_BETA = (23, 26)
 
     l_theta = []
     l_mu = []
@@ -226,10 +226,10 @@ def beta_bands_sub12(run_TF):
 
 def beta_bands_sub13(run_TF):
     THETA = (6, 9)
-    MU = (8, 12)
-    LOW_BETA = (14, 18)
-    HIGH_BETA = (23, 27)
-    FULL_BETA = (14, 18)
+    MU = (8, 11)
+    LOW_BETA = (14, 17)
+    HIGH_BETA = (23, 26)
+    FULL_BETA = (14, 17)
 
     l_theta = []
     l_mu = []
@@ -248,11 +248,11 @@ def beta_bands_sub13(run_TF):
 
 
 def beta_bands_sub14(run_TF):
-    THETA = (4, 8)
+    THETA = (4, 7)
     MU = (10, 13)
-    LOW_BETA = (19, 23)
-    HIGH_BETA = (20, 24)
-    FULL_BETA = (20, 24)
+    LOW_BETA = (18, 21)
+    HIGH_BETA = (20, 23)
+    FULL_BETA = (20, 23)
 
     l_theta = []
     l_mu = []
@@ -272,10 +272,10 @@ def beta_bands_sub14(run_TF):
 
 def beta_bands_sub15(run_TF):
     THETA = (6, 9)
-    MU = (8, 12)
-    LOW_BETA = (19, 23)
-    HIGH_BETA = (21, 25)
-    FULL_BETA = (21, 25)
+    MU = (8, 11)
+    LOW_BETA = (18, 21)
+    HIGH_BETA = (21, 24)
+    FULL_BETA = (21, 24)
 
     l_theta = []
     l_mu = []
