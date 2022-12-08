@@ -18,7 +18,7 @@ def beta_bands_sub3(run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
-    THETA = (7, 9)
+    THETA = (6, 9)
     MU = (8, 11)
     LOW_BETA = (15, 18)
     HIGH_BETA = (21, 24)
@@ -113,8 +113,8 @@ def beta_bands_sub7(run_TF):
     THETA = (4, 7)
     MU = (8, 11)
     LOW_BETA = (12, 15)
-    HIGH_BETA = (21, 24)
-    FULL_BETA = (21, 24)
+    HIGH_BETA = (20, 23)
+    FULL_BETA = (20, 23)
 
     l_theta = []
     l_mu = []
@@ -135,9 +135,9 @@ def beta_bands_sub7(run_TF):
 def beta_bands_sub8(run_TF):
     THETA = (5, 8)
     MU = (8, 11)
-    LOW_BETA = (15, 18)
+    LOW_BETA = (13, 16)
     HIGH_BETA = (20, 23)
-    FULL_BETA = (15, 18)
+    FULL_BETA = (13, 16)
 
     l_theta = []
     l_mu = []
@@ -159,8 +159,8 @@ def beta_bands_sub9(run_TF):
     THETA = (6, 9)
     MU = (9, 12)
     LOW_BETA = (17, 20)
-    HIGH_BETA = (20, 23)
-    FULL_BETA = (20, 23)
+    HIGH_BETA = (19, 22)
+    FULL_BETA = (19, 22)
 
     l_theta = []
     l_mu = []
@@ -180,7 +180,7 @@ def beta_bands_sub9(run_TF):
 
 def beta_bands_sub11(run_TF):
     THETA = (4, 7)
-    MU = (11, 13)
+    MU = (8, 11)
     LOW_BETA = (13, 16)
     HIGH_BETA = (26, 29)
     FULL_BETA = (13, 16)
@@ -204,7 +204,7 @@ def beta_bands_sub11(run_TF):
 def beta_bands_sub12(run_TF):
     THETA = (4, 7)
     MU = (8, 11)
-    LOW_BETA = (18, 21)
+    LOW_BETA = (19, 22)
     HIGH_BETA = (23, 26)
     FULL_BETA = (23, 26)
 
@@ -250,7 +250,7 @@ def beta_bands_sub13(run_TF):
 def beta_bands_sub14(run_TF):
     THETA = (4, 7)
     MU = (10, 13)
-    LOW_BETA = (18, 21)
+    LOW_BETA = (19, 22)
     HIGH_BETA = (20, 23)
     FULL_BETA = (20, 23)
 
@@ -273,7 +273,7 @@ def beta_bands_sub14(run_TF):
 def beta_bands_sub15(run_TF):
     THETA = (6, 9)
     MU = (8, 11)
-    LOW_BETA = (18, 21)
+    LOW_BETA = (19, 22)
     HIGH_BETA = (21, 24)
     FULL_BETA = (21, 24)
 
