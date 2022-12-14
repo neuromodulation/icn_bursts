@@ -68,7 +68,7 @@ def bursts_single_run(
     # plot recording and save annotation
     # raw_ecog_dow.plot()
     # print("done")
-    # raw_ecog_dow.annotations.save('sub-003_ses-EcogLfpMedOn03_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
+    # raw_ecog_dow.annotations.save('sub-006_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
     signal = preprocessing.get_data(raw_ecog_dow)
 
