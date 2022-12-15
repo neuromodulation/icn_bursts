@@ -224,6 +224,8 @@ def beta_bands_sub7(run_TF):
         l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
         l_full_beta.append(run_TF[ch_idx, FULL_BETA[0] : FULL_BETA[1], :])
 
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_full_beta
+
 
 def beta_bands_sub7_on(run_TF):
     THETA = (5, 8)

@@ -30,7 +30,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "015" in f]
+    files_x = [f for f in files if "007" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -117,20 +117,18 @@ x = on
 y = off
 
 
-def statistic(x, y):
-    return pearsonr(x, y).statistic
+# statistics = np.mean(x) - np.mean(y)
 
+# resi = permutation_test(
+#    (x, y),
+#    statistics,
+#    vectorized=False,
+#    permutation_type="samples",
+#    alternative="two-sided",
+# )
+# r, pvalue, null = resi.statistic, resi.pvalue, resi.null_distribution
 
-res = permutation_test(
-    (x, y),
-    statistic,
-    vectorized=False,
-    permutation_type="pairings",
-    alternative="two-sided",
-)
-r, pvalue, null = res.statistic, res.pvalue, res.null_distribution
-
-print("done")
+# print("done")
 
 # def statistic(duration_on, duration_off), axis):
 # statistic = np.mean(duration_on) - np.mean(duration_off)
