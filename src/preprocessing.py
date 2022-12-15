@@ -66,6 +66,16 @@ def pick_ecog(raw):
     return raw_ecog_red
 
 
+def pick_ecog_s13(raw):
+    """
+    pick ECoG channels
+    """
+    raw_ecog = []
+    raw_ecog.append(raw.pick_types(ecog=True).ch_names)
+    raw_ecog_red = raw_ecog[0][6:12]
+    return raw_ecog_red
+
+
 def pick_lfp(raw):
     raw_lfp = []
     raw_lfp.append(raw.pick_channels(["LFP_R_1_STN_MT", "LFP_R_8_STN_MT"]))
@@ -82,28 +92,8 @@ def bipolar_reference(raw, raw_ecog, new_ch_names):
     return raw_ecog_bi
 
 
-def bipolar_reference_s1(raw, raw_ecog, new_ch_names):
+def bipolar_reference_s12(raw, raw_ecog, new_ch_names):
 
-    anode = raw_ecog[0:4]
-    cathode = raw_ecog[1:5]
-    raw_ecog_bi = mne.set_bipolar_reference(
-        raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names
-    )
-    # raw_ecog_bi = raw_ecog_bi.load_data().add_channels(
-    #   [raw.pick_channels(["ECOG_L_1_2_SMC_AT"])], force_update_info=True
-    # )
-    # channel_order = [
-    #    "ECOG_L_1_2_SMC_AT",
-    #    "ECOG_L_2_3_SMC_AT",
-    #    "ECOG_L_3_4_SMC_AT",
-    #    "ECOG_L_4_5_SMC_AT",
-    #    "ECOG_L_5_6_SMC_AT",
-    # ]
-    # raw_ecog_bi = raw_ecog_bi.reorder_channels(channel_order)
-    return raw_ecog_bi
-
-
-def bipolar_reference_s10_on(raw, raw_ecog, new_ch_names):
     anode = raw_ecog[0:4]
     cathode = raw_ecog[1:5]
     raw_ecog_bi = mne.set_bipolar_reference(
@@ -112,11 +102,39 @@ def bipolar_reference_s10_on(raw, raw_ecog, new_ch_names):
     return raw_ecog_bi
 
 
-def bipolar_reference_s10_off(raw, raw_ecog, new_ch_names):
-    anode = raw_ecog[1:5]
-    cathode = raw_ecog[2:6]
-    raw_ecog_bi = mne.set_bipolar_reference(
+def bipolar_reference_s13(raw, raw_ecog, new_ch_names):
+    anode = raw_ecog[0:5]
+    cathode = raw_ecog[1:6]
+    raw_new = mne.set_bipolar_reference(
         raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names
+    )
+    raw_ecog_bi = raw_new.drop_channels(
+        [
+            "ECOG_R_01_SMC_AT",
+            "ECOG_R_02_SMC_AT",
+            "ECOG_R_03_SMC_AT",
+            "ECOG_R_04_SMC_AT",
+            "ECOG_R_05_SMC_AT",
+            "ECOG_R_06_SMC_AT",
+        ]
+    )
+    return raw_ecog_bi
+
+
+def bipolar_reference_s7_on(raw, raw_ecog, new_ch_names):
+    anode = raw_ecog[0:5]
+    cathode = raw_ecog[1:6]
+    raw_new = mne.set_bipolar_reference(
+        raw.load_data(), anode=anode, cathode=cathode, ch_name=new_ch_names
+    )
+    raw_ecog_bi = raw_new.drop_channels(
+        [
+            "ECOG_R_7_SMC_AT",
+            "ECOG_R_8_SMC_AT",
+            "ECOG_R_9_SMC_AT",
+            "ECOG_R_10_SMC_AT",
+            "ECOG_R_11_SMC_AT",
+        ]
     )
     return raw_ecog_bi
 

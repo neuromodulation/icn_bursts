@@ -43,19 +43,18 @@ def bursts_single_run(
         raw_annots = raw.set_annotations(
             preprocessing.check_annots_orig_time(annotations)
         )
-    raw_ecog = preprocessing.pick_ecog(raw_annots)
-    # raw_lfp = preprocessing.pick_lfp(raw_annots)
+
+    if sub == "013":
+        raw_ecog = preprocessing.pick_ecog_s13(raw_annots)
+    else:
+        raw_ecog = preprocessing.pick_ecog(raw_annots)
 
     if sub == "012":
-        raw_ecog_bi = preprocessing.bipolar_reference_s1(raw, raw_ecog, new_ch_names)
-    elif sub == "010" and med == "Off":
-        raw_ecog_bi = preprocessing.bipolar_reference_s10_off(
-            raw, raw_ecog, new_ch_names
-        )
-    elif sub == "010" and med == "On":
-        raw_ecog_bi = preprocessing.bipolar_reference_s10_on(
-            raw, raw_ecog, new_ch_names
-        )
+        raw_ecog_bi = preprocessing.bipolar_reference_s12(raw, raw_ecog, new_ch_names)
+    elif sub == "007" and med == "On":
+        raw_ecog_bi = preprocessing.bipolar_reference_s7_on(raw, raw_ecog, new_ch_names)
+    elif sub == "013":
+        raw_ecog_bi = preprocessing.bipolar_reference_s13(raw, raw_ecog, new_ch_names)
     else:
         raw_ecog_bi = preprocessing.bipolar_reference(raw, raw_ecog, new_ch_names)
 
@@ -68,7 +67,7 @@ def bursts_single_run(
     # plot recording and save annotation
     # raw_ecog_dow.plot()
     # print("done")
-    # raw_ecog_dow.annotations.save('sub-006_ses-EcogLfpMedOff01_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
+    # raw_ecog_dow.annotations.save('sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
     signal = preprocessing.get_data(raw_ecog_dow)
 
