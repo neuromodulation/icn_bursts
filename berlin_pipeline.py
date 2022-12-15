@@ -12,7 +12,8 @@ from src import pipeline, plot_utils, preprocessing, postprocessing
 import seaborn as sns
 import numpy as np
 import mne
-from scipy.stats import wilcoxon
+from scipy.stats import wilcoxon, pearsonr
+from scipy.stats import permutation_test
 
 # SCRIPT START #
 def main():
@@ -110,6 +111,24 @@ duration_on = on["Duration (s)"]
 duration_off = off["Duration (s)"]
 res = wilcoxon(duration_off, duration_on)
 res.statistic, res.pvalue
+
+# Permutation test
+x = on
+y = off
+
+
+def statistic(x, y):
+    return pearsonr(x, y).statistic
+
+
+res = permutation_test(
+    (x, y),
+    statistic,
+    vectorized=False,
+    permutation_type="pairings",
+    alternative="two-sided",
+)
+r, pvalue, null = res.statistic, res.pvalue, res.null_distribution
 
 print("done")
 
