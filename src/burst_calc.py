@@ -41,11 +41,40 @@ def beta_bands_sub3(run_TF):
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
     THETA = (5, 8)
-    MU = (8, 11)
-    LOW_BETA = (15, 18)
-    HIGH_BETA = (22, 25)
+    MU = (11, 14)
+    LOW_BETA = (18, 21)
+    HIGH_BETA = (19, 22)
     #   FULL_BETA = (13, 36)
-    BETA = (22, 25)
+    BETA = (19, 22)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    # l_full_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        # l_full_beta.append(run_TF[ch_idx, FULL_BETA[0] : FULL_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta  # l_full_beta
+
+
+def beta_bands_sub3_on(run_TF):
+    """
+    Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
+    """
+    THETA = (5, 8)
+    MU = (11, 14)
+    LOW_BETA = (12, 15)
+    HIGH_BETA = (21, 24)
+    #   FULL_BETA = (13, 36)
+    BETA = (19, 22)
 
     l_theta = []
     l_mu = []
@@ -66,34 +95,11 @@ def beta_bands_sub3(run_TF):
 
 
 def beta_bands_sub4(run_TF):
-    THETA = (6, 9)
-    MU = (8, 11)
-    LOW_BETA = (15, 18)
-    HIGH_BETA = (27, 30)
-    BETA = (15, 18)
-
-    l_theta = []
-    l_mu = []
-    l_low_beta = []
-    l_high_beta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
-        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
-        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
-        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
-        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
-
-    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
-
-
-def beta_bands_sub5(run_TF):
     THETA = (4, 7)
-    MU = (8, 11)
-    LOW_BETA = (16, 19)
+    MU = (10, 13)
+    LOW_BETA = (13, 16)
     HIGH_BETA = (25, 28)
-    BETA = (16, 19)
+    BETA = (13, 16)
 
     l_theta = []
     l_mu = []
@@ -111,10 +117,10 @@ def beta_bands_sub5(run_TF):
     return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
 
 
-def beta_bands_sub6(run_TF):
-    THETA = (5, 8)
-    MU = (8, 11)
-    LOW_BETA = (15, 18)
+def beta_bands_sub4_on(run_TF):
+    THETA = (4, 7)
+    MU = (10, 13)
+    LOW_BETA = (13, 16)
     HIGH_BETA = (25, 28)
     BETA = (25, 28)
 
@@ -134,10 +140,79 @@ def beta_bands_sub6(run_TF):
     return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
 
 
+def beta_bands_sub5(run_TF):
+    THETA = (5, 8)
+    MU = (10, 13)
+    LOW_BETA = (14, 17)
+    HIGH_BETA = (24, 27)
+    BETA = (14, 17)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub5_on(run_TF):
+    THETA = (5, 8)
+    MU = (10, 13)
+    LOW_BETA = (14, 17)
+    HIGH_BETA = (24, 27)
+    BETA = (13, 36)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub6(run_TF):
+    THETA = (7, 10)
+    MU = (7, 10)
+    LOW_BETA = (19, 22)
+    HIGH_BETA = (24, 27)
+    BETA = (24, 27)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
 def beta_bands_sub7(run_TF):
     THETA = (4, 7)
-    MU = (8, 11)
-    LOW_BETA = (18, 21)
+    MU = (11, 14)
+    LOW_BETA = (19, 22)
     HIGH_BETA = (20, 23)
     BETA = (20, 23)
 
@@ -159,10 +234,33 @@ def beta_bands_sub7(run_TF):
 
 def beta_bands_sub8(run_TF):
     THETA = (4, 7)
-    MU = (8, 11)
-    LOW_BETA = (15, 18)
-    HIGH_BETA = (20, 23)
-    BETA = (15, 18)
+    MU = (4, 7)
+    LOW_BETA = (16, 19)
+    HIGH_BETA = (16, 19)
+    BETA = (16, 19)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub8_on(run_TF):
+    THETA = (4, 7)
+    MU = (8, 13)
+    LOW_BETA = (12, 15)
+    HIGH_BETA = (12, 15)
+    BETA = (12, 15)
 
     l_theta = []
     l_mu = []
@@ -182,10 +280,33 @@ def beta_bands_sub8(run_TF):
 
 def beta_bands_sub9(run_TF):
     THETA = (6, 9)
+    MU = (9, 12)
+    LOW_BETA = (18, 21)
+    HIGH_BETA = (18, 21)
+    BETA = (18, 21)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub9_on(run_TF):
+    THETA = (7, 10)
     MU = (8, 11)
     LOW_BETA = (17, 20)
-    HIGH_BETA = (20, 23)
-    BETA = (19, 22)
+    HIGH_BETA = (17, 20)
+    BETA = (17, 20)
 
     l_theta = []
     l_mu = []
@@ -204,11 +325,34 @@ def beta_bands_sub9(run_TF):
 
 
 def beta_bands_sub11(run_TF):
-    THETA = (4, 7)
-    MU = (8, 11)
-    LOW_BETA = (13, 16)
-    HIGH_BETA = (26, 29)
-    BETA = (13, 16)
+    THETA = (7, 10)
+    MU = (7, 10)
+    LOW_BETA = (16, 19)
+    HIGH_BETA = (19, 22)
+    BETA = (16, 19)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub11_on(run_TF):
+    THETA = (7, 10)
+    MU = (7, 10)
+    LOW_BETA = (17, 20)
+    HIGH_BETA = (19, 22)
+    BETA = (17, 20)
 
     l_theta = []
     l_mu = []
@@ -228,8 +372,31 @@ def beta_bands_sub11(run_TF):
 
 def beta_bands_sub12(run_TF):
     THETA = (4, 7)
-    MU = (8, 11)
-    LOW_BETA = (18, 21)
+    MU = (9, 12)
+    LOW_BETA = (19, 22)
+    HIGH_BETA = (22, 25)
+    BETA = (22, 25)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub12_on(run_TF):
+    THETA = (4, 7)
+    MU = (9, 12)
+    LOW_BETA = (19, 22)
     HIGH_BETA = (23, 26)
     BETA = (23, 26)
 
@@ -250,11 +417,11 @@ def beta_bands_sub12(run_TF):
 
 
 def beta_bands_sub13(run_TF):
-    THETA = (6, 9)
+    THETA = (4, 7)
     MU = (8, 11)
-    LOW_BETA = (14, 17)
-    HIGH_BETA = (23, 26)
-    BETA = (14, 17)
+    LOW_BETA = (13, 21)
+    HIGH_BETA = (20, 36)
+    BETA = (13, 36)
 
     l_theta = []
     l_mu = []
@@ -274,10 +441,33 @@ def beta_bands_sub13(run_TF):
 
 def beta_bands_sub14(run_TF):
     THETA = (4, 7)
-    MU = (8, 11)
-    LOW_BETA = (18, 21)
+    MU = (10, 13)
+    LOW_BETA = (19, 22)
     HIGH_BETA = (20, 23)
-    BETA = (20, 23)
+    BETA = (19, 22)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub14_on(run_TF):
+    THETA = (4, 7)
+    MU = (8, 11)
+    LOW_BETA = (19, 22)
+    HIGH_BETA = (20, 23)
+    BETA = (19, 22)
 
     l_theta = []
     l_mu = []
@@ -298,9 +488,32 @@ def beta_bands_sub14(run_TF):
 def beta_bands_sub15(run_TF):
     THETA = (4, 7)
     MU = (8, 11)
-    LOW_BETA = (17, 20)
-    HIGH_BETA = (21, 24)
-    BETA = (21, 24)
+    LOW_BETA = (19, 22)
+    HIGH_BETA = (20, 23)
+    BETA = (19, 22)
+
+    l_theta = []
+    l_mu = []
+    l_low_beta = []
+    l_high_beta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, THETA[0] : THETA[1], :])
+        l_mu.append(run_TF[ch_idx, MU[0] : MU[1], :])
+        l_low_beta.append(run_TF[ch_idx, LOW_BETA[0] : LOW_BETA[1], :])
+        l_high_beta.append(run_TF[ch_idx, HIGH_BETA[0] : HIGH_BETA[1], :])
+        l_beta.append(run_TF[ch_idx, BETA[0] : BETA[1], :])
+
+    return l_theta, l_mu, l_low_beta, l_high_beta, l_beta
+
+
+def beta_bands_sub15_on(run_TF):
+    THETA = (4, 7)
+    MU = (8, 11)
+    LOW_BETA = (16, 19)
+    HIGH_BETA = (22, 25)
+    BETA = (16, 19)
 
     l_theta = []
     l_mu = []

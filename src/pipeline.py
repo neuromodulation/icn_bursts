@@ -76,32 +76,48 @@ def bursts_single_run(
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
     # list of low, high, full beta bands for all channels
-    if sub == "003":
+    if sub == "003" and med == "Off":
         l_beta = burst_calc.beta_bands_sub3(run_TF)
-    if sub == "004":
+    if sub == "003" and med == "On":
+        l_beta = burst_calc.beta_bands_sub3_on(run_TF)
+    if sub == "004" and med == "Off":
         l_beta = burst_calc.beta_bands_sub4(run_TF)
-    if sub == "005":
+    if sub == "004" and med == "On":
+        l_beta = burst_calc.beta_bands_sub4_on(run_TF)
+    if sub == "005" and med == "Off":
         l_beta = burst_calc.beta_bands_sub5(run_TF)
+    if sub == "005" and med == "On":
+        l_beta = burst_calc.beta_bands_sub5_on(run_TF)
     if sub == "006":
         l_beta = burst_calc.beta_bands_sub6(run_TF)
     if sub == "007":
         l_beta = burst_calc.beta_bands_sub7(run_TF)
-    if sub == "008":
+    if sub == "008" and med == "Off":
         l_beta = burst_calc.beta_bands_sub8(run_TF)
-    if sub == "009":
+    if sub == "008" and med == "On":
+        l_beta = burst_calc.beta_bands_sub8_on(run_TF)
+    if sub == "009" and med == "Off":
         l_beta = burst_calc.beta_bands_sub9(run_TF)
-    if sub == "010":
-        l_beta = burst_calc.beta_bands_sub10(run_TF)
-    if sub == "011":
+    if sub == "009" and med == "On":
+        l_beta = burst_calc.beta_bands_sub9_on(run_TF)
+    if sub == "011" and med == "Off":
         l_beta = burst_calc.beta_bands_sub11(run_TF)
-    if sub == "012":
+    if sub == "011" and med == "On":
+        l_beta = burst_calc.beta_bands_sub11_on(run_TF)
+    if sub == "012" and med == "Off":
         l_beta = burst_calc.beta_bands_sub12(run_TF)
+    if sub == "012" and med == "On":
+        l_beta = burst_calc.beta_bands_sub12_on(run_TF)
     if sub == "013":
         l_beta = burst_calc.beta_bands_sub13(run_TF)
-    if sub == "014":
+    if sub == "014" and med == "Off":
         l_beta = burst_calc.beta_bands_sub14(run_TF)
-    if sub == "015":
+    if sub == "014" and med == "On":
+        l_beta = burst_calc.beta_bands_sub14_on(run_TF)
+    if sub == "015" and med == "Off":
         l_beta = burst_calc.beta_bands_sub15(run_TF)
+    if sub == "015" and med == "On":
+        l_beta = burst_calc.beta_bands_sub15_on(run_TF)
 
     theta = 0
     mu = 1
