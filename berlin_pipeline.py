@@ -113,35 +113,24 @@ res = wilcoxon(duration_off, duration_on)
 res.statistic, res.pvalue
 
 # Permutation test
-x = on
-y = off
+x = duration_on
+y = duration_off
+# def statistic(x, y):
+#    return pearsonr(x, y)
+def statistic(x, y):
+    return np.mean(x) - np.mean(y)
 
 
-# statistics = np.mean(x) - np.mean(y)
+resi = permutation_test(
+    (x.values, y.values),
+    statistic,
+    vectorized=False,
+    permutation_type="samples",
+    alternative="two-sided",
+)
+r, pvalue, null = resi.statistic, resi.pvalue, resi.null_distribution
 
-# resi = permutation_test(
-#    (x, y),
-#    statistics,
-#    vectorized=False,
-#    permutation_type="samples",
-#    alternative="two-sided",
-# )
-# r, pvalue, null = resi.statistic, resi.pvalue, resi.null_distribution
-
-# print("done")
-
-# def statistic(duration_on, duration_off), axis):
-# statistic = np.mean(duration_on) - np.mean(duration_off)
-
-
-# from scipy.stats import permutation_test
-# because our statistic is vectorized, we pass `vectorized=True`
-# `n_resamples=np.inf` indicates that an exact test is to be performed
-# resi = permutation_test((duration_on, duration_off), statistic, vectorized=True,
-#         n_resamples=np.inf, alternative='less')
-# print(res.statistic)
-
-# print(resi.pvalue)
+print("done")
 
 
 # Plot Distribution single subject
