@@ -18,7 +18,7 @@ def beta_bands_sub3(run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
-    THETA = (5, 8)
+    THETA = (7, 9)
     MU = (9, 12)
     LOW_BETA = (15, 18)
     HIGH_BETA = (21, 24)
@@ -44,7 +44,7 @@ def beta_bands_sub3_on(run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
-    THETA = (5, 8)
+    THETA = (7, 9)
     MU = (9, 12)
     LOW_BETA = (12, 15)
     HIGH_BETA = (21, 24)
@@ -113,10 +113,10 @@ def beta_bands_sub4_on(run_TF):
 
 
 def beta_bands_sub5(run_TF):
-    THETA = (4, 9)
+    THETA = (5, 8)
     MU = (9, 12)
     LOW_BETA = (17, 20)
-    HIGH_BETA = (29, 32)
+    HIGH_BETA = (27, 30)
     FULL_BETA = (17, 20)
 
     l_theta = []
@@ -136,10 +136,10 @@ def beta_bands_sub5(run_TF):
 
 
 def beta_bands_sub5_on(run_TF):
-    THETA = (7, 10)
+    THETA = (5, 8)
     MU = (9, 12)
     LOW_BETA = (17, 20)
-    HIGH_BETA = (33, 36)
+    HIGH_BETA = (27, 30)
     FULL_BETA = (33, 36)
 
     l_theta = []
@@ -159,7 +159,7 @@ def beta_bands_sub5_on(run_TF):
 
 
 def beta_bands_sub6(run_TF):
-    THETA = (6, 9)
+    THETA = (5, 8)
     MU = (7, 10)
     LOW_BETA = (15, 18)
     HIGH_BETA = (25, 28)
@@ -185,7 +185,7 @@ def beta_bands_sub6_on(run_TF):
     THETA = (5, 8)
     MU = (7, 10)
     LOW_BETA = (15, 18)
-    HIGH_BETA = (26, 29)
+    HIGH_BETA = (25, 28)
     FULL_BETA = (26, 29)
 
     l_theta = []
@@ -205,10 +205,10 @@ def beta_bands_sub6_on(run_TF):
 
 
 def beta_bands_sub7(run_TF):
-    THETA = (5, 8)
+    THETA = (4, 7)
     MU = (5, 8)
     LOW_BETA = (19, 22)
-    HIGH_BETA = (20, 23)
+    HIGH_BETA = (21, 24)
     FULL_BETA = (20, 23)
 
     l_theta = []
@@ -228,10 +228,10 @@ def beta_bands_sub7(run_TF):
 
 
 def beta_bands_sub7_on(run_TF):
-    THETA = (5, 8)
+    THETA = (4, 7)
     MU = (8, 13)
     LOW_BETA = (19, 22)
-    HIGH_BETA = (20, 23)
+    HIGH_BETA = (21, 24)
     FULL_BETA = (20, 23)
 
     l_theta = []
@@ -251,10 +251,10 @@ def beta_bands_sub7_on(run_TF):
 
 
 def beta_bands_sub8(run_TF):
-    THETA = (4, 7)
+    THETA = (5, 8)
     MU = (10, 13)
     LOW_BETA = (16, 19)
-    HIGH_BETA = (16, 19)
+    HIGH_BETA = (20, 23)
     FULL_BETA = (16, 19)
 
     l_theta = []
@@ -274,10 +274,10 @@ def beta_bands_sub8(run_TF):
 
 
 def beta_bands_sub8_on(run_TF):
-    THETA = (4, 7)
+    THETA = (5, 8)
     MU = (10, 13)
     LOW_BETA = (16, 19)
-    HIGH_BETA = (20, 36)
+    HIGH_BETA = (20, 23)
     FULL_BETA = (13, 36)
 
     l_theta = []
@@ -297,10 +297,10 @@ def beta_bands_sub8_on(run_TF):
 
 
 def beta_bands_sub9(run_TF):
-    THETA = (5, 8)
+    THETA = (6, 9)
     MU = (10, 13)
     LOW_BETA = (19, 22)
-    HIGH_BETA = (19, 22)
+    HIGH_BETA = (20, 23)
     FULL_BETA = (19, 22)
 
     l_theta = []
@@ -323,7 +323,7 @@ def beta_bands_sub9_on(run_TF):
     THETA = (6, 9)
     MU = (10, 13)
     LOW_BETA = (19, 22)
-    HIGH_BETA = (33, 36)
+    HIGH_BETA = (20, 23)
     FULL_BETA = (33, 36)
 
     l_theta = []
@@ -369,7 +369,7 @@ def beta_bands_sub11_on(run_TF):
     THETA = (4, 7)
     MU = (7, 10)
     LOW_BETA = (14, 17)
-    HIGH_BETA = (27, 30)
+    HIGH_BETA = (26, 29)
     FULL_BETA = (14, 17)
 
     l_theta = []
@@ -389,7 +389,7 @@ def beta_bands_sub11_on(run_TF):
 
 
 def beta_bands_sub12(run_TF):
-    THETA = (7, 10)
+    THETA = (4, 7)
     MU = (8, 11)
     LOW_BETA = (19, 22)
     HIGH_BETA = (23, 26)
@@ -412,10 +412,10 @@ def beta_bands_sub12(run_TF):
 
 
 def beta_bands_sub12_on(run_TF):
-    THETA = (7, 10)
+    THETA = (4, 7)
     MU = (8, 11)
     LOW_BETA = (19, 22)
-    HIGH_BETA = (24, 27)
+    HIGH_BETA = (23, 26)
     FULL_BETA = (24, 27)
 
     l_theta = []
@@ -484,7 +484,7 @@ def beta_bands_sub14_on(run_TF):
     THETA = (4, 7)
     MU = (10, 13)
     LOW_BETA = (19, 22)
-    HIGH_BETA = (21, 24)
+    HIGH_BETA = (20, 23)
     FULL_BETA = (21, 24)
 
     l_theta = []
@@ -504,7 +504,7 @@ def beta_bands_sub14_on(run_TF):
 
 
 def beta_bands_sub15(run_TF):
-    THETA = (4, 7)
+    THETA = (6, 9)
     MU = (7, 10)
     LOW_BETA = (19, 22)
     HIGH_BETA = (21, 24)
