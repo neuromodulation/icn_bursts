@@ -181,13 +181,24 @@ def downsample(raw_ecog_filt):
     """
     Downsample Data to 1600Hz for faster processing
     """
-    raw_ecog_dow = raw_ecog_filt.resample(250)
+    raw_ecog_dow = raw_ecog_filt.resample(1600)
     return raw_ecog_dow
 
 
 def get_data(raw_ecog_dow):
-    signal = raw_ecog_dow.get_data(reject_by_annotation="omit")
-    return signal
+    # signal, time = raw_ecog_dow.get_data(reject_by_annotation="omit", return_times=True)
+    signal, time = raw_ecog_dow.get_data(
+        picks=None,
+        start=0,
+        stop=None,
+        reject_by_annotation="omit",
+        return_times=True,
+        units=None,
+        tmin=None,
+        tmax=raw_ecog_dow.times[-1] - 5.0,
+        verbose=None,
+    )
+    return signal, time
 
 
 def z_score_signal(signal):

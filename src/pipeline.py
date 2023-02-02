@@ -84,7 +84,7 @@ def bursts_single_run(
     # print("done")
     # raw_lfp_dow.annotations.save('sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
-    signal = preprocessing.get_data(raw_lfp_dow)
+    signal, time = preprocessing.get_data(raw_lfp_dow)
 
     stand_signal = preprocessing.z_score_signal(signal)
 
@@ -152,17 +152,17 @@ def bursts_single_run(
 
     # CHOOSING BETA BAND
     # smoothing traces
+    # l_beta_smooth = burst_calc.smooth(l_beta_avg_norm[high][0])
     l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[low]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # Plot Signal
-    # signals_array, time_array = raw_lfp_dow[:, :]
-    # plt.plot(l_beta_smooth, color="b")
-    # plt.axhline(l_beta_thr, color="r", linestyle="--")
-    # sns.despine()
-    # print("done")
+    plt.plot(time, l_beta_smooth[0], color="b")
+    plt.axhline(l_beta_thr, color="r", linestyle="--")
+    sns.despine()
+    print("done")
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
@@ -178,7 +178,7 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[idx], sfreq=250)
+        burst_calc.get_burst_length(l, l_beta_thr[idx], 1600)
         for idx, l in enumerate(l_beta_smooth)
     ]
     burst_duration_cl = [

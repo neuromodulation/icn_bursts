@@ -8,7 +8,7 @@ import numpy
 def Time_Frequency_Estimation(signal):
     freqs = np.arange(1, 101)
     power = mne.decoding.TimeFrequency(
-        freqs, sfreq=250, method="morlet", n_cycles=10, output="power"
+        freqs, sfreq=1600, method="morlet", n_cycles=10, output="power"
     )
     run_TF = power.transform(signal)
     return run_TF
@@ -561,7 +561,7 @@ def percentile(l_beta, percentile):
     return [np.percentile(l_beta, q=percentile)]  # for l_ch in l_beta]
 
 
-def get_burst_length(beta_averp_norm, beta_thr, sfreq=250):
+def get_burst_length(beta_averp_norm, beta_thr, sfreq):
     """
     Analysing the duration of beta burst 
     """
@@ -616,8 +616,19 @@ def get_burst_amplitude(beta_amplitude, beta_thr):
 
     return mean_amplitude
 
+#def smooth_moving_average(array, window_size=50, axis=0):
+   # """Return the smoothed array where values are averaged in a moving window"""
+    #box = np.ones(window_size) / window_size
+    #array_smooth = np.apply_along_axis(lambda m: np.convolve(m, box, mode='same'), axis=axis, arr=array)
+    #return array_smooth
 
-def smooth(x, window_len=50, window="hanning"):
+def smooth(array, window_size=320):
+    kernel = np.ones(window_size) / window_size
+    data_convolved = np.convolve(array, kernel, mode='same')
+    return data_convolved
+
+
+#def smooth(x, window_len=50, window="hanning"):
     """smooth the data using a window with requested size.
     
     This method is based on the convolution of a scaled window with the signal.
@@ -659,10 +670,10 @@ def smooth(x, window_len=50, window="hanning"):
         return x
 
     # if not window in ['flat', 'hanning', 'hamming', 'bartlett', 'blackman']:
-    #   raise ValueError, "Window is on of 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'"
+    #  raise ValueError, "Window is on of 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'"
 
     s = numpy.r_[x[window_len - 1 : 0 : -1], x, x[-2 : -window_len - 1 : -1]]
-    # print(len(s))
+    print(len(s))
     if window == "flat":  # moving average
         w = numpy.ones(window_len, "d")
     else:
