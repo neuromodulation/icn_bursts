@@ -69,7 +69,7 @@ def bursts_single_run(
     # print("done")
     # raw_ecog_dow.annotations.save('sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
-    signal = preprocessing.get_data(raw_ecog_dow)
+    signal, time = preprocessing.get_data(raw_ecog_dow)
 
     stand_signal = preprocessing.z_score_signal(signal)
 
@@ -139,8 +139,7 @@ def bursts_single_run(
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # Plot Signal
-    # signals_array, time_array = raw_ecog_dow[:, :]
-    # plt.plot(l_beta_smooth[m1], color="b")
+    # plt.plot(time, l_beta_smooth[m1], color="b")
     # plt.axhline(l_beta_thr[m1], color="r", linestyle="--")
     # sns.despine()
     # print("done")
@@ -159,7 +158,7 @@ def bursts_single_run(
 
     # Burst duration
     burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[idx], sfreq=250)
+        burst_calc.get_burst_length(l, l_beta_thr[idx], 1600)
         for idx, l in enumerate(l_beta_smooth)
     ]
     burst_duration_cl = [
