@@ -90,53 +90,55 @@ def bursts_single_run(
 
     run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
+    l_beta = burst_calc.beta_bands(run_TF)
+
     # list of beta bands
-    if sub == "003" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub3(run_TF)
-    if sub == "003" and med == "On":
-        l_beta = burst_calc.beta_bands_sub3_on(run_TF)
-    if sub == "004" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub4(run_TF)
-    if sub == "004" and med == "On":
-        l_beta = burst_calc.beta_bands_sub4_on(run_TF)
-    if sub == "005" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub5(run_TF)
-    if sub == "005" and med == "On":
-        l_beta = burst_calc.beta_bands_sub5_on(run_TF)
-    if sub == "006" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub6(run_TF)
-    if sub == "006" and med == "On":
-        l_beta = burst_calc.beta_bands_sub6_on(run_TF)
-    if sub == "007" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub7(run_TF)
-    if sub == "007" and med == "On":
-        l_beta = burst_calc.beta_bands_sub7_on(run_TF)
-    if sub == "008" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub8(run_TF)
-    if sub == "008" and med == "On":
-        l_beta = burst_calc.beta_bands_sub8_on(run_TF)
-    if sub == "009" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub9(run_TF)
-    if sub == "009" and med == "On":
-        l_beta = burst_calc.beta_bands_sub9_on(run_TF)
-    if sub == "011" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub11(run_TF)
-    if sub == "011" and med == "On":
-        l_beta = burst_calc.beta_bands_sub11_on(run_TF)
-    if sub == "012" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub12(run_TF)
-    if sub == "012" and med == "On":
-        l_beta = burst_calc.beta_bands_sub12_on(run_TF)
-    if sub == "013":
-        l_beta = burst_calc.beta_bands_sub13(run_TF)
-    if sub == "014" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub14(run_TF)
-    if sub == "014" and med == "On":
-        l_beta = burst_calc.beta_bands_sub14_on(run_TF)
-    if sub == "015" and med == "Off":
-        l_beta = burst_calc.beta_bands_sub15(run_TF)
-    if sub == "015" and med == "On":
-        l_beta = burst_calc.beta_bands_sub15_on(run_TF)
+    #if sub == "003" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub3(run_TF)
+    #if sub == "003" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub3_on(run_TF)
+    #if sub == "004" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub4(run_TF)
+    #if sub == "004" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub4_on(run_TF)
+    #if sub == "005" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub5(run_TF)
+    #if sub == "005" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub5_on(run_TF)
+    #if sub == "006" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub6(run_TF)
+    #if sub == "006" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub6_on(run_TF)
+    #if sub == "007" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub7(run_TF)
+    #if sub == "007" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub7_on(run_TF)
+    #if sub == "008" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub8(run_TF)
+    #if sub == "008" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub8_on(run_TF)
+    #if sub == "009" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub9(run_TF)
+    #if sub == "009" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub9_on(run_TF)
+    #if sub == "011" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub11(run_TF)
+    #if sub == "011" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub11_on(run_TF)
+    #if sub == "012" and med == "Off":
+     #   l_beta = burst_calc.beta_bands_sub12(run_TF)
+    #if sub == "012" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub12_on(run_TF)
+    #if sub == "013":
+    #    l_beta = burst_calc.beta_bands_sub13(run_TF)
+    #if sub == "014" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub14(run_TF)
+    #if sub == "014" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub14_on(run_TF)
+    #if sub == "015" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub15(run_TF)
+    #if sub == "015" and med == "On":
+     #   l_beta = burst_calc.beta_bands_sub15_on(run_TF)
 
     theta = 0
     mu = 1
@@ -153,16 +155,16 @@ def bursts_single_run(
     # CHOOSING BETA BAND
     # smoothing traces
     # l_beta_smooth = burst_calc.smooth(l_beta_avg_norm[high][0])
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[low]]
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[theta]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # Plot Signal
-    plt.plot(time, l_beta_smooth[0], color="b")
-    plt.axhline(l_beta_thr, color="r", linestyle="--")
-    sns.despine()
-    print("done")
+    #plt.plot(time, l_beta_smooth[0], color="b")
+    #plt.axhline(l_beta_thr, color="r", linestyle="--")
+    #sns.despine()
+    #print("done")
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
     # Power spectral density
@@ -218,7 +220,7 @@ def bursts_single_run(
 
     # Burst Rate
     burst_rate_lfp = np.sum(
-        histogram_duration[len(raw_lfp_bi.ch_names) - 1] / raw_annots.times[-1]
+        histogram_duration[len(raw_lfp_bi.ch_names) - 1] / (raw_annots.times[-1] - 5.0)
     )
 
     # 3. STRUCTURE FEATURES #
