@@ -139,9 +139,9 @@ def bursts_single_run(
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # Plot Signal
-    # plt.plot(time, l_beta_smooth[m1], color="b")
-    # plt.axhline(l_beta_thr[m1], color="r", linestyle="--")
-    # sns.despine()
+    plt.plot(time, l_beta_smooth[m1], color="b")
+    plt.axhline(l_beta_thr[m1], color="r", linestyle="--")
+    sns.despine()
     # print("done")
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #

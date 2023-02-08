@@ -11,7 +11,7 @@ import seaborn as sns
 from src import pipeline, plot_utils, preprocessing, postprocessing
 import seaborn as sns
 import numpy as np
-from scipy.stats import wilcoxon
+from scipy.stats import wilcoxon, permutation_test
 
 # SCRIPT START #
 def main():
@@ -28,7 +28,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "015" in f]
+    files_x = [f for f in files if "003" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -96,12 +96,31 @@ plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 print("done")
 
+# Statistic
 on = features[features["Medication"] == "On"]
 off = features[features["Medication"] == "Off"]
 duration_on = on["Duration (s)"]
 duration_off = off["Duration (s)"]
 res = wilcoxon(duration_off, duration_on)
 res.statistic, res.pvalue
+
+# Permutation test
+x = duration_on
+y = duration_off
+# def statistic(x, y):
+#    return pearsonr(x, y)
+def statistic(x, y):
+    return np.mean(x) - np.mean(y)
+
+
+resi = permutation_test(
+    (x.values, y.values),
+    statistic,
+    vectorized=False,
+    permutation_type="samples",
+    alternative="two-sided",
+)
+r, pvalue, null = resi.statistic, resi.pvalue, resi.null_distribution
 
 print("done")
 
