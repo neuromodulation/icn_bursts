@@ -111,7 +111,7 @@ res_ampl = wilcoxon(amplitude_off, amplitude_on)
 
 rate_on = on["Rate (/s)"]
 rate_off = off["Rate (/s)"]
-res_rate = wilcoxon(amplitude_off, amplitude_on)
+res_rate = wilcoxon(rate_off, rate_on)
 
 res_dur.statistic, res_dur.pvalue
 res_ampl.statistic, res_ampl.pvalue
