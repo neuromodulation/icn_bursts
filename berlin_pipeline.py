@@ -113,9 +113,17 @@ rate_on = on["Rate (/s)"]
 rate_off = off["Rate (/s)"]
 res_rate = wilcoxon(rate_off, rate_on)
 
+on_dist = dist[dist["Medication"] == "On"]
+off_dist = dist[dist["Medication"] == "Off"]
+dist_on = on_dist.iloc[:,[7]]
+dist_off = off_dist.iloc[:,[7]]
+res_dist = wilcoxon(dist_off, dist_on)
+
 res_dur.statistic, res_dur.pvalue
 res_ampl.statistic, res_ampl.pvalue
 res_rate.statistic, res_rate.pvalue
+
+
 
 # Permutation test
 x_dur = duration_on
