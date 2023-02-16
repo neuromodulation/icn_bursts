@@ -165,6 +165,14 @@ resi_rate = permutation_test(
     alternative="two-sided",
 )
 
+resi_dist = permutation_test(
+    (dist_off.values, dist_on.values),
+    statistic,
+    vectorized=False,
+    permutation_type="samples",
+    alternative="two-sided",
+)
+
 r_dur, pvalue_dur, null_dur = resi_dur.statistic, resi_dur.pvalue, resi_dur.null_distribution
 r_ampl, pvalue_ampl, null_ampl = resi_ampl.statistic, resi_ampl.pvalue, resi_ampl.null_distribution
 r_rate, pvalue_rate, null_rate = resi_rate.statistic, resi_rate.pvalue, resi_rate.null_distribution
