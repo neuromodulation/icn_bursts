@@ -110,7 +110,21 @@ off = features[features["Medication"] == "Off"]
 duration_on = on["Duration (s)"]
 duration_off = off["Duration (s)"]
 res = wilcoxon(duration_off, duration_on)
-res.statistic, res.pvalue
+res_dur = wilcoxon(duration_off, duration_on)
+
+
+amplitude_on = on["Amplitude (au)"]
+amplitude_off = off["Amplitude (au)"]
+res_ampl = wilcoxon(amplitude_off, amplitude_on)
+
+
+rate_on = on["Rate (/s)"]
+rate_off = off["Rate (/s)"]
+res_rate = wilcoxon(amplitude_off, amplitude_on)
+
+res_dur.statistic, res_dur.pvalue
+res_ampl.statistic, res_ampl.pvalue
+res_rate.statistic, res_rate.pvalue
 
 # Permutation test
 x = duration_on
