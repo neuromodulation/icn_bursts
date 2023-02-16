@@ -122,7 +122,7 @@ res_dist = wilcoxon(dist_off, dist_on)
 res_dur.statistic, res_dur.pvalue
 res_ampl.statistic, res_ampl.pvalue
 res_rate.statistic, res_rate.pvalue
-
+res_dist.statistic[0], res_dist.pvalue[0]
 
 
 # Permutation test
