@@ -122,9 +122,17 @@ rate_on = on["Rate (/s)"]
 rate_off = off["Rate (/s)"]
 res_rate = wilcoxon(rate_off, rate_on)
 
+on_dist = dist[dist["Medication"] == "On"]
+off_dist = dist[dist["Medication"] == "Off"]
+dist_on = on_dist.iloc[:,[7]]
+dist_off = off_dist.iloc[:,[7]]
+res_dist = wilcoxon(dist_off, dist_on)
+
 res_dur.statistic, res_dur.pvalue
 res_ampl.statistic, res_ampl.pvalue
 res_rate.statistic, res_rate.pvalue
+res_dist.statistic[0], res_dist.pvalue[0]
+
 
 
 # Permutation test
@@ -167,9 +175,19 @@ resi_rate = permutation_test(
     alternative="two-sided",
 )
 
+resi_dist = permutation_test(
+    (dist_off.values, dist_on.values),
+    statistic,
+    vectorized=False,
+    permutation_type="samples",
+    alternative="two-sided",
+)
+
 r_dur, pvalue_dur, null_dur = resi_dur.statistic, resi_dur.pvalue, resi_dur.null_distribution
 r_ampl, pvalue_ampl, null_ampl = resi_ampl.statistic, resi_ampl.pvalue, resi_ampl.null_distribution
 r_rate, pvalue_rate, null_rate = resi_rate.statistic, resi_rate.pvalue, resi_rate.null_distribution
+r_dist, pvalue_dist, null_dist = resi_dist.statistic, resi_dist.pvalue, resi_dist.null_distribution
+r_dist, pvalue_dist = r_dist[0], pvalue_dist[0]
 print("done")
 
 
