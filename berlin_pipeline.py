@@ -120,7 +120,7 @@ res_ampl = wilcoxon(amplitude_off, amplitude_on)
 
 rate_on = on["Rate (/s)"]
 rate_off = off["Rate (/s)"]
-res_rate = wilcoxon(amplitude_off, amplitude_on)
+res_rate = wilcoxon(rate_off, rate_on)
 
 res_dur.statistic, res_dur.pvalue
 res_ampl.statistic, res_ampl.pvalue
@@ -152,7 +152,7 @@ resi_dur = permutation_test(
 )
 
 resi_ampl = permutation_test(
-    (x_ampl.values, y_dur.values),
+    (x_ampl.values, y_ampl.values),
     statistic,
     vectorized=False,
     permutation_type="samples",
@@ -160,7 +160,7 @@ resi_ampl = permutation_test(
 )
 
 resi_rate = permutation_test(
-    (x_rate.values, y_dur.values),
+    (x_rate.values, y_rate.values),
     statistic,
     vectorized=False,
     permutation_type="samples",
