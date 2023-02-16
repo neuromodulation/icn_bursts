@@ -8,7 +8,7 @@ import numpy
 
 
 def Time_Frequency_Estimation(signal):
-    freqs = np.arange(1, 101)
+    freqs = np.arange(1, 101,1)
     power = mne.decoding.TimeFrequency(
         freqs, sfreq=1600, method="morlet", n_cycles=10, output="power"
     )
