@@ -126,24 +126,50 @@ res_dur.statistic, res_dur.pvalue
 res_ampl.statistic, res_ampl.pvalue
 res_rate.statistic, res_rate.pvalue
 
+
 # Permutation test
-x = duration_on
-y = duration_off
+x_dur = duration_on
+y_dur = duration_off
+
+x_ampl = amplitude_on
+y_ampl = amplitude_off
+
+x_rate = rate_on
+y_rate = rate_off
+
 # def statistic(x, y):
 #    return pearsonr(x, y)
 def statistic(x, y):
     return np.mean(x) - np.mean(y)
 
 
-resi = permutation_test(
-    (x.values, y.values),
+resi_dur = permutation_test(
+    (x_dur.values, y_dur.values),
     statistic,
     vectorized=False,
     permutation_type="samples",
     alternative="two-sided",
 )
-r, pvalue, null = resi.statistic, resi.pvalue, resi.null_distribution
 
+resi_ampl = permutation_test(
+    (x_ampl.values, y_dur.values),
+    statistic,
+    vectorized=False,
+    permutation_type="samples",
+    alternative="two-sided",
+)
+
+resi_rate = permutation_test(
+    (x_rate.values, y_dur.values),
+    statistic,
+    vectorized=False,
+    permutation_type="samples",
+    alternative="two-sided",
+)
+
+r_dur, pvalue_dur, null_dur = resi_dur.statistic, resi_dur.pvalue, resi_dur.null_distribution
+r_ampl, pvalue_ampl, null_ampl = resi_ampl.statistic, resi_ampl.pvalue, resi_ampl.null_distribution
+r_rate, pvalue_rate, null_rate = resi_rate.statistic, resi_rate.pvalue, resi_rate.null_distribution
 print("done")
 
 

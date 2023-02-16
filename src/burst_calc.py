@@ -4,11 +4,7 @@ from scipy import stats
 import mne
 import numpy
 
-THETA = (4, 9)
-MU = (8, 13)
-LOW_BETA = (13, 21)
-HIGH_BETA = (20, 36)
-FULL_BETA = (13, 36)
+
 
 
 def Time_Frequency_Estimation(signal):
@@ -23,6 +19,12 @@ def beta_bands(run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
+    THETA = (4, 9)
+    MU = (8, 13)
+    LOW_BETA = (13, 21)
+    HIGH_BETA = (20, 36)
+    FULL_BETA = (13, 36)
+
     l_theta = []
     l_mu = []
     l_low_beta = []
@@ -39,7 +41,7 @@ def beta_bands(run_TF):
     return l_theta, l_mu, l_low_beta, l_high_beta, l_full_beta
 
 
-def beta_bands_sub3(run_TF):
+#def beta_bands_sub3(run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
