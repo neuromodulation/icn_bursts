@@ -176,6 +176,8 @@ resi_dist = permutation_test(
 r_dur, pvalue_dur, null_dur = resi_dur.statistic, resi_dur.pvalue, resi_dur.null_distribution
 r_ampl, pvalue_ampl, null_ampl = resi_ampl.statistic, resi_ampl.pvalue, resi_ampl.null_distribution
 r_rate, pvalue_rate, null_rate = resi_rate.statistic, resi_rate.pvalue, resi_rate.null_distribution
+r_dist, pvalue_dist, null_dist = resi_dist.statistic, resi_dist.pvalue, resi_dist.null_distribution
+r_dist, pvalue_dist = r_dist[0], pvalue_dist[0]
 
 print("done")
 
