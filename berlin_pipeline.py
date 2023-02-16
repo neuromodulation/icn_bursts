@@ -142,7 +142,7 @@ resi_dur = permutation_test(
 )
 
 resi_ampl = permutation_test(
-    (x_dur.values, y_dur.values),
+    (x_ampl.values, y_ampl.values),
     statistic,
     vectorized=False,
     permutation_type="samples",
@@ -150,7 +150,7 @@ resi_ampl = permutation_test(
 )
 
 resi_rate = permutation_test(
-    (x_dur.values, y_dur.values),
+    (x_rate.values, y_rate.values),
     statistic,
     vectorized=False,
     permutation_type="samples",
