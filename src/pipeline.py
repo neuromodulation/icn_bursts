@@ -155,7 +155,7 @@ def bursts_single_run(
     power_spectra_norm = [
         p_ch / np.sum(p_ch[4:45] + p_ch[54:95]) for p_ch in power_spectra
     ]
-    psd_M1 = power_spectra[m1]
+    psd_M1 = power_spectra_norm[m1]
 
     # Burst duration
     burst_duration = [
