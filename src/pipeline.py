@@ -134,15 +134,15 @@ def bursts_single_run(
     l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
     # smoothing traces
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[low]]
+    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[full]]
 
     # 75th percentile of the power
     l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
 
     # Plot Signal
-    plt.plot(time, l_beta_smooth[m1], color="b")
-    plt.axhline(l_beta_thr[m1], color="r", linestyle="--")
-    sns.despine()
+    #plt.plot(time, l_beta_smooth[m1], color="b")
+    #plt.axhline(l_beta_thr[m1], color="r", linestyle="--")
+    #sns.despine()
     # print("done")
 
     # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
@@ -155,7 +155,7 @@ def bursts_single_run(
     power_spectra_norm = [
         p_ch / np.sum(p_ch[4:45] + p_ch[54:95]) for p_ch in power_spectra
     ]
-    psd_M1 = power_spectra_norm[m1]
+    psd_M1 = power_spectra[m1]
 
     # Burst duration
     burst_duration = [

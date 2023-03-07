@@ -5,12 +5,6 @@ import mne
 import numpy
 
 
-THETA = (4, 9)
-MU = (8, 13)
-LOW_BETA = (13, 21)
-HIGH_BETA = (20, 36)
-FULL_BETA = (13, 36)
-
 def Time_Frequency_Estimation(signal):
     freqs = np.arange(1, 101)
     power = mne.decoding.TimeFrequency(
@@ -24,6 +18,12 @@ def beta_bands(run_TF):
     """
     Beta bands of the ecog channels: low beta(13-20Hz), high beta (20-35Hz), full beta (13-35Hz)
     """
+    THETA = (4, 9)
+    MU = (8, 13)
+    LOW_BETA = (13, 21)
+    HIGH_BETA = (20, 36)
+    FULL_BETA = (13, 36)
+
     l_theta = []
     l_mu = []
     l_low_beta = []
