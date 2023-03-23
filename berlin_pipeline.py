@@ -204,6 +204,7 @@ dist12 = df_sub_dist[df_sub_dist["Subject"] == 12]
 dist13 = df_sub_dist[df_sub_dist["Subject"] == 13]
 dist14 = df_sub_dist[df_sub_dist["Subject"] == 14]
 dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
+#dist16 = df_sub_dist[df_sub_dist["Subject"] == 16]
 
 # plot_utils.plot_distribution_sub3(dist3)
 # plot_utils.plot_distribution_sub4(dist4)
@@ -217,6 +218,7 @@ dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
 # plot_utils.plot_distribution_sub13(dist13)
 # plot_utils.plot_distribution_sub14(dist14)
 # plot_utils.plot_distribution_sub15(dist15)
+# plot_utils.plot_distribution_sub15(dist16)
 
 (
     psd_s3off,
@@ -243,6 +245,8 @@ dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
     psd_s14on,
     psd_s15off,
     psd_s15on,
+    #psd_s16off,
+    #psd_s16on,
     psd_off,
     psd_on,
 ) = postprocessing.arrange_psd(npow_list_all)
@@ -271,6 +275,162 @@ plot_utils.plot_psd_s12(psd_s12off, psd_s12on)
 plot_utils.plot_psd_s13(psd_s13off, psd_s13on)
 plot_utils.plot_psd_s14(psd_s14off, psd_s14on)
 plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
+#plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
+#plot_utils.plot_psd_s16(psd_s16off, psd_s16on)
 
 print("done")
 
+from matplotlib.patheffects import PathPatchEffect, SimpleLineShadow, Normal
+sns.set()
+
+# Theta
+x_ticks = np.arange(-2,9)
+# find peak in plot and write frequency down 
+peak_3_off = psd_s3off[4:15]
+peak_4_off = psd_s4off[6:17]
+peak_5_off = psd_s5off[3:14]
+
+peak_6_off = psd_s6off[5:16]
+peak_7_off = psd_s7off[4:15]
+
+peak_8_off = psd_s8off[4:15]
+peak_9_off = psd_s9off[5:16]
+peak_11_off = psd_s11off[3:14]
+peak_12_off = psd_s12off[7:18]
+peak_13_off = psd_s13off[5:16]
+peak_14_off = psd_s14off[3:14]
+peak_15_off = psd_s15off[5:16]
+peak_g_off = psd_off[5:16]
+
+peak_3_on = psd_s3on[6:17]
+peak_4_on = psd_s4on[6:17]
+peak_5_on = psd_s5on[4:15]
+peak_6_on = psd_s6on[4:15]
+peak_7_on = psd_s7on[3:14]
+peak_8_on = psd_s8on[2:13]
+peak_9_on = psd_s9on[5:16]
+peak_11_on = psd_s11on[3:14]
+peak_12_on = psd_s12on[7:18]
+peak_13_on = psd_s13on[5:16]
+peak_14_on = psd_s14on[3:14]
+peak_15_on = psd_s15on[5:16]
+peak_g_on = psd_on[3:14]
+
+plt.subplot(1,2,1)
+plt.plot(x_ticks, peak_3_off,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
+plt.legend(title="Theta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('STN')
+plt.title('OFF')
+
+plt.subplot(1,2,2)
+plt.plot(x_ticks, peak_3_on,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
+plt.legend(title="Theta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('STN')
+plt.title('ON')
+
+plt.show()
+
+
+
+# Beta
+x_ticks = np.arange(-5,6)
+# find peak in plot and write frequency down 
+peak_3_off = psd_s3off[10:21]
+peak_4_off = psd_s4off[10:21]
+peak_5_off = psd_s5off[12:23]
+
+peak_6_off = psd_s6off[21:32]
+peak_7_off = psd_s7off[16:27]
+
+peak_8_off = psd_s8off[11:22]
+peak_9_off = psd_s9off[15:26]
+peak_11_off = psd_s11off[9:20]
+peak_12_off = psd_s12off[19:30]
+peak_13_off = psd_s13off[9:20]
+peak_14_off = psd_s14off[16:27]
+peak_15_off = psd_s15off[10:21]
+peak_g_off = psd_off[10:21]
+
+peak_3_on = psd_s3on[10:21]
+peak_4_on = psd_s4on[12:23]
+peak_5_on = psd_s5on[22:33]
+peak_6_on = psd_s6on[22:33]
+peak_7_on = psd_s7on[16:27]
+peak_8_on = psd_s8on[8:19]
+peak_9_on = psd_s9on[15:26]
+peak_11_on = psd_s11on[10:21]
+peak_12_on = psd_s12on[20:31]
+peak_13_on = psd_s13on[19:30]
+peak_14_on = psd_s14on[17:28]
+peak_15_on = psd_s15on[10:21]
+peak_g_on = psd_on[10:21]
+
+plt.subplot(1,2,1)
+plt.plot(x_ticks, peak_3_off,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
+plt.legend(title="Beta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('STN')
+plt.title('OFF')
+
+plt.subplot(1,2,2)
+plt.plot(x_ticks, peak_3_on,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
+plt.legend(title="Beta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('STN')
+plt.title('ON')
+
+plt.show()

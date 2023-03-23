@@ -68,6 +68,8 @@ def bursts_single_run(
         raw_lfp = preprocessing.pick_lfp13(raw_annots)
     if sub == "014":
         raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    if sub == "016":
+        raw_lfp = preprocessing.pick_lfp15(raw_annots)
     # else:
     #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
 

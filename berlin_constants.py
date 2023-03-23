@@ -37,7 +37,8 @@ M1_IDS = {
     "012": 0,
     "013": 3,
     "014": 4,
-    "015": 2
+    "015": 2,
+    "016": 4
 }
 
 bands = {
@@ -53,7 +54,8 @@ bands = {
     "012": 0,
     "013": 3,
     "014": 4,
-    "015": 2
+    "015": 2,
+    "016": 4
 }
 
 NEW_CH_NAMES_MAP = {
@@ -140,6 +142,13 @@ NEW_CH_NAMES_MAP = {
         "ECOG_R_5_6_SMC_AT"
     ],
     "015": [
+        "ECOG_R_1_2_SMC_AT",
+        "ECOG_R_2_3_SMC_AT",
+        "ECOG_R_3_4_SMC_AT",
+        "ECOG_R_4_5_SMC_AT",
+        "ECOG_R_5_6_SMC_AT"
+    ],
+    "016": [
         "ECOG_R_1_2_SMC_AT",
         "ECOG_R_2_3_SMC_AT",
         "ECOG_R_3_4_SMC_AT",

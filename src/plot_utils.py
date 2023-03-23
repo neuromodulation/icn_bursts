@@ -405,6 +405,21 @@ def plot_psd_s15(psd_s15off, psd_s15on):
     sns.despine()
     return fig
 
+def plot_psd_s16(psd_s16off, psd_s16on):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(17)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s16off, label="Off (23)")
+    plt.plot(psd_s16on, label="On (14)")
+    plt.xlim(4, 40)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub16")
+
+    sns.despine()
+    return fig
+
 
 def plot_distribution_sub3(dist):
     sns.set(style="white", font_scale=1)
@@ -626,6 +641,21 @@ def plot_distribution_sub15(dist):
     sns.despine()
     return fig
 
+def plot_distribution_sub16(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(30)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 16")
+
+    sns.despine()
+    return fig
 
 def histplot_burst_length(burst_length, bins=8, range=(0.1, 0.8)):
     """ plot in histogram burst lengths"""
