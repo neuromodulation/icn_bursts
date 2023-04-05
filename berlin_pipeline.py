@@ -340,3 +340,78 @@ plt.suptitle('M1')
 plt.title('ON')
 
 plt.show()
+
+# Beta
+x_ticks = np.arange(-5,6)
+# find peak in plot and write frequency down 
+peak_3_off = psd_s3off[15:26]
+peak_4_off = psd_s4off[9:20]
+peak_5_off = psd_s5off[10:21]
+
+peak_6_off = psd_s6off[20:31]
+peak_7_off = psd_s7off[16:27]
+
+peak_8_off = psd_s8off[11:22]
+peak_9_off = psd_s9off[14:25]
+peak_11_off = psd_s11off[12:23]
+peak_12_off = psd_s12off[18:29]
+peak_13_off = psd_s13off[18:29]
+peak_14_off = psd_s14off[15:26]
+peak_15_off = psd_s15off[12:23]
+peak_g_off = psd_off[17:28]
+
+peak_3_on = psd_s3on[7:18]
+peak_4_on = psd_s4on[21:32]
+peak_5_on = psd_s5on[10:21]
+peak_6_on = psd_s6on[20:31]
+peak_7_on = psd_s7on[16:27]
+peak_8_on = psd_s8on[8:19]
+peak_9_on = psd_s9on[12:23]
+peak_11_on = psd_s11on[13:24]
+peak_12_on = psd_s12on[19:30]
+peak_13_on = psd_s13on[19:30]
+peak_14_on = psd_s14on[15:26]
+peak_15_on = psd_s15on[16:27]
+peak_g_on = psd_on[17:28]
+
+plt.subplot(1,2,1)
+plt.plot(x_ticks, peak_3_off,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
+plt.legend(title="Beta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('M1')
+plt.title('OFF')
+
+plt.subplot(1,2,2)
+plt.plot(x_ticks, peak_3_on,  label='3')
+plt.plot(x_ticks, peak_4_on, label='4')
+plt.plot(x_ticks, peak_5_on, label='5')
+plt.plot(x_ticks, peak_6_on, label='6')
+plt.plot(x_ticks, peak_7_on, label='7')
+plt.plot(x_ticks, peak_8_on, label='8')
+plt.plot(x_ticks, peak_9_on, label='9')
+plt.plot(x_ticks, peak_11_on, label='11')
+plt.plot(x_ticks, peak_12_on, label='12')
+plt.plot(x_ticks, peak_13_on, label='13')
+plt.plot(x_ticks, peak_14_on, label='14')
+plt.plot(x_ticks, peak_15_on, label='15')
+plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
+plt.legend(title="Beta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('M1')
+plt.title('ON')
+
+plt.show()
