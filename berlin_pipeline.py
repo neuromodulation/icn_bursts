@@ -28,7 +28,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "003" in f]
+    files_x = [f for f in files if "004" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -91,6 +91,7 @@ avg_features = postprocessing.avg_features_sub(burst_char_pd_all)
 df_gavg_dist, df_sub_dist = postprocessing.avg_distribution(M1_burst_dynamics_all)
 
 plot_utils.plot_avgm1_burst_features(avg_features)
+plot_utils.plot_m1_burst_features(features)
 
 plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
@@ -241,11 +242,11 @@ dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
 
 # PLOTS #
 # Features
-plot_utils.plot_avgm1_burst_features(avg_features)
-plot_utils.plot_m1_burst_features(features)
+#plot_utils.plot_avgm1_burst_features(avg_features)
+#plot_utils.plot_m1_burst_features(features)
 
 # Distribution of Duration
-plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
+#plot_utils.plot_distribution(df_gavg_dist, df_sub_dist)
 
 print("done")
 
@@ -266,6 +267,9 @@ plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
 print("done")
 
 # peak analyse
+
+from matplotlib.patheffects import PathPatchEffect, SimpleLineShadow, Normal
+sns.set()
 
 x_ticks = np.arange(-2,9)
 # find peak in plot and write frequency down 
@@ -300,18 +304,18 @@ peak_15_on = psd_s15on[3:14]
 peak_g_on = psd_on[6:17]
 
 plt.subplot(1,2,1)
-plt.plot(x_ticks, peak_3_off,  color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_4_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_5_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_6_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_7_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_8_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_9_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_11_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_12_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_13_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_14_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_15_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_3_off, label='3')
+plt.plot(x_ticks, peak_4_off, label='4')
+plt.plot(x_ticks, peak_5_off, label='5')
+plt.plot(x_ticks, peak_6_off, label='6')
+plt.plot(x_ticks, peak_7_off, label='7')
+plt.plot(x_ticks, peak_8_off, label='8')
+plt.plot(x_ticks, peak_9_off, label='9')
+plt.plot(x_ticks, peak_11_off, label='11')
+plt.plot(x_ticks, peak_12_off, label='12')
+plt.plot(x_ticks, peak_13_off, label='13')
+plt.plot(x_ticks, peak_14_off, label='14')
+plt.plot(x_ticks, peak_15_off, label='15')
 plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
 plt.legend(title="Theta", frameon=False)
 plt.xlabel("Frequency (Hz)")
@@ -320,18 +324,18 @@ plt.suptitle('M1')
 plt.title('OFF')
 
 plt.subplot(1,2,2)
-plt.plot(x_ticks, peak_3_on,  color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_4_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_5_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_6_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_7_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_8_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_9_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_11_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_12_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_13_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_14_on, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_15_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_3_on, label='3')
+plt.plot(x_ticks, peak_4_on, label='4')
+plt.plot(x_ticks, peak_5_on, label='5')
+plt.plot(x_ticks, peak_6_on, label='6')
+plt.plot(x_ticks, peak_7_on, label='7')
+plt.plot(x_ticks, peak_8_on, label='8')
+plt.plot(x_ticks, peak_9_on, label='9')
+plt.plot(x_ticks, peak_11_on, label='11')
+plt.plot(x_ticks, peak_12_on, label='12')
+plt.plot(x_ticks, peak_13_on, label='13')
+plt.plot(x_ticks, peak_14_on, label='14')
+plt.plot(x_ticks, peak_15_on, label='15')
 plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
 plt.legend(title="Theta", frameon=False)
 plt.xlabel("Frequency (Hz)")
@@ -375,18 +379,18 @@ peak_15_on = psd_s15on[16:27]
 peak_g_on = psd_on[17:28]
 
 plt.subplot(1,2,1)
-plt.plot(x_ticks, peak_3_off,  color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_4_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_5_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_6_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_7_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_8_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_9_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_11_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_12_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_13_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_14_off, color='grey', alpha=0.5)
-plt.plot(x_ticks, peak_15_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_3_off, label='3')
+plt.plot(x_ticks, peak_4_off, label='4')
+plt.plot(x_ticks, peak_5_off, label='5')
+plt.plot(x_ticks, peak_6_off, label='6')
+plt.plot(x_ticks, peak_7_off, label='7')
+plt.plot(x_ticks, peak_8_off, label='8')
+plt.plot(x_ticks, peak_9_off, label='9')
+plt.plot(x_ticks, peak_11_off, label='11')
+plt.plot(x_ticks, peak_12_off, label='12')
+plt.plot(x_ticks, peak_13_off, label='13')
+plt.plot(x_ticks, peak_14_off, label='14')
+plt.plot(x_ticks, peak_15_off, label='15')
 plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
 plt.legend(title="Beta", frameon=False)
 plt.xlabel("Frequency (Hz)")

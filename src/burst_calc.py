@@ -42,7 +42,7 @@ def beta_bands(run_TF):
 
 def beta_bands_sub3(run_TF):
     indTHETA = (5, 8)
-    indBETA = (14, 17)
+    indBETA = (19, 22)
 
     l_theta = []
     l_beta = []
@@ -54,8 +54,8 @@ def beta_bands_sub3(run_TF):
     return l_theta, l_beta
 
 def beta_bands_sub3_on(run_TF):
-    indTHETA = (7, 10)
-    indBETA = (14, 17)
+    indTHETA = (4, 7)
+    indBETA = (11, 14)
 
     l_theta = []
     l_beta = []
@@ -67,149 +67,6 @@ def beta_bands_sub3_on(run_TF):
     return l_theta, l_beta
 
 def beta_bands_sub4(run_TF):
-    indTHETA = (7, 10)
-    indBETA = (14, 17)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub4_on(run_TF):
-    indTHETA = (7, 10)
-    indBETA = (16, 19)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub5(run_TF):
-    indTHETA = (4, 7)
-    indBETA = (16, 19)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub5_on(run_TF):
-    indTHETA = (5, 8)
-    indBETA = (26, 29)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub6(run_TF):
-    indTHETA = (6, 9)
-    indBETA = (25, 28)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub7(run_TF):
-    indTHETA = (5, 8)
-    indBETA = (20, 23)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub7_on(run_TF):
-    indTHETA = (4, 7)
-    indBETA = (21, 24)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub8(run_TF):
-    indTHETA = (5, 8)
-    indBETA = (15, 18)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub8_on(run_TF):
-    indTHETA = (4, 7)
-    indBETA = (10, 13)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub9(run_TF):
-    indTHETA = (6, 9)
-    indBETA = (19, 22)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub9_on(run_TF):
-    indTHETA = (6, 9)
-    indBETA = (19, 22)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub11(run_TF):
     indTHETA = (4, 7)
     indBETA = (13, 16)
 
@@ -222,7 +79,33 @@ def beta_bands_sub11(run_TF):
 
     return l_theta, l_beta
 
-def beta_bands_sub11_on(run_TF):
+def beta_bands_sub4_on(run_TF):
+    indTHETA = (4, 7)
+    indBETA = (25, 28)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub5(run_TF):
+    indTHETA = (5, 8)
+    indBETA = (14, 17)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub5_on(run_TF):
     indTHETA = (4, 7)
     indBETA = (14, 17)
 
@@ -235,21 +118,8 @@ def beta_bands_sub11_on(run_TF):
 
     return l_theta, l_beta
 
-def beta_bands_sub12(run_TF):
-    indTHETA = (8, 11)
-    indBETA = (23, 26)
-
-    l_theta = []
-    l_beta = []
-
-    for ch_idx in range(run_TF.shape[0]):
-        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
-        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
-
-    return l_theta, l_beta
-
-def beta_bands_sub12_on(run_TF):
-    indTHETA = (8, 11)
+def beta_bands_sub6(run_TF):
+    indTHETA = (4, 7)
     indBETA = (24, 27)
 
     l_theta = []
@@ -261,7 +131,124 @@ def beta_bands_sub12_on(run_TF):
 
     return l_theta, l_beta
 
-def beta_bands_sub13(run_TF):
+def beta_bands_sub7(run_TF):
+    indTHETA = (4, 7)
+    indBETA = (20, 23)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub7_on(run_TF):
+    indTHETA = (5, 8)
+    indBETA = (20, 23)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub8(run_TF):
+    indTHETA = (4, 7)
+    indBETA = (15, 18)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub8_on(run_TF):
+    indTHETA = (6, 9)
+    indBETA = (12, 15)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub9(run_TF):
+    indTHETA = (9, 12)
+    indBETA = (18, 21)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub9_on(run_TF):
+    indTHETA = (8, 11)
+    indBETA = (16, 19)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub11(run_TF):
+    indTHETA = (7, 10)
+    indBETA = (16, 19)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub11_on(run_TF):
+    indTHETA = (7, 10)
+    indBETA = (17, 20)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub12(run_TF):
+    indTHETA = (9, 12)
+    indBETA = (22, 25)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub12_on(run_TF):
     indTHETA = (6, 9)
     indBETA = (23, 26)
 
@@ -274,8 +261,21 @@ def beta_bands_sub13(run_TF):
 
     return l_theta, l_beta
 
+def beta_bands_sub13(run_TF):
+    indTHETA = (7, 10)
+    indBETA = (22, 25)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
 def beta_bands_sub13_on(run_TF):
-    indTHETA = (6, 9)
+    indTHETA = (7, 10)
     indBETA = (23, 26)
 
     l_theta = []
@@ -289,7 +289,7 @@ def beta_bands_sub13_on(run_TF):
 
 def beta_bands_sub14(run_TF):
     indTHETA = (4, 7)
-    indBETA = (20, 23)
+    indBETA = (19, 22)
 
     l_theta = []
     l_beta = []
@@ -301,8 +301,8 @@ def beta_bands_sub14(run_TF):
     return l_theta, l_beta
 
 def beta_bands_sub14_on(run_TF):
-    indTHETA = (4, 7)
-    indBETA = (21, 24)
+    indTHETA = (8, 11)
+    indBETA = (19, 22)
 
     l_theta = []
     l_beta = []
@@ -314,8 +314,8 @@ def beta_bands_sub14_on(run_TF):
     return l_theta, l_beta
 
 def beta_bands_sub15(run_TF):
-    indTHETA = (6, 9)
-    indBETA = (14, 17)
+    indTHETA = (4, 7)
+    indBETA = (16, 19)
 
     l_theta = []
     l_beta = []
@@ -327,8 +327,8 @@ def beta_bands_sub15(run_TF):
     return l_theta, l_beta
 
 def beta_bands_sub15_on(run_TF):
-    indTHETA = (6, 9)
-    indBETA = (14, 17)
+    indTHETA = (4, 7)
+    indBETA = (20, 23)
 
     l_theta = []
     l_beta = []
