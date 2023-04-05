@@ -265,3 +265,78 @@ plot_utils.plot_psd_s14(psd_s14off, psd_s14on)
 plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
 print("done")
 
+# peak analyse
+
+x_ticks = np.arange(-2,9)
+# find peak in plot and write frequency down 
+peak_3_off = psd_s3off[4:15]
+peak_4_off = psd_s4off[3:14]
+peak_5_off = psd_s5off[4:15]
+
+peak_6_off = psd_s6off[6:17]
+peak_7_off = psd_s7off[3:14]
+
+peak_8_off = psd_s8off[3:14]
+peak_9_off = psd_s9off[8:19]
+peak_11_off = psd_s11off[6:17]
+peak_12_off = psd_s12off[8:19]
+peak_13_off = psd_s13off[6:17]
+peak_14_off = psd_s14off[3:14]
+peak_15_off = psd_s15off[3:14]
+peak_g_off = psd_off[3:14]
+
+peak_3_on = psd_s3on[3:14]
+peak_4_on = psd_s4on[3:14]
+peak_5_on = psd_s5on[3:14]
+peak_6_on = psd_s6on[6:17]
+peak_7_on = psd_s7on[4:15]
+peak_8_on = psd_s8on[5:16]
+peak_9_on = psd_s9on[7:18]
+peak_11_on = psd_s11on[6:17]
+peak_12_on = psd_s12on[5:16]
+peak_13_on = psd_s13on[6:17]
+peak_14_on = psd_s14on[7:18]
+peak_15_on = psd_s15on[3:14]
+peak_g_on = psd_on[6:17]
+
+plt.subplot(1,2,1)
+plt.plot(x_ticks, peak_3_off,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_off, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
+plt.legend(title="Theta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('M1')
+plt.title('OFF')
+
+plt.subplot(1,2,2)
+plt.plot(x_ticks, peak_3_on,  color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_4_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_5_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_6_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_7_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_8_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_9_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_11_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_12_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_13_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_14_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_15_on, color='grey', alpha=0.5)
+plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
+plt.legend(title="Theta", frameon=False)
+plt.xlabel("Frequency (Hz)")
+plt.ylabel("Relative spectral power (au)")
+plt.suptitle('M1')
+plt.title('ON')
+
+plt.show()
