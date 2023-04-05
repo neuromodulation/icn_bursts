@@ -85,6 +85,8 @@ def avg_features_sub(burst_char_pd_all):
     rfeat_14on = feat_14on.drop(columns=["Run"])
     rfeat_15off = feat_15off.drop(columns=["Run"])
     rfeat_15on = feat_15on.drop(columns=["Run"])
+    #rfeat_16off = feat_16off.drop(columns=["Run"])
+    #rfeat_16on = feat_16on.drop(columns=["Run"])
 
 
     avg_features = pd.concat(
@@ -654,7 +656,7 @@ def arrange_psd(npow_list_all):
             psd_s13off,
             psd_s14off,
             psd_s15off,
-           # psd_s16off
+            #psd_s16off
         ],
         axis=0,
     )
@@ -672,7 +674,7 @@ def arrange_psd(npow_list_all):
             psd_s13on,
             psd_s14on,
             psd_s15on,
-         #   psd_s16on
+            #psd_s16on
         ],
         axis=0,
     )
