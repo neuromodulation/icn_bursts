@@ -455,8 +455,8 @@ def avg_distribution(M1_burst_dynamics_all):
     df15_avg_dist = pd.concat([dt15_off, dt15_on], ignore_index=True)
     df15_avg_dist.insert(1, "Subject", 15)
 
-    d16_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s15off}
-    d16_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s15on}
+    d16_off = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s16off}
+    d16_on = {"Burst Duration (s)": bins, "Probability of Bursts (%)": dis_s16on}
     dt16_off = pd.DataFrame(d16_off)
     dt16_off.insert(1, "Medication", "OFF")
     dt16_on = pd.DataFrame(d16_on)
