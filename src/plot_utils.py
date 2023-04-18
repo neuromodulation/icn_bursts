@@ -390,12 +390,12 @@ def plot_psd_s14(psd_s14off, psd_s14on):
     return fig
 
 
-def plot_psd_s15(psd_s14off, psd_s14on):
+def plot_psd_s15(psd_s15off, psd_s15on):
     sns.set(style="white", font_scale=1)
     fig = plt.figure(17)
     sns.set(style="white", font_scale=1)
-    plt.plot(psd_s14off, label="Off (47)")
-    plt.plot(psd_s14on, label="On (28)")
+    plt.plot(psd_s15off, label="Off (47)")
+    plt.plot(psd_s15on, label="On (28)")
     plt.xlim(4, 40)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Relative spectral power (au)")
@@ -405,6 +405,257 @@ def plot_psd_s15(psd_s14off, psd_s14on):
     sns.despine()
     return fig
 
+def plot_psd_s16(psd_s16off, psd_s16on):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(18)
+    sns.set(style="white", font_scale=1)
+    plt.plot(psd_s16off, label="Off (23)")
+    plt.plot(psd_s16on, label="On (14)")
+    plt.xlim(4, 40)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.legend(title="Medication", fontsize=15, title_fontsize=15)
+    plt.title("PSD sub16")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub3(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(18)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 3")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub4(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(19)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 4")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub5(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(20)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 5")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub6(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(21)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 6")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub7(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(22)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 7")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub8(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(23)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 8")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub9(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(24)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 9")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub10(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(25)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 10")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub11(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(26)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 11")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub12(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(27)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 12")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub13(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(28)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 13")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub14(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(29)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 14")
+
+    sns.despine()
+    return fig
+
+
+def plot_distribution_sub15(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(30)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 15")
+
+    sns.despine()
+    return fig
+
+def plot_distribution_sub16(dist):
+    sns.set(style="white", font_scale=1)
+    fig = plt.figure(31)
+    sns.barplot(
+        x="Burst Duration (s)",
+        y="Probability of Bursts (%)",
+        hue="Medication",
+        data=dist,
+        palette="colorblind",
+        saturation=0.4,
+    )
+    plt.title("Distribution LFP sub 16")
+
+    sns.despine()
+    return fig
 
 def histplot_burst_length(burst_length, bins=8, range=(0.1, 0.8)):
     """ plot in histogram burst lengths"""
@@ -533,224 +784,3 @@ def plot_burst_dynamics(
         )
 
     sns.despine()
-
-
-def plot_distribution_sub3(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(18)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 3")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub4(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(19)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 4")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub5(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(20)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 5")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub6(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(21)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 6")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub7(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(22)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 7")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub8(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(23)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 8")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub9(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(24)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 9")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub10(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(25)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 10")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub11(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(26)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 11")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub12(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(27)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 12")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub13(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(28)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 13")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub14(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(29)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 14")
-
-    sns.despine()
-    return fig
-
-
-def plot_distribution_sub15(dist):
-    sns.set(style="white", font_scale=1)
-    fig = plt.figure(30)
-    sns.barplot(
-        x="Burst Duration (s)",
-        y="Probability of Bursts (%)",
-        hue="Medication",
-        data=dist,
-        palette="colorblind",
-        saturation=0.4,
-    )
-    plt.title("Distribution M1 sub 15")
-
-    sns.despine()
-    return fig

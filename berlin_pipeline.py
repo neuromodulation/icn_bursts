@@ -28,7 +28,7 @@ def main():
         for remove_subject in remove_subjects:
             files = [file for file in files if remove_subject not in file]
     files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "004" in f]
+    files_x = [f for f in files if "EL016" in f]
 
     # Define variables
     burst_char_pd_all = []
@@ -292,6 +292,7 @@ peak_12_off = psd_s12off[8:19]
 peak_13_off = psd_s13off[6:17]
 peak_14_off = psd_s14off[3:14]
 peak_15_off = psd_s15off[3:14]
+peak_16_off = psd_s16off[8:19]
 peak_g_off = psd_off[3:14]
 
 peak_3_on = psd_s3on[3:14]
@@ -306,6 +307,7 @@ peak_12_on = psd_s12on[5:16]
 peak_13_on = psd_s13on[6:17]
 peak_14_on = psd_s14on[7:18]
 peak_15_on = psd_s15on[3:14]
+peak_16_on = psd_s16on[8:19]
 peak_g_on = psd_on[6:17]
 
 plt.subplot(1,2,1)
@@ -321,6 +323,7 @@ plt.plot(x_ticks, peak_12_off, label='12')
 plt.plot(x_ticks, peak_13_off, label='13')
 plt.plot(x_ticks, peak_14_off, label='14')
 plt.plot(x_ticks, peak_15_off, label='15')
+plt.plot(x_ticks, peak_16_off, label='16')
 plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
 plt.legend(title="Theta", frameon=False)
 plt.xlabel("Frequency (Hz)")
@@ -341,6 +344,7 @@ plt.plot(x_ticks, peak_12_on, label='12')
 plt.plot(x_ticks, peak_13_on, label='13')
 plt.plot(x_ticks, peak_14_on, label='14')
 plt.plot(x_ticks, peak_15_on, label='15')
+plt.plot(x_ticks, peak_16_on, label='16')
 plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
 plt.legend(title="Theta", frameon=False)
 plt.xlabel("Frequency (Hz)")
@@ -367,6 +371,7 @@ peak_12_off = psd_s12off[18:29]
 peak_13_off = psd_s13off[18:29]
 peak_14_off = psd_s14off[15:26]
 peak_15_off = psd_s15off[12:23]
+peak_16_off = psd_s16off[15:26]
 peak_g_off = psd_off[17:28]
 
 peak_3_on = psd_s3on[7:18]
@@ -381,6 +386,7 @@ peak_12_on = psd_s12on[19:30]
 peak_13_on = psd_s13on[19:30]
 peak_14_on = psd_s14on[15:26]
 peak_15_on = psd_s15on[16:27]
+peak_16_on = psd_s16on[10:21]
 peak_g_on = psd_on[17:28]
 
 plt.subplot(1,2,1)
@@ -396,6 +402,7 @@ plt.plot(x_ticks, peak_12_off, label='12')
 plt.plot(x_ticks, peak_13_off, label='13')
 plt.plot(x_ticks, peak_14_off, label='14')
 plt.plot(x_ticks, peak_15_off, label='15')
+plt.plot(x_ticks, peak_16_off, label='16')
 plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
 plt.legend(title="Beta", frameon=False)
 plt.xlabel("Frequency (Hz)")
@@ -416,6 +423,7 @@ plt.plot(x_ticks, peak_12_on, label='12')
 plt.plot(x_ticks, peak_13_on, label='13')
 plt.plot(x_ticks, peak_14_on, label='14')
 plt.plot(x_ticks, peak_15_on, label='15')
+plt.plot(x_ticks, peak_16_on, label='16')
 plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
 plt.legend(title="Beta", frameon=False)
 plt.xlabel("Frequency (Hz)")

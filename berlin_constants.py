@@ -130,7 +130,7 @@ NEW_CH_NAMES_MAP = {
         "ECOG_R_4_5_SMC_AT",
         "ECOG_R_5_6_SMC_AT"
     ],
-     "016": [
+     "EL016": [
         "ECOG_R_1_2_SMC_AT",
         "ECOG_R_2_3_SMC_AT",
         "ECOG_R_3_4_SMC_AT",
