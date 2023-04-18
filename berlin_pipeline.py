@@ -195,6 +195,7 @@ dist12 = df_sub_dist[df_sub_dist["Subject"] == 12]
 dist13 = df_sub_dist[df_sub_dist["Subject"] == 13]
 dist14 = df_sub_dist[df_sub_dist["Subject"] == 14]
 dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
+dist16 = df_sub_dist[df_sub_dist["Subject"] == 16]
 
 # plot_utils.plot_distribution_sub3(dist3)
 # plot_utils.plot_distribution_sub4(dist4)
@@ -209,6 +210,7 @@ dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
 # plot_utils.plot_distribution_sub13(dist13)
 # plot_utils.plot_distribution_sub14(dist14)
 # plot_utils.plot_distribution_sub15(dist15)
+# plot_utils.plot_distribution_sub16(dist16)
 
 
 (
@@ -236,6 +238,8 @@ dist15 = df_sub_dist[df_sub_dist["Subject"] == 15]
     psd_s14on,
     psd_s15off,
     psd_s15on,
+    psd_s16off,
+    psd_s16on,
     psd_off,
     psd_on,
 ) = postprocessing.arrange_psd(npow_list_all)
@@ -264,6 +268,7 @@ plot_utils.plot_psd_s12(psd_s12off, psd_s12on)
 plot_utils.plot_psd_s13(psd_s13off, psd_s13on)
 plot_utils.plot_psd_s14(psd_s14off, psd_s14on)
 plot_utils.plot_psd_s15(psd_s15off, psd_s15on)
+plot_utils.plot_psd_s16(psd_s16off, psd_s16on)
 print("done")
 
 # peak analyse
