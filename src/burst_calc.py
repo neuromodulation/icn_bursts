@@ -314,6 +314,33 @@ def beta_bands_sub15(run_TF):
 
     return l_theta, l_beta
 
+
+def beta_bands_sub16(run_TF):
+    indTHETA = (6, 9)
+    indBETA = (13, 16)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
+def beta_bands_sub16_on(run_TF):
+    indTHETA = (6, 9)
+    indBETA = (25, 28)
+
+    l_theta = []
+    l_beta = []
+
+    for ch_idx in range(run_TF.shape[0]):
+        l_theta.append(run_TF[ch_idx, indTHETA[0] : indTHETA[1], :])
+        l_beta.append(run_TF[ch_idx, indBETA[0] :indBETA[1], :])
+
+    return l_theta, l_beta
+
 def avg_power(l_beta):
     return [np.mean(l_ch, axis=0) for l_ch in l_beta]
 

@@ -82,9 +82,9 @@ def bursts_single_run(
     raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
 
     # plot recording and save annotation
-    raw_lfp_dow.pick_channels(["LFP", "ECOG_L_1_2_SMC_AT"]).plot()
-    print("done")
-    # raw_lfp_dow.annotations.save('sub-015_ses-EcogLfpMedOn01_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
+    #raw_lfp_dow.pick_channels(["LFP", "ECOG_L_1_2_SMC_AT"]).plot()
+    #print("done")
+    # raw_lfp_dow.annotations.save('sub-EL016_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
     signal, time = preprocessing.get_data(raw_lfp_dow)
 
@@ -137,6 +137,10 @@ def bursts_single_run(
     #    l_beta = burst_calc.beta_bands_sub14_on(run_TF)
     #if sub == "015":
     #    l_beta = burst_calc.beta_bands_sub15(run_TF)
+    #if sub == "016" and med == "Off":
+    #    l_beta = burst_calc.beta_bands_sub16(run_TF)
+    #if sub == "016" and med == "On":
+    #    l_beta = burst_calc.beta_bands_sub16_on(run_TF)
 
     theta = 0
     mu = 1
