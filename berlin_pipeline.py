@@ -439,3 +439,11 @@ plt.suptitle('STN')
 plt.title('ON')
 
 print ('done')
+
+#Correlation Burst Duration and score
+scores = np.array([20, 15, 36, 19, 18, 12, 27, 15, 32, 13, 26, 18, 15, 7, 43, 35, 28, 9, 27, 9, 35, 13, 47, 28, 23, 14])
+duration = features['Duration (s)']
+plt.scatter(duration, scores)
+plt.xlabel('mean burst duration')
+plt.ylabel('UPDRS Score')
+plt.title('STN full beta ')
