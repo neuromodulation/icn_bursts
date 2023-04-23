@@ -16,16 +16,16 @@ def bursts_single_run(
     path_run: Union[str, pathlib.Path],
     path_bids: Union[str, pathlib.Path],
     sub: str,
-    m1: int,
-    new_ch_names: list[str],
-    med: list[str],
+    #m1: int,
+    #new_ch_names: list[str],
+    #med: list[str],
     session: str,
     task: str,
     acquisition: str,
     run: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
-    raw, data, sfreq, line_freq = IO.read_BIDS_data(path_run, path_bids)
+    raw, data, sfreq = IO.read_mat_data(path_run)
     annotations = mne.read_annotations(
         preprocessing.generate_annotations_fpath(
             folderpath="/Users/alidzaye/rest_annotations",

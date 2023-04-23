@@ -1,5 +1,6 @@
 import mne_bids
 import numpy as np
+import mne
 
 
 def read_BIDS_data(PATH_RUN, BIDS_PATH):
@@ -35,3 +36,18 @@ def read_BIDS_data(PATH_RUN, BIDS_PATH):
         int(raw_arr.info["line_freq"]),
     )
 
+def read_edf_data(fname):
+    raw_arr = mne.io.read_raw_edf(fname,encoding='latin1')
+    return (
+        raw_arr,
+        raw_arr.get_data(),
+        int(np.ceil(raw_arr.info["sfreq"])),
+    )
+
+def read_mat_data(fname):
+    raw_arr = mne.io.read_raw_fieldtrip(fname, info=None)
+    return (
+        raw_arr,
+        raw_arr.get_data(),
+        int(np.ceil(raw_arr.info["sfreq"])),
+    )

@@ -32,40 +32,43 @@ def main():
     files = preprocessing.pick_runs(files)
     files_x = [f for f in files if "016" in f]
 
+    ep = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf']
+    ep2 = ['/Users/alidzaye/DATA_Kienitz_FFM/8968177.mat']
+
     # Define variables
     burst_char_pd_all = []
     M1_burst_dynamics_all = []
     npow_list_all = []
 
     #  Process runs #
-    for path_run in files:
+    for path_run in ep2:
         entities = mne_bids.get_entities_from_fname(path_run)
         sub = entities["subject"]
         session = entities["session"]
         task = entities["task"]
         acquisition = entities["acquisition"]
         run = entities["run"]
-        med = "On" if "MedOn" in entities["session"] else "Off"
+        #med = "On" if "MedOn" in entities["session"] else "Off"
         (burst_char_pd, M1_burst_dynamics, npow,) = pipeline.bursts_single_run(
             path_run=path_run,
             path_bids=path_bids,
             sub=sub,
-            m1=m1_ids[sub],
-            new_ch_names=new_ch_names_map[sub],
-            med=med,
+            #m1=m1_ids[sub],
+            #new_ch_names=new_ch_names_map[sub],
+            #med=med,
             session=session,
             task=task,
             acquisition=acquisition,
             run=run,
         )
         burst_char_pd["Subject"] = sub
-        burst_char_pd["Medication"] = med
+        #burst_char_pd["Medication"] = med
         burst_char_pd["Run"] = run
         M1_burst_dynamics["Subject"] = sub
-        M1_burst_dynamics["Medication"] = med
+        #M1_burst_dynamics["Medication"] = med
         M1_burst_dynamics["Run"] = run
         npow["Subject"] = sub
-        npow["Medication"] = med
+        #npow["Medication"] = med
         npow["Run"] = run
         burst_char_pd_all.append(burst_char_pd)
         M1_burst_dynamics_all.append(M1_burst_dynamics)
