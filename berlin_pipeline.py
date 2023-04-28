@@ -310,49 +310,8 @@ peak_15_on = psd_s15on[3:14]
 peak_16_on = psd_s16on[8:19]
 peak_g_on = psd_on[6:17]
 
-plt.subplot(1,2,1)
-plt.plot(x_ticks, peak_3_off, label='3')
-plt.plot(x_ticks, peak_4_off, label='4')
-plt.plot(x_ticks, peak_5_off, label='5')
-plt.plot(x_ticks, peak_6_off, label='6')
-plt.plot(x_ticks, peak_7_off, label='7')
-plt.plot(x_ticks, peak_8_off, label='8')
-plt.plot(x_ticks, peak_9_off, label='9')
-plt.plot(x_ticks, peak_11_off, label='11')
-plt.plot(x_ticks, peak_12_off, label='12')
-plt.plot(x_ticks, peak_13_off, label='13')
-plt.plot(x_ticks, peak_14_off, label='14')
-plt.plot(x_ticks, peak_15_off, label='15')
-plt.plot(x_ticks, peak_16_off, label='16')
-plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
-plt.legend(title="Theta", frameon=False)
-plt.xlabel("Frequency (Hz)")
-plt.ylabel("Relative spectral power (au)")
-plt.suptitle('M1')
-plt.title('OFF')
+plot_utils.plot_theta_peaks(peak_3_off,peak_4_off,peak_5_off,peak_6_off,peak_7_off,peak_8_off,peak_9_off,peak_11_off,peak_12_off,peak_13_off,peak_14_off,peak_15_off,peak_16_off,peak_3_on,peak_4_on,peak_5_on,peak_6_on,peak_7_on,peak_8_on,peak_9_on,peak_11_on,peak_12_on,peak_13_on,peak_14_on,peak_15_on,peak_16_on, peak_g_off, peak_g_on)
 
-plt.subplot(1,2,2)
-plt.plot(x_ticks, peak_3_on, label='3')
-plt.plot(x_ticks, peak_4_on, label='4')
-plt.plot(x_ticks, peak_5_on, label='5')
-plt.plot(x_ticks, peak_6_on, label='6')
-plt.plot(x_ticks, peak_7_on, label='7')
-plt.plot(x_ticks, peak_8_on, label='8')
-plt.plot(x_ticks, peak_9_on, label='9')
-plt.plot(x_ticks, peak_11_on, label='11')
-plt.plot(x_ticks, peak_12_on, label='12')
-plt.plot(x_ticks, peak_13_on, label='13')
-plt.plot(x_ticks, peak_14_on, label='14')
-plt.plot(x_ticks, peak_15_on, label='15')
-plt.plot(x_ticks, peak_16_on, label='16')
-plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
-plt.legend(title="Theta", frameon=False)
-plt.xlabel("Frequency (Hz)")
-plt.ylabel("Relative spectral power (au)")
-plt.suptitle('M1')
-plt.title('ON')
-
-plt.show()
 
 # Beta
 x_ticks = np.arange(-5,6)
@@ -389,57 +348,23 @@ peak_15_on = psd_s15on[16:27]
 peak_16_on = psd_s16on[10:21]
 peak_g_on = psd_on[17:28]
 
-plt.subplot(1,2,1)
-plt.plot(x_ticks, peak_3_off, label='3')
-plt.plot(x_ticks, peak_4_off, label='4')
-plt.plot(x_ticks, peak_5_off, label='5')
-plt.plot(x_ticks, peak_6_off, label='6')
-plt.plot(x_ticks, peak_7_off, label='7')
-plt.plot(x_ticks, peak_8_off, label='8')
-plt.plot(x_ticks, peak_9_off, label='9')
-plt.plot(x_ticks, peak_11_off, label='11')
-plt.plot(x_ticks, peak_12_off, label='12')
-plt.plot(x_ticks, peak_13_off, label='13')
-plt.plot(x_ticks, peak_14_off, label='14')
-plt.plot(x_ticks, peak_15_off, label='15')
-plt.plot(x_ticks, peak_16_off, label='16')
-plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
-plt.legend(title="Beta", frameon=False)
-plt.xlabel("Frequency (Hz)")
-plt.ylabel("Relative spectral power (au)")
-plt.suptitle('M1')
-plt.title('OFF')
-
-plt.subplot(1,2,2)
-plt.plot(x_ticks, peak_3_on,  label='3')
-plt.plot(x_ticks, peak_4_on, label='4')
-plt.plot(x_ticks, peak_5_on, label='5')
-plt.plot(x_ticks, peak_6_on, label='6')
-plt.plot(x_ticks, peak_7_on, label='7')
-plt.plot(x_ticks, peak_8_on, label='8')
-plt.plot(x_ticks, peak_9_on, label='9')
-plt.plot(x_ticks, peak_11_on, label='11')
-plt.plot(x_ticks, peak_12_on, label='12')
-plt.plot(x_ticks, peak_13_on, label='13')
-plt.plot(x_ticks, peak_14_on, label='14')
-plt.plot(x_ticks, peak_15_on, label='15')
-plt.plot(x_ticks, peak_16_on, label='16')
-plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
-plt.legend(title="Beta", frameon=False)
-plt.xlabel("Frequency (Hz)")
-plt.ylabel("Relative spectral power (au)")
-plt.suptitle('M1')
-plt.title('ON')
-
-plt.show()
+plot_utils.plot_beta_peaks(peak_3_off,peak_4_off,peak_5_off,peak_6_off,peak_7_off,peak_8_off,peak_9_off,peak_11_off,peak_12_off,peak_13_off,peak_14_off,peak_15_off,peak_16_off,peak_3_on,peak_4_on,peak_5_on,peak_6_on,peak_7_on,peak_8_on,peak_9_on,peak_11_on,peak_12_on,peak_13_on,peak_14_on,peak_15_on,peak_16_on, peak_g_off, peak_g_on)
 
 
-#Correlation Burst Duration and score
-scores = np.array([20, 15, 36, 19, 18, 12, 27, 15, 32, 13, 26, 18, 15, 7, 43, 35, 28, 9, 27, 9, 35, 13, 47, 28, 23, 14])
-duration = features['Duration (s)']
-plt.scatter(duration, scores)
-plt.xlabel('mean burst duration')
-plt.ylabel('UPDRS Score')
-plt.title('M1 full beta ')
+#Correlation Burst Duration and Score
+scores_off = np.array([20, 36, 18, 27, 32, 26, 15, 43, 28, 27, 35, 47, 23])
+scores_on = np.array([15, 19, 12, 15, 13, 18, 7, 35, 9, 9, 13, 28, 14])
+duration_off
+amplitude_off 
+rate_off 
+
+plot_utils.plot_duration_scores_off(duration_off, scores_off)
+plot_utils.plot_duration_scores_on(duration_off, scores_on)
+plot_utils.plot_amplitude_scores_off(amplitude_off, scores_off)
+
+
+plot_utils.plot_amplitude_scores_on(amplitude_on, scores_off)
+plot_utils.plot_rate_scores_off(amplitude_off, scores_off)
+plot_utils.plot_rate_scores_on(amplitude_on, scores_off)
 
 
