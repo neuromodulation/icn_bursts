@@ -3,6 +3,8 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 import string
+from matplotlib.patheffects import PathPatchEffect, SimpleLineShadow, Normal
+sns.set()
 
 ALPHA_BOX = 0.4
 
@@ -643,7 +645,7 @@ def plot_distribution_sub15(dist):
 
 def plot_distribution_sub16(dist):
     sns.set(style="white", font_scale=1)
-    fig = plt.figure(30)
+    fig = plt.figure(31)
     sns.barplot(
         x="Burst Duration (s)",
         y="Probability of Bursts (%)",
@@ -784,3 +786,144 @@ def plot_burst_dynamics(
         )
 
     sns.despine()
+
+
+def plot_theta_peaks(peak_3_off,peak_4_off,peak_5_off,peak_6_off,peak_7_off,peak_8_off,peak_9_off,peak_11_off,peak_12_off,peak_13_off,peak_14_off,peak_15_off,peak_16_off,peak_3_on,peak_4_on,peak_5_on,peak_6_on,peak_7_on,peak_8_on,peak_9_on,peak_11_on,peak_12_on,peak_13_on,peak_14_on,peak_15_on,peak_16_on, peak_g_off, peak_g_on):
+
+    fig = plt.figure(32)
+    x_ticks = np.arange(-2,9)
+    plt.subplot(1,2,1)
+    plt.plot(x_ticks, peak_3_off,  label='3')
+    plt.plot(x_ticks, peak_4_off, label='4')
+    plt.plot(x_ticks, peak_5_off, label='5')
+    plt.plot(x_ticks, peak_6_off, label='6')
+    plt.plot(x_ticks, peak_7_off, label='7')
+    plt.plot(x_ticks, peak_8_off, label='8')
+    plt.plot(x_ticks, peak_9_off, label='9')
+    plt.plot(x_ticks, peak_11_off, label='11')
+    plt.plot(x_ticks, peak_12_off, label='12')
+    plt.plot(x_ticks, peak_13_off, label='13')
+    plt.plot(x_ticks, peak_14_off, label='14')
+    plt.plot(x_ticks, peak_15_off, label='15')
+    plt.plot(x_ticks, peak_16_off, label='16')
+    plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
+    plt.legend(title="Subject", frameon=False)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.suptitle('STN')
+    plt.title('OFF')
+
+    plt.subplot(1,2,2)
+    plt.plot(x_ticks, peak_3_on, label='3')
+    plt.plot(x_ticks, peak_4_on, label='4')
+    plt.plot(x_ticks, peak_5_on, label='5')
+    plt.plot(x_ticks, peak_6_on, label='6')
+    plt.plot(x_ticks, peak_7_on, label='7')
+    plt.plot(x_ticks, peak_8_on, label='8')
+    plt.plot(x_ticks, peak_9_on, label='9')
+    plt.plot(x_ticks, peak_11_on,label='11')
+    plt.plot(x_ticks, peak_12_on, label='12')
+    plt.plot(x_ticks, peak_13_on, label='13')
+    plt.plot(x_ticks, peak_14_on, label='14')
+    plt.plot(x_ticks, peak_15_on, label='15')
+    plt.plot(x_ticks, peak_16_on, label='16')
+    plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=4),Normal()])
+    plt.legend(title="Theta", frameon=False)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.suptitle('STN')
+    plt.title('ON')
+
+    plt.show()
+    return fig
+
+def plot_beta_peaks(peak_3_off,peak_4_off,peak_5_off,peak_6_off,peak_7_off,peak_8_off,peak_9_off,peak_11_off,peak_12_off,peak_13_off,peak_14_off,peak_15_off,peak_16_off,peak_3_on,peak_4_on,peak_5_on,peak_6_on,peak_7_on,peak_8_on,peak_9_on,peak_11_on,peak_12_on,peak_13_on,peak_14_on,peak_15_on,peak_16_on, peak_g_off, peak_g_on):
+
+    fig = plt.figure(33)
+    x_ticks = np.arange(-5,6)
+    plt.subplot(1,2,1)
+    plt.plot(x_ticks, peak_3_off,  label='3')
+    plt.plot(x_ticks, peak_4_off, label='4')
+    plt.plot(x_ticks, peak_5_off, label='5')
+    plt.plot(x_ticks, peak_6_off, label='6')
+    plt.plot(x_ticks, peak_7_off, label='7')
+    plt.plot(x_ticks, peak_8_off, label='8')
+    plt.plot(x_ticks, peak_9_off, label='9')
+    plt.plot(x_ticks, peak_11_off, label='11')
+    plt.plot(x_ticks, peak_12_off, label='12')
+    plt.plot(x_ticks, peak_13_off, label='13')
+    plt.plot(x_ticks, peak_14_off, label='14')
+    plt.plot(x_ticks, peak_15_off, label='15')
+    plt.plot(x_ticks, peak_16_off, label='16')
+    plt.plot(x_ticks, peak_g_off, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
+    plt.legend(title="Beta", frameon=False)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.suptitle('STN')
+    plt.title('OFF')
+
+    plt.subplot(1,2,2)
+    plt.plot(x_ticks, peak_3_on,  label='3')
+    plt.plot(x_ticks, peak_4_on, label='4')
+    plt.plot(x_ticks, peak_5_on, label='5')
+    plt.plot(x_ticks, peak_6_on, label='6')
+    plt.plot(x_ticks, peak_7_on, label='7')
+    plt.plot(x_ticks, peak_8_on, label='8')
+    plt.plot(x_ticks, peak_9_on, label='9')
+    plt.plot(x_ticks, peak_11_on, label='11')
+    plt.plot(x_ticks, peak_12_on, label='12')
+    plt.plot(x_ticks, peak_13_on, label='13')
+    plt.plot(x_ticks, peak_14_on, label='14')
+    plt.plot(x_ticks, peak_15_on, label='15')
+    plt.plot(x_ticks, peak_16_on, label='16')
+    plt.plot(x_ticks, peak_g_on, color='red', linewidth=3, path_effects=[SimpleLineShadow(shadow_color="red", linewidth=5),Normal()])
+    plt.legend(title="Beta", frameon=False)
+    plt.xlabel("Frequency (Hz)")
+    plt.ylabel("Relative spectral power (au)")
+    plt.suptitle('STN')
+    plt.title('ON')
+
+    return fig
+
+def plot_duration_scores_off(duration, scores):
+
+    plt.scatter(duration, scores)
+    plt.xlabel('mean burst duration')
+    plt.ylabel('UPDRS Score OFF')
+    plt.title('STN full beta ')
+
+def plot_duration_scores_on(duration, scores):
+
+    plt.scatter(duration, scores)
+    plt.xlabel('mean burst duration')
+    plt.ylabel('UPDRS Score ON')
+    plt.title('STN full beta ')
+
+def plot_amplitude_scores_off(amplitude, scores):
+
+    plt.scatter(amplitude, scores)
+    plt.xlabel('mean burst amplitude')
+    plt.ylabel('UPDRS Score OFF')
+    plt.title('STN full beta ')
+
+def plot_amplitude_scores_on(amplitude, scores):
+
+    plt.scatter(amplitude, scores)
+    plt.xlabel('mean burst amplitude')
+    plt.ylabel('UPDRS Score ON')
+    plt.title('STN full beta ')
+
+def plot_rate_scores_off(rate, scores):
+
+    plt.scatter(rate, scores)
+    plt.xlabel('mean burst rate')
+    plt.ylabel('UPDRS Score OFF')
+    plt.title('STN full beta ')
+
+def plot_rate_scores_on(rate, scores):
+
+    plt.scatter(rate, scores)
+    plt.xlabel('mean burst rate')
+    plt.ylabel('UPDRS Score ON')
+    plt.title('STN full beta ')
+
