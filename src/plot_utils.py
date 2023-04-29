@@ -887,43 +887,109 @@ def plot_beta_peaks(peak_3_off,peak_4_off,peak_5_off,peak_6_off,peak_7_off,peak_
 
 def plot_duration_scores_off(duration, scores):
 
+    fig = plt.figure(34)
     plt.scatter(duration, scores)
     plt.xlabel('mean burst duration')
     plt.ylabel('UPDRS Score OFF')
     plt.title('STN full beta ')
+    return fig
 
 def plot_duration_scores_on(duration, scores):
 
+    fig = plt.figure(35)
     plt.scatter(duration, scores)
     plt.xlabel('mean burst duration')
     plt.ylabel('UPDRS Score ON')
     plt.title('STN full beta ')
+    return fig
 
 def plot_amplitude_scores_off(amplitude, scores):
-
+    
+    fig = plt.figure(36)
     plt.scatter(amplitude, scores)
     plt.xlabel('mean burst amplitude')
     plt.ylabel('UPDRS Score OFF')
     plt.title('STN full beta ')
+    return fig
 
 def plot_amplitude_scores_on(amplitude, scores):
 
+    fig = plt.figure(37)
     plt.scatter(amplitude, scores)
     plt.xlabel('mean burst amplitude')
     plt.ylabel('UPDRS Score ON')
     plt.title('STN full beta ')
+    return fig
 
 def plot_rate_scores_off(rate, scores):
 
+    fig = plt.figure(38)
     plt.scatter(rate, scores)
     plt.xlabel('mean burst rate')
     plt.ylabel('UPDRS Score OFF')
     plt.title('STN full beta ')
+    return fig
 
 def plot_rate_scores_on(rate, scores):
 
+    fig = plt.figure(39)
     plt.scatter(rate, scores)
     plt.xlabel('mean burst rate')
     plt.ylabel('UPDRS Score ON')
     plt.title('STN full beta ')
+    return fig
+
+def plot_duration_diff(diff, scores):
+
+    fig = plt.figure(40)
+    plt.scatter(diff, scores)
+    plt.xlabel('mean burst duration')
+    plt.ylabel('UPDRS Score diff')
+    plt.title('STN full beta ')
+    return fig
+
+def plot_amplitude_diff(diff, scores):
+
+    fig = plt.figure(41)
+    plt.scatter(diff, scores)
+    plt.xlabel('mean burst amplitude')
+    plt.ylabel('UPDRS Score diff')
+    plt.title('STN full beta ')
+    return fig
+
+def plot_rate_diff(diff, scores):
+
+    fig = plt.figure(42)
+    plt.scatter(diff, scores)
+    plt.xlabel('mean burst rate')
+    plt.ylabel('UPDRS Score diff')
+    plt.title('STN full beta ')
+    return fig
+
+def plot_prol_off(diff, scores):
+
+    fig = plt.figure(43)
+    plt.scatter(diff, scores)
+    plt.xlabel('prolonged bursts')
+    plt.ylabel('UPDRS Score OFF')
+    plt.title('STN full beta ')
+    return fig
+
+def plot_prol_on(diff, scores):
+
+    fig = plt.figure(44)
+    plt.scatter(diff, scores)
+    plt.xlabel('prolonged bursts')
+    plt.ylabel('UPDRS Score ON')
+    plt.title('STN full beta ')
+    return fig
+
+def plot_prol_diff(diff, scores):
+
+    fig = plt.figure(45)
+    plt.scatter(diff, scores)
+    plt.xlabel('prolonged bursts')
+    plt.ylabel('UPDRS Score diff')
+    plt.title('STN full beta ')
+    return fig
 
