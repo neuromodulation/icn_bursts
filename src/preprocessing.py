@@ -107,6 +107,9 @@ def pick_lfp15(raw):
     raw_lfp = raw.pick_channels(["LFP_R_01_STN_MT", "LFP_R_08_STN_MT"])
     return raw_lfp
 
+def pick_eeg(raw):
+    raw_eeg = raw.pick_channels(['EEG GLA8', 'EEG GLB8', 'EEG GLC8','EEG GLD8', 'EEG GLD7','EEG GLD6'])
+    return raw_eeg
 
 def bipolar_reference(raw, raw_ecog, new_ch_names):
 
@@ -172,9 +175,9 @@ def filtering(raw_ecog_bi):
     Filtering (Highpass 3 Hz, Notchfilter 50,251,50Hz, Lowpass 250Hz)
     """
     raw_ecog_hi = raw_ecog_bi.filter(3, None,)
-    raw_ecog_hi_lo = raw_ecog_hi.filter(None, 250)
+    raw_ecog_hi_lo = raw_ecog_hi.filter(None, 127)
     raw_ecog_filt = raw_ecog_hi_lo.notch_filter(
-        np.arange(50, 251, 50), filter_length="auto", phase="zero"
+        np.arange(50, 128, 50), filter_length="auto", phase="zero"
     )
     return raw_ecog_filt
 
@@ -183,7 +186,7 @@ def downsample(raw_ecog_filt):
     """
     Downsample Data to 1600Hz for faster processing
     """
-    raw_ecog_dow = raw_ecog_filt.resample(1600)
+    raw_ecog_dow = raw_ecog_filt.resample(250)
     return raw_ecog_dow
 
 

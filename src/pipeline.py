@@ -25,55 +25,57 @@ def bursts_single_run(
     run: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
-    raw, data, sfreq = IO.read_mat_data(path_run)
-    annotations = mne.read_annotations(
-        preprocessing.generate_annotations_fpath(
-            folderpath="/Users/alidzaye/rest_annotations",
-            dataset="BIDS_Berlin_ECOG_LFP",
-            subject=sub,
-            session=session,
-            task=task,
-            acquisition=acquisition,
-            run=run,
-        )
-    )
-    if sub == "004":
-        raw_annots = raw.set_annotations(annotations)
-    else:
-        raw_annots = raw.set_annotations(
-            preprocessing.check_annots_orig_time(annotations)
-        )
+    raw, data, sfreq = IO.read_edf_data(path_run)
+    #annotations = mne.read_annotations(
+    #    preprocessing.generate_annotations_fpath(
+    #        folderpath="/Users/alidzaye/rest_annotations",
+    #        dataset="BIDS_Berlin_ECOG_LFP",
+    #        subject=sub,
+    #        session=session,
+    #        task=task,
+    #        acquisition=acquisition,
+    #        run=run,
+    #    )
+    #)
+    #if sub == "004":
+    #    raw_annots = raw.set_annotations(annotations)
+    #else:
+    #    raw_annots = raw.set_annotations(
+    #        preprocessing.check_annots_orig_time(annotations)
+    #    )
 
-    if sub == "003":
-        raw_lfp = preprocessing.pick_lfp3(raw_annots)
-    if sub == "004":
-        raw_lfp = preprocessing.pick_lfp4(raw_annots)
-    if sub == "008":
-        raw_lfp = preprocessing.pick_lfp8(raw_annots)
-    if sub == "009":
-        raw_lfp = preprocessing.pick_lfp9(raw_annots)
-    if sub == "015":
-        raw_lfp = preprocessing.pick_lfp15(raw_annots)
-    if sub == "005":
-        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    if sub == "006":
-        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    if sub == "007":
-        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    if sub == "011":
-        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    if sub == "012":
-        raw_lfp = preprocessing.pick_lfp12(raw_annots)
-    if sub == "013":
-        raw_lfp = preprocessing.pick_lfp13(raw_annots)
-    if sub == "014":
-        raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    if sub == "EL016":
-       raw_lfp = preprocessing.pick_lfp15(raw_annots)
+    raw_eeg = preprocessing.pick_eeg(raw)
+
+    #if sub == "003":
+    #    raw_lfp = preprocessing.pick_lfp3(raw_annots)
+    #if sub == "004":
+    #    raw_lfp = preprocessing.pick_lfp4(raw_annots)
+    #if sub == "008":
+    #    raw_lfp = preprocessing.pick_lfp8(raw_annots)
+    #if sub == "009":
+    #    raw_lfp = preprocessing.pick_lfp9(raw_annots)
+    #if sub == "015":
+    #    raw_lfp = preprocessing.pick_lfp15(raw_annots)
+    #if sub == "005":
+    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    #if sub == "006":
+    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    #if sub == "007":
+    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    #if sub == "011":
+    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    #if sub == "012":
+    #    raw_lfp = preprocessing.pick_lfp12(raw_annots)
+    #if sub == "013":
+    #    raw_lfp = preprocessing.pick_lfp13(raw_annots)
+    #if sub == "014":
+    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+    #if sub == "EL016":
+    #   raw_lfp = preprocessing.pick_lfp15(raw_annots)
     # else:
     #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
 
-    raw_lfp_bi = preprocessing.bipolar_reference_lfp(raw_annots, raw_lfp, "LFP")
+    raw_lfp_bi = preprocessing.bipolar_reference_lfp(raw, raw_eeg, "LFP")
 
     NUM_CH = len(raw_lfp_bi.ch_names)
 
@@ -225,7 +227,7 @@ def bursts_single_run(
 
     # Burst Rate
     burst_rate_lfp = np.sum(
-        histogram_duration[len(raw_lfp_bi.ch_names) - 1] / (raw_annots.times[-1] - 5.0)
+        histogram_duration[len(raw_lfp_bi.ch_names) - 1] / (raw.times[-1] - 5.0)
     )
 
     # 3. STRUCTURE FEATURES #
