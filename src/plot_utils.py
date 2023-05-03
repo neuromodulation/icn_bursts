@@ -993,3 +993,10 @@ def plot_prol_diff(diff, scores):
     plt.title('STN full beta ')
     return fig
 
+def plot_dur_ampl(duration, amplitude):
+    fig = plt.figure(46)
+    plt.scatter(duration, amplitude)
+    plt.xlabel('duration')
+    plt.ylabel('Amplitude')
+    plt.title('STN full beta')
+    return fig

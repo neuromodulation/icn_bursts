@@ -376,6 +376,9 @@ plot_utils.plot_prol_off(dist_off, scores_off)
 plot_utils.plot_prol_on(dist_on, scores_on)
 plot_utils.plot_prol_diff(dist_diff, scores_diff)
 
+plot_utils.plot_dur_ampl(duration_off, amplitude_off)
+plot_utils.plot_dur_ampl(duration_on, amplitude_on)
+
 rduroff_stat, rduroff_pval = spearmanr(duration_off, scores_off)
 rduron_stat, rduron_pval = spearmanr(duration_on, scores_on)
 rdurdiff_stat, rdurdiff_pval = spearmanr(duration_diff, scores_diff)
