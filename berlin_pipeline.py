@@ -11,7 +11,7 @@ import seaborn as sns
 from src import pipeline, plot_utils, preprocessing, postprocessing
 import seaborn as sns
 import numpy as np
-from scipy.stats import wilcoxon, permutation_test
+from scipy.stats import wilcoxon, permutation_test, spearmanr
 
 # SCRIPT START #
 def main():
