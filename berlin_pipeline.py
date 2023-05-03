@@ -351,20 +351,49 @@ peak_g_on = psd_on[17:28]
 plot_utils.plot_beta_peaks(peak_3_off,peak_4_off,peak_5_off,peak_6_off,peak_7_off,peak_8_off,peak_9_off,peak_11_off,peak_12_off,peak_13_off,peak_14_off,peak_15_off,peak_16_off,peak_3_on,peak_4_on,peak_5_on,peak_6_on,peak_7_on,peak_8_on,peak_9_on,peak_11_on,peak_12_on,peak_13_on,peak_14_on,peak_15_on,peak_16_on, peak_g_off, peak_g_on)
 
 
-#Correlation Burst Duration and Score
+
+#Correlation Burst Features and Score
 scores_off = np.array([20, 36, 18, 27, 32, 26, 15, 43, 28, 27, 35, 47, 23])
 scores_on = np.array([15, 19, 12, 15, 13, 18, 7, 35, 9, 9, 13, 28, 14])
+scores_diff = scores_off - scores_on
 duration_off
 amplitude_off 
 rate_off 
+duration_diff = duration_off - duration_on
+amplitude_diff = amplitude_off - amplitude_on
+rate_diff = rate_off - rate_on
+dist_diff = dist_off - dist_on
 
 plot_utils.plot_duration_scores_off(duration_off, scores_off)
-plot_utils.plot_duration_scores_on(duration_off, scores_on)
+plot_utils.plot_duration_scores_on(duration_on, scores_on)
+plot_utils.plot_duration_diff(duration_diff, scores_diff)
 plot_utils.plot_amplitude_scores_off(amplitude_off, scores_off)
-
-
 plot_utils.plot_amplitude_scores_on(amplitude_on, scores_off)
+plot_utils.plot_amplitude_diff(rate_diff, scores_diff)
 plot_utils.plot_rate_scores_off(amplitude_off, scores_off)
 plot_utils.plot_rate_scores_on(amplitude_on, scores_off)
+plot_utils.plot_rate_diff(rate_diff, scores_diff)
+plot_utils.plot_prol_off(dist_off, scores_off)
+plot_utils.plot_prol_on(dist_on, scores_on)
+plot_utils.plot_prol_diff(dist_diff, scores_diff)
+
+plot_utils.plot_dur_ampl(duration_off, amplitude_off)
+plot_utils.plot_dur_ampl(duration_on, amplitude_on)
+
+rduroff_stat, rduroff_pval = spearmanr(duration_off, scores_off)
+rduron_stat, rduron_pval = spearmanr(duration_on, scores_on)
+rdurdiff_stat, rdurdiff_pval = spearmanr(duration_diff, scores_diff)
+
+ramploff_stat, ramploff_pval = spearmanr(amplitude_off, scores_off)
+ramplon_stat, ramplon_pval = spearmanr(amplitude_on, scores_on)
+rampldiff_stat, rampldiff_pval = spearmanr(amplitude_diff, scores_diff)
+
+rrateoff_stat, rrateoff_pval = spearmanr(rate_off, scores_off)
+rrateon_stat, rrateon_pval = spearmanr(rate_on, scores_on)
+rratediff_stat, rratediff_pval = spearmanr(rate_diff, scores_diff)
+
+rdistoff_stat, rdistoff_pval = spearmanr(dist_off, scores_off)
+rdiston_stat, rdiston_pval = spearmanr(dist_on, scores_on)
+rdistdiff_stat, rdistdiff_pval = spearmanr(dist_diff, scores_diff)
 
 
