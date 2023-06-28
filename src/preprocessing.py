@@ -57,6 +57,12 @@ def pick_runs(files):
     files = [i for i in files if i in runs]
     return files
 
+def pick_eeg_runs(files):
+    runs = {'/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J1_05278n13a01-interik-03-02-12-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J2_06020n05a02-interik-Testung-interik-110726-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf','/Users/alidzaye/DATA_WENZEL_UKB/J4_07081n05a01-Verlauf-Tag-1-nach-Impl-edf.edf'
+    }
+    files = [i for i in files if i in runs]
+    return files
+
 
 def pick_ecog(raw):
     """
@@ -111,6 +117,23 @@ def pick_eeg(raw):
     raw_eeg = raw.pick_channels(['EEG GLA8', 'EEG GLB8', 'EEG GLC8','EEG GLD8', 'EEG GLD7','EEG GLD6'])
     return raw_eeg
 
+def pick_eeg2(raw):
+    raw_eeg = raw.pick_channels(['EEG GLA2', 'EEG GLB2', 'EEG GLA3', 'EEG GLB3'])
+    return raw_eeg
+
+def pick_eeg3(raw):
+    raw_eeg = raw.pick_channels(['EEG GLA8', 'EEG GLB8'])
+    return raw_eeg
+
+#def pick_eeg4(raw):
+    raw_eeg = raw.pick_channels(['A2_B2', 'A8_B8', 'B3_A3'])
+    return raw_eeg
+
+def pick_eeg4(raw):
+    raw_eeg = raw.pick_channels(['EEG GLA3', 'EEG GLB3', 'EEG GLC3'])
+    return raw_eeg
+
+
 def bipolar_reference(raw, raw_ecog, new_ch_names):
 
     anode = raw_ecog[0:5]
@@ -121,7 +144,7 @@ def bipolar_reference(raw, raw_ecog, new_ch_names):
     return raw_ecog_bi
 
 
-def bipolar_reference_lfp(raw, raw_lfp, new_ch_names):
+def bipolar_reference_eeg(raw, raw_lfp, new_ch_names):
 
     anode = raw_lfp.ch_names[0]
     cathode = raw_lfp.ch_names[1]

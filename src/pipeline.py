@@ -25,221 +25,233 @@ def bursts_single_run(
     run: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
-    raw, data, sfreq = IO.read_edf_data(path_run)
-    #annotations = mne.read_annotations(
-    #    preprocessing.generate_annotations_fpath(
-    #        folderpath="/Users/alidzaye/rest_annotations",
-    #        dataset="BIDS_Berlin_ECOG_LFP",
-    #        subject=sub,
-    #        session=session,
-    #        task=task,
-    #        acquisition=acquisition,
-    #        run=run,
-    #    )
-    #)
-    #if sub == "004":
-    #    raw_annots = raw.set_annotations(annotations)
-    #else:
-    #    raw_annots = raw.set_annotations(
-    #        preprocessing.check_annots_orig_time(annotations)
-    #    )
+    ep = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J1_05278n13a01-interik-03-02-12-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J2_06020n05a02-interik-Testung-interik-110726-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf','/Users/alidzaye/DATA_WENZEL_UKB/J4_07081n05a01-Verlauf-Tag-1-nach-Impl-edf.edf'] #'/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf' '
 
-    raw_eeg = preprocessing.pick_eeg(raw)
+    for i in ep:
+        raw, data, sfreq = IO.read_edf_data(ep)
+        #annotations = mne.read_annotations(
+        #    preprocessing.generate_annotations_fpath(
+        #        folderpath="/Users/alidzaye/rest_annotations",
+        #        dataset="BIDS_Berlin_ECOG_LFP",
+        #        subject=sub,
+        #        session=session,
+        #        task=task,
+        #        acquisition=acquisition,
+        #        run=run,
+        #    )
+        #)
+        #if sub == "004":
+        #    raw_annots = raw.set_annotations(annotations)
+        #else:
+        #    raw_annots = raw.set_annotations(
+        #        preprocessing.check_annots_orig_time(annotations)
+        #    )
 
-    #if sub == "003":
-    #    raw_lfp = preprocessing.pick_lfp3(raw_annots)
-    #if sub == "004":
-    #    raw_lfp = preprocessing.pick_lfp4(raw_annots)
-    #if sub == "008":
-    #    raw_lfp = preprocessing.pick_lfp8(raw_annots)
-    #if sub == "009":
-    #    raw_lfp = preprocessing.pick_lfp9(raw_annots)
-    #if sub == "015":
-    #    raw_lfp = preprocessing.pick_lfp15(raw_annots)
-    #if sub == "005":
-    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    #if sub == "006":
-    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    #if sub == "007":
-    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    #if sub == "011":
-    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    #if sub == "012":
-    #    raw_lfp = preprocessing.pick_lfp12(raw_annots)
-    #if sub == "013":
-    #    raw_lfp = preprocessing.pick_lfp13(raw_annots)
-    #if sub == "014":
-    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
-    #if sub == "EL016":
-    #   raw_lfp = preprocessing.pick_lfp15(raw_annots)
-    # else:
-    #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+        #if raw[0]:
+        raw_eeg = preprocessing.pick_eeg(raw)
+        #if raw[1]:
+        #    raw_eeg = preprocessing.pick_eeg2(raw)
+        #if raw[2]:
+        #    raw_eeg = preprocessing.pick_eeg3(raw)
+        #if raw[3]:
+        #    raw_eeg = preprocessing.pick_eeg4(raw)
 
-    raw_lfp_bi = preprocessing.bipolar_reference_lfp(raw, raw_eeg, "LFP")
+        #if sub == "003":
+        #    raw_lfp = preprocessing.pick_lfp3(raw_annots)
+        #if sub == "004":
+        #    raw_lfp = preprocessing.pick_lfp4(raw_annots)
+        #if sub == "008":
+        #    raw_lfp = preprocessing.pick_lfp8(raw_annots)
+        #if sub == "009":
+        #    raw_lfp = preprocessing.pick_lfp9(raw_annots)
+        #if sub == "015":
+        #    raw_lfp = preprocessing.pick_lfp15(raw_annots)
+        #if sub == "005":
+        #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+        #if sub == "006":
+        #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+        #if sub == "007":
+        #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+        #if sub == "011":
+        #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+        #if sub == "012":
+        #    raw_lfp = preprocessing.pick_lfp12(raw_annots)
+        #if sub == "013":
+        #    raw_lfp = preprocessing.pick_lfp13(raw_annots)
+        #if sub == "014":
+        #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
+        #if sub == "EL016":
+        #   raw_lfp = preprocessing.pick_lfp15(raw_annots)
+        # else:
+        #    raw_lfp = preprocessing.pick_lfp_other(raw_annots)
 
-    NUM_CH = len(raw_lfp_bi.ch_names)
+        raw_lfp_bi = preprocessing.bipolar_reference_eeg(raw, raw_eeg, "LFP")
 
-    raw_lfp_filt = preprocessing.filtering(raw_lfp_bi)
+        NUM_CH = len(raw_lfp_bi.ch_names)
 
-    raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
+        raw_lfp_filt = preprocessing.filtering(raw_lfp_bi)
 
-    # plot recording and save annotation
-    #raw_lfp_dow.pick_channels(["LFP", "ECOG_L_1_2_SMC_AT"]).plot()
-    #print("done")
-    # raw_lfp_dow.annotations.save('sub-EL016_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
+        raw_lfp_dow = preprocessing.downsample(raw_lfp_filt)
 
-    signal, time = preprocessing.get_data(raw_lfp_dow)
+        # plot recording and save annotation
+        #raw_lfp_dow.pick_channels(["LFP", "ECOG_L_1_2_SMC_AT"]).plot()
+        #print("done")
+        # raw_lfp_dow.annotations.save('sub-EL016_ses-EcogLfpMedOn02_task-Rest_acq-StimOff_run-1_annotations.csv', overwrite=True)
 
-    stand_signal = preprocessing.z_score_signal(signal)
+        raw_crop = raw_lfp_dow.crop(tmax=400)
 
-    run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
+        signal, time = preprocessing.get_data(raw_crop)
 
-    l_beta = burst_calc.beta_bands(run_TF)
+        stand_signal = preprocessing.z_score_signal(signal)
 
-    # list of beta bands
-    #if sub == "003" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub3(run_TF)
-    #if sub == "003" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub3_on(run_TF)
-    #if sub == "004" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub4(run_TF)
-    #if sub == "004" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub4_on(run_TF)
-    #if sub == "005" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub5(run_TF)
-    #if sub == "005" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub5_on(run_TF)
-    #if sub == "006" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub6(run_TF)
-    #if sub == "006" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub6_on(run_TF)
-    #if sub == "007" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub7(run_TF)
-    #if sub == "007" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub7_on(run_TF)
-    #if sub == "008" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub8(run_TF)
-    #if sub == "008" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub8_on(run_TF)
-    #if sub == "009":
-    #    l_beta = burst_calc.beta_bands_sub9(run_TF)
-    #if sub == "011" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub11(run_TF)
-    #if sub == "011" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub11_on(run_TF)
-    #if sub == "012" and med == "Off":
-    #   l_beta = burst_calc.beta_bands_sub12(run_TF)
-    #if sub == "012" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub12_on(run_TF)
-    #if sub == "013":
-    #    l_beta = burst_calc.beta_bands_sub13(run_TF)
-    #if sub == "014" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub14(run_TF)
-    #if sub == "014" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub14_on(run_TF)
-    #if sub == "015":
-    #    l_beta = burst_calc.beta_bands_sub15(run_TF)
-    #if sub == "016" and med == "Off":
-    #    l_beta = burst_calc.beta_bands_sub16(run_TF)
-    #if sub == "016" and med == "On":
-    #    l_beta = burst_calc.beta_bands_sub16_on(run_TF)
+        run_TF = burst_calc.Time_Frequency_Estimation(stand_signal)
 
-    theta = 0
-    mu = 1
-    low = 2
-    high = 3
-    full = 4
+        l_beta = burst_calc.beta_bands(run_TF)
 
-    indtheta = 0
-    indbeta = 1
+        # list of beta bands
+        #if sub == "003" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub3(run_TF)
+        #if sub == "003" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub3_on(run_TF)
+        #if sub == "004" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub4(run_TF)
+        #if sub == "004" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub4_on(run_TF)
+        #if sub == "005" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub5(run_TF)
+        #if sub == "005" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub5_on(run_TF)
+        #if sub == "006" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub6(run_TF)
+        #if sub == "006" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub6_on(run_TF)
+        #if sub == "007" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub7(run_TF)
+        #if sub == "007" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub7_on(run_TF)
+        #if sub == "008" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub8(run_TF)
+        #if sub == "008" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub8_on(run_TF)
+        #if sub == "009":
+        #    l_beta = burst_calc.beta_bands_sub9(run_TF)
+        #if sub == "011" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub11(run_TF)
+        #if sub == "011" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub11_on(run_TF)
+        #if sub == "012" and med == "Off":
+        #   l_beta = burst_calc.beta_bands_sub12(run_TF)
+        #if sub == "012" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub12_on(run_TF)
+        #if sub == "013":
+        #    l_beta = burst_calc.beta_bands_sub13(run_TF)
+        #if sub == "014" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub14(run_TF)
+        #if sub == "014" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub14_on(run_TF)
+        #if sub == "015":
+        #    l_beta = burst_calc.beta_bands_sub15(run_TF)
+        #if sub == "016" and med == "Off":
+        #    l_beta = burst_calc.beta_bands_sub16(run_TF)
+        #if sub == "016" and med == "On":
+        #    l_beta = burst_calc.beta_bands_sub16_on(run_TF)
 
-    # Averaging power in all beta bands
-    l_beta_avg = [burst_calc.avg_power(l) for l in l_beta]
+        theta = 0
+        mu = 1
+        low = 2
+        high = 3
+        full = 4
 
-    # Z-Scored averaged beta traces
-    l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
+        indtheta = 0
+        indbeta = 1
 
-    # CHOOSING BETA BAND
-    # smoothing traces
-    # l_beta_smooth = burst_calc.smooth(l_beta_avg_norm[high][0])
-    l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[full]]
+        # Averaging power in all beta bands
+        l_beta_avg = [burst_calc.avg_power(l) for l in l_beta]
 
-    # 75th percentile of the power
-    l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth]
+        # Z-Scored averaged beta traces
+        l_beta_avg_norm = [burst_calc.z_score(l) for l in l_beta_avg]
 
-    # Plot Signal
-    #plt.plot(time, l_beta_smooth[0], color="b")
-    #plt.axhline(l_beta_thr, color="r", linestyle="--")
-    #sns.despine()
-    #print("done")
+        # CHOOSING BETA BAND
+        # smoothing traces
+        # l_beta_smooth = burst_calc.smooth(l_beta_avg_norm[high][0])
+        l_beta_smooth = [burst_calc.smooth(l) for l in l_beta_avg_norm[full]]
 
-    # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
-    # Power spectral density
-    power_spectra = [
-        np.nanmean(np.squeeze(run_TF[ch_idx, :, :]), axis=1)
-        for ch_idx in range(len(raw_lfp_bi.get_channel_types()))
-    ]
-    # Normalized power spectral density
-    power_spectra_norm = [
-        p_ch / np.sum(p_ch[4:45] + p_ch[54:95]) for p_ch in power_spectra
-    ]
-    psd_lfp = power_spectra_norm[len(raw_lfp_bi.ch_names) - 1]
+        # 75th percentile of the power
+        l_beta_thr = [burst_calc.percentile(l, percentile=75) for l in l_beta_smooth[4]]
 
-    # Burst duration
-    burst_duration = [
-        burst_calc.get_burst_length(l, l_beta_thr[idx], 1600)
-        for idx, l in enumerate(l_beta_smooth)
-    ]
-    burst_duration_cl = [
-        burst_calc.exclude_short_bursts(burst_duration[ch_idx])
-        for ch_idx in range(NUM_CH)
-    ]
-    burst_duration_cl_lfp = burst_duration_cl[len(raw_lfp_bi.ch_names) - 1]
-    # Mean burst duration
-    mean_burst_duration = [
-        np.nanmean(burst_duration_cl[ch_idx], axis=0) for ch_idx in range(NUM_CH)
-    ]
-    mean_dur_lfp = mean_burst_duration[len(raw_lfp_bi.ch_names) - 1]
+        # Plot Signal
+        #plt.plot(time, l_beta_smooth[0], color="b")
+        #plt.axhline(l_beta_thr[4], color="r", linestyle="--")
+        #sns.despine()
+        #print("done")
 
-    # Histogram of burst duration
-    histogram_duration = [
-        np.histogram(burst_duration_cl[ch_idx], density=False, bins=20, range=(0, 2))[0]
-        for ch_idx in range(NUM_CH)
-    ]
-    hist_dur_m1 = histogram_duration[len(raw_lfp_bi.ch_names) - 1]
-    # Normed Histogram
-    n_hist_dur = [
-        100 * histogram_duration[ch_idx] / len(burst_duration_cl[ch_idx])
-        for ch_idx in range(NUM_CH)
-    ]
-    n_hist_dur_lfp = n_hist_dur[len(raw_lfp_bi.ch_names) - 1]
-    n_hist_dur_lfp_cl = np.delete(n_hist_dur_lfp, 0)
-    short_bursts = n_hist_dur_lfp_cl[:7]
-    prol_bursts = np.sum(n_hist_dur_lfp_cl[7:])
-    normhist_dur_lfp = np.append(short_bursts, prol_bursts)
+        # 2. CALCULATING FEATURES (NORMALIZED POWER, BURST LENGTH, BURST DYNAMIC) AND BIOMARKER COMPARISON #
+        # Power spectral density
+        power_spectra = [
+            np.nanmean(np.squeeze(run_TF[ch_idx, :, :]), axis=1)
+            for ch_idx in range(len(raw_lfp_bi.get_channel_types()))
+        ]
+        # Normalized power spectral density
+        power_spectra_norm = [
+            p_ch / np.sum(p_ch[4:45] + p_ch[54:95]) for p_ch in power_spectra
+        ]
+        psd_lfp = power_spectra_norm[len(raw_lfp_bi.ch_names) - 1]
 
-    # Burst Amplitude
-    burst_amplitude = [
-        burst_calc.get_burst_amplitude(l, l_beta_thr[idx])
-        for idx, l in enumerate(l_beta_smooth)
-    ]
-    burst_amplitude_lfp = burst_amplitude[len(raw_lfp_bi.ch_names) - 1]
+        # Burst duration
+        burst_duration = [
+            burst_calc.get_burst_length(l, l_beta_thr[idx], 1600)
+            for idx, l in enumerate(l_beta_smooth)
+        ]
+        burst_duration_cl = [
+            burst_calc.exclude_short_bursts(burst_duration[ch_idx])
+            for ch_idx in range(NUM_CH)
+        ]
+        burst_duration_cl_lfp = burst_duration_cl[len(raw_lfp_bi.ch_names) - 1]
+        # Mean burst duration
+        mean_burst_duration = [
+            np.nanmean(burst_duration_cl[ch_idx], axis=0) for ch_idx in range(NUM_CH)
+        ]
+        mean_dur_lfp = mean_burst_duration[len(raw_lfp_bi.ch_names) - 1]
 
-    # Burst Rate
-    burst_rate_lfp = np.sum(
-        histogram_duration[len(raw_lfp_bi.ch_names) - 1] / (raw.times[-1] - 5.0)
-    )
+        # Histogram of burst duration
+        histogram_duration = [
+            np.histogram(burst_duration_cl[ch_idx], density=False, bins=20, range=(0, 2))[0]
+            for ch_idx in range(NUM_CH)
+        ]
+        hist_dur_m1 = histogram_duration[len(raw_lfp_bi.ch_names) - 1]
+        # Normed Histogram
+        n_hist_dur = [
+            100 * histogram_duration[ch_idx] / len(burst_duration_cl[ch_idx])
+            for ch_idx in range(NUM_CH)
+        ]
+        n_hist_dur_lfp = n_hist_dur[len(raw_lfp_bi.ch_names) - 1]
+        n_hist_dur_lfp_cl = np.delete(n_hist_dur_lfp, 0)
+        short_bursts = n_hist_dur_lfp_cl[:7]
+        prol_bursts = np.sum(n_hist_dur_lfp_cl[7:])
+        normhist_dur_lfp = np.append(short_bursts, prol_bursts)
 
-    # 3. STRUCTURE FEATURES #
-    # Burst Features
-    burst_char_pd = postprocessing.dataframe_burst_char(
-        mean_dur_lfp, burst_amplitude_lfp, burst_rate_lfp
-    )
+        # Burst Amplitude
+        burst_amplitude = [
+            burst_calc.get_burst_amplitude(l, l_beta_thr[idx])
+            for idx, l in enumerate(l_beta_smooth)
+        ]
+        burst_amplitude_lfp = burst_amplitude[len(raw_lfp_bi.ch_names) - 1]
 
-    # M1 Beta Burst Dynamics
-    M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(normhist_dur_lfp)
+        # Burst Rate
+        burst_rate_lfp = np.sum(
+            histogram_duration[len(raw_lfp_bi.ch_names) - 1] / (raw.times[-1] - 5.0)
+        )
 
-    # normalized beta power
-    npow = postprocessing.dataframe_npow(psd_lfp)
+        # 3. STRUCTURE FEATURES #
+        # Burst Features
+        burst_char_pd = postprocessing.dataframe_burst_char(
+            mean_dur_lfp, burst_amplitude_lfp, burst_rate_lfp
+        )
 
-    return burst_char_pd, M1_burst_dynamics, npow
+        # M1 Beta Burst Dynamics
+        M1_burst_dynamics = postprocessing.dataframe_burst_dynamics(normhist_dur_lfp)
+
+        # normalized beta power
+        npow = postprocessing.dataframe_npow(psd_lfp)
+
+        return burst_char_pd, M1_burst_dynamics, npow

@@ -32,9 +32,15 @@ def main():
     files = preprocessing.pick_runs(files)
     files_x = [f for f in files if "016" in f]
 
-    ep = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf']
-    ep2 = ['/Users/alidzaye/DATA_Kienitz_FFM/8968177.mat']
+    #ep = preprocessing.pick_eeg_runs(files)
 
+    ep = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J1_05278n13a01-interik-03-02-12-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J2_06020n05a02-interik-Testung-interik-110726-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf','/Users/alidzaye/DATA_WENZEL_UKB/J4_07081n05a01-Verlauf-Tag-1-nach-Impl-edf.edf'] #'/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf' '
+
+    ep = ep[0]
+
+    ep2 = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf']
+
+  
     # Define variables
     burst_char_pd_all = []
     M1_burst_dynamics_all = []
