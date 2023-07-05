@@ -10,7 +10,7 @@ import numpy
 def Time_Frequency_Estimation(signal):
     freqs = np.arange(1, 101,1)
     power = mne.decoding.TimeFrequency(
-        freqs, sfreq=1600, method="morlet", n_cycles=10, output="power"
+        freqs, sfreq=200, method="morlet", n_cycles=10, output="power"
     )
     run_TF = power.transform(signal)
     return run_TF
@@ -414,7 +414,7 @@ def get_burst_amplitude(beta_amplitude, beta_thr):
     #array_smooth = np.apply_along_axis(lambda m: np.convolve(m, box, mode='same'), axis=axis, arr=array)
     #return array_smooth
 
-def smooth(array, window_size=320):
+def smooth(array, window_size=40):
     kernel = np.ones(window_size) / window_size
     data_convolved = np.convolve(array, kernel, mode='same')
     return data_convolved

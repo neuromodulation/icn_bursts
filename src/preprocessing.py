@@ -118,11 +118,11 @@ def pick_eeg(raw):
     return raw_eeg
 
 def pick_eeg2(raw):
-    raw_eeg = raw.pick_channels(['EEG GLA2', 'EEG GLB2', 'EEG GLA3', 'EEG GLB3'])
+    raw_eeg = raw.pick_channels(['GLA2',  'GLB2', 'GLA3', 'GLB3'])
     return raw_eeg
 
 def pick_eeg3(raw):
-    raw_eeg = raw.pick_channels(['EEG GLA8', 'EEG GLB8'])
+    raw_eeg = raw.pick_channels(['GRA8', 'GRB8'])
     return raw_eeg
 
 #def pick_eeg4(raw):
@@ -198,9 +198,9 @@ def filtering(raw_ecog_bi):
     Filtering (Highpass 3 Hz, Notchfilter 50,251,50Hz, Lowpass 250Hz)
     """
     raw_ecog_hi = raw_ecog_bi.filter(3, None,)
-    raw_ecog_hi_lo = raw_ecog_hi.filter(None, 127)
+    raw_ecog_hi_lo = raw_ecog_hi.filter(None, 99)
     raw_ecog_filt = raw_ecog_hi_lo.notch_filter(
-        np.arange(50, 128, 50), filter_length="auto", phase="zero"
+        np.arange(50, 99, 50), filter_length="auto", phase="zero"
     )
     return raw_ecog_filt
 
@@ -209,7 +209,7 @@ def downsample(raw_ecog_filt):
     """
     Downsample Data to 1600Hz for faster processing
     """
-    raw_ecog_dow = raw_ecog_filt.resample(250)
+    raw_ecog_dow = raw_ecog_filt.resample(200)
     return raw_ecog_dow
 
 
