@@ -25,13 +25,6 @@ def main():
     path_bids = project_constants["PATH_BIDS"]
     m1_ids = project_constants["M1_IDS"]
     new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
-    files = project_constants["files"]
-    remove_subjects: Union[str, None] = ["001", "002", "010"]
-    if remove_subjects:
-        for remove_subject in remove_subjects:
-            files = [file for file in files if remove_subject not in file]
-    files = preprocessing.pick_runs(files)
-    files_x = [f for f in files if "016" in f]
 
 
     ep = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J1_05278n13a01-interik-03-02-12-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J2_06020n05a02-interik-Testung-interik-110726-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf','/Users/alidzaye/DATA_WENZEL_UKB/J4_07081n05a01-Verlauf-Tag-1-nach-Impl-edf.edf'] #'/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf' '
@@ -46,37 +39,9 @@ def main():
 
     #  Process runs #
     for path_run in ep3:
-        #entities = mne_bids.get_entities_from_fname(path_run)
-        #sub = entities["subject"]
-        #num = entities['num']
-        #sm1 = sm1['number']
-        #session = entities["session"]
-        #task = entities["task"]
-        #acquisition = entities["acquisition"]
-        #run = entities["run"]
-        #med = "On" if "MedOn" in entities["session"] else "Off"
         (burst_char_pd, M1_burst_dynamics, npow,) = pipeline.bursts_single_run(
             path_run=path_run,
-            path_bids=path_bids,
-            #sub=sub,
-            #num = num,
-            #m1=m1_ids[sub],
-            #new_ch_names=new_ch_names_map[sub],
-            #med=med,
-            #session=session,
-            #task=task,
-            #acquisition=acquisition,
-            #run=run,
-        )
-        #burst_char_pd["Subject"] = sub
-        #burst_char_pd["Medication"] = med
-        #burst_char_pd["Run"] = run
-        #M1_burst_dynamics["Subject"] = sub
-        #M1_burst_dynamics["Medication"] = med
-        #M1_burst_dynamics["Run"] = run
-        #npow["Subject"] = sub
-        #npow["Medication"] = med
-        #npow["Run"] = run
+            path_bids=path_bids)
         burst_char_pd_all.append(burst_char_pd)
         M1_burst_dynamics_all.append(M1_burst_dynamics)
         npow_list_all.append(npow)
@@ -100,6 +65,53 @@ psd = pd.concat(npow_list_all)
 # plot_utils.plot_avgm1_burst_features(features)
 
 print("done")
+
+def main():
+    """Run this script."""
+    # Load project constants
+    project_constants = runpy.run_path("berlin_constants.py")
+    data_path = project_constants["data_path"]
+    path_bids = project_constants["PATH_BIDS"]
+    m1_ids = project_constants["M1_IDS"]
+    new_ch_names_map = project_constants["NEW_CH_NAMES_MAP"]
+
+
+    ep = ['/Users/alidzaye/DATA_WENZEL_UKB/EEG_2430.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J1_05278n13a01-interik-03-02-12-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J2_06020n05a02-interik-Testung-interik-110726-edf.edf', '/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf','/Users/alidzaye/DATA_WENZEL_UKB/J4_07081n05a01-Verlauf-Tag-1-nach-Impl-edf.edf'] #'/Users/alidzaye/DATA_WENZEL_UKB/J3_06990n10a01-VK-Wach-Schlaf-120705-edf.edf' '
+
+    ep3 = ['/Users/alidzaye/DATA_WENZEL_UKB/J1_05278n13a01-interik-03-02-12-edf.edf']
+
+  
+    # Define variables
+    burst_char_pd_all = []
+    M1_burst_dynamics_all = []
+    npow_list_all = []
+
+    #  Process runs #
+    for path_run in ep3:
+        (burst_char_pd, M1_burst_dynamics, npow,) = pipeline.bursts_single_run(
+            path_run=path_run,
+            path_bids=path_bids)
+        burst_char_pd_all.append(burst_char_pd)
+        M1_burst_dynamics_all.append(M1_burst_dynamics)
+        npow_list_all.append(npow)
+
+    return (
+        burst_char_pd_all,
+        M1_burst_dynamics_all,
+        npow_list_all,
+    )
+
+
+if __name__ == "__main__":
+    (burst_char_pd_all, M1_burst_dynamics_all, npow_list_all,) = main()
+
+# Structure Results in DataFrame
+features = pd.concat(burst_char_pd_all)
+dist = pd.concat(M1_burst_dynamics_all)
+psd = pd.concat(npow_list_all)
+
+
+# plot_utils.plot_avgm1_burst_features(features)
 
 
 
